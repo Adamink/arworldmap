@@ -116,8 +116,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     func makeRotationMatrixAlongX(angle: Double) -> simd_double3x3 {
         let rows = [
             simd_double3(1,     0,         0),
-            simd_double3(0,     cos(angle), -sin(angle)),
-            simd_double3(0,     sin(angle), cos(angle))
+            simd_double3(0,     cos(angle * Double.pi / 180), -sin(angle * Double.pi / 180)),
+            simd_double3(0,     sin(angle * Double.pi / 180), cos(angle * Double.pi / 180))
         ]
         
         return simd_double3x3(rows: rows)
@@ -125,9 +125,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     
     func makeRotationMatrixAlongY(angle: Double) -> simd_double3x3 {
         let rows = [
-            simd_double3(cos(angle),    0,     sin(angle)),
+            simd_double3(cos(angle * Double.pi / 180),    0,     sin(angle * Double.pi / 180)),
             simd_double3(0,             1,     0),
-            simd_double3(-sin(angle),   0,      cos(angle))
+            simd_double3(-sin(angle * Double.pi / 180),   0,      cos(angle * Double.pi / 180))
         ]
         
         return simd_double3x3(rows: rows)
@@ -135,8 +135,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     
     func makeRotationMatrixAlongZ(angle: Double) -> simd_double3x3 {
         let rows = [
-            simd_double3(cos(angle), -sin(angle), 0),
-            simd_double3(sin(angle), cos(angle), 0),
+            simd_double3(cos(angle * Double.pi / 180), -sin(angle * Double.pi / 180), 0),
+            simd_double3(sin(angle * Double.pi / 180), cos(angle * Double.pi / 180), 0),
             simd_double3(0,          0,          1)
         ]
         
@@ -177,7 +177,7 @@ extension ViewController: CLLocationManagerDelegate{
             self.createTextNode(title: "north", size: 1.8, x: 0, y: 0, z: 50)
             
             // hard code position
-            let pos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: 23.0, countryLon: 102.0)
+            let pos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: -11, countryLon: 17.8)
             print("Mexico location is \(pos.x) \(pos.y) \(pos.z)")
             // add box
             self.createBoxNode(pos: pos)
