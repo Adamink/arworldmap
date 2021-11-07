@@ -94,12 +94,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         var transMtx = makeRotationMatrixAlongZ(angle: 90-selfLon)
         transMtx = simd_mul(makeRotationMatrixAlongX(angle: -selfLat), transMtx)
         transMtx = simd_mul(makeRotationMatrixAlongY(angle: 180), transMtx)
-        countryPosLocal = simd_normalize(simd_mul(transMtx, countryPosLocal))
+        countryPosLocal = simd_mul(transMtx, countryPosLocal) // remove simd_normalize, change radius to change object size
         return SCNVector3(countryPosLocal.x, countryPosLocal.y, countryPosLocal.z)
     }
     
     func LatLonToXYZ(lat: CLLocationDegrees, lon: CLLocationDegrees) -> simd_double3 {
-        let radius = 6378.1 // km
+        let radius = 1.0 // can change
         let x = radius * cos(lat * Double.pi / 180) * cos(lon * Double.pi / 180)
         let y = radius * cos(lat * Double.pi / 180) * sin(lon * Double.pi / 180)
         let z = radius * sin(lat * Double.pi / 180)
@@ -115,7 +115,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     
     func makeRotationMatrixAlongX(angle: Double) -> simd_double3x3 {
         let rows = [
-            simd_double3(1,     0,         0),
+            simd_double3(1,     0,      0),
             simd_double3(0,     cos(angle * Double.pi / 180), -sin(angle * Double.pi / 180)),
             simd_double3(0,     sin(angle * Double.pi / 180), cos(angle * Double.pi / 180))
         ]
@@ -126,7 +126,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     func makeRotationMatrixAlongY(angle: Double) -> simd_double3x3 {
         let rows = [
             simd_double3(cos(angle * Double.pi / 180),    0,     sin(angle * Double.pi / 180)),
-            simd_double3(0,             1,     0),
+            simd_double3(0,     1,     0),
             simd_double3(-sin(angle * Double.pi / 180),   0,      cos(angle * Double.pi / 180))
         ]
         
@@ -172,7 +172,7 @@ extension ViewController: CLLocationManagerDelegate{
             manager.stopUpdatingLocation()
             manager.delegate = nil
             // Just some test text
-            self.createTextNode(title: "lat:\(location.latitude)", size: 1.8, x: 0, y: 9, z: 10)
+            self.createTextNode(title: "lat:\(location.latitude)", size: 1.8, x: 0, y: 9, z: 50)
             self.createTextNode(title: "lon:\(location.longitude)", size: 1.8, x: 0, y: 6, z: 50)
             self.createTextNode(title: "north", size: 1.8, x: 0, y: 0, z: 50)
             
