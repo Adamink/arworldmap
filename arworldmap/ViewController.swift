@@ -108,8 +108,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     
     func XYZToLatLon(x: Double, y: Double, z: Double) -> simd_double2 {
         let radius = sqrt(x*x + y*y + z*z)
-        let lat = asin((z / radius) * Double.pi / 180)
-        let long = atan((y / x) * Double.pi / 180)
+        let lat = asin(z / radius) * 180 / Double.pi
+        let long = atan(y / x) * 180 / Double.pi
         return simd_double2(lat, long)
     }
     
