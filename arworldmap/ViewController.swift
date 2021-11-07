@@ -78,7 +78,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     }
     
     func createBoxNode(pos: SCNVector3){
-        let box = SCNBox(width: 0.05, height: 0.05, length: 0.05, chamferRadius: 0)
+        let box = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0)
         let boxMaterial = SCNMaterial()
         boxMaterial.diffuse.contents = UIImage(named:"art.scnassets/sun.jpg")
         box.materials = [boxMaterial]
@@ -89,17 +89,17 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     
     func coordinateTransform(selfLat: CLLocationDegrees, selfLon: CLLocationDegrees, countryLat: CLLocationDegrees, countryLon: CLLocationDegrees) -> SCNVector3 {
         let selfPosWorld = LatLonToXYZ(lat: selfLat, lon: selfLon)
-        let countryPosWorld = LatLonToXYZ(lat: countryLon, lon: countryLon)
+        let countryPosWorld = LatLonToXYZ(lat: countryLat, lon: countryLon)
         var countryPosLocal = countryPosWorld - selfPosWorld
-        var transMtx = makeRotationMatrixAlongZ(angle: -(90-selfLon))
-        transMtx = simd_mul(makeRotationMatrixAlongX(angle: selfLat), transMtx)
+        var transMtx = makeRotationMatrixAlongZ(angle: 90-selfLon)
+        transMtx = simd_mul(makeRotationMatrixAlongX(angle: -selfLat), transMtx)
         transMtx = simd_mul(makeRotationMatrixAlongY(angle: 180), transMtx)
-        countryPosLocal = simd_normalize(simd_mul(transMtx.inverse, countryPosLocal))
+        countryPosLocal = simd_normalize(simd_mul(transMtx, countryPosLocal))
         return SCNVector3(countryPosLocal.x, countryPosLocal.y, countryPosLocal.z)
     }
     
     func LatLonToXYZ(lat: CLLocationDegrees, lon: CLLocationDegrees) -> simd_double3 {
-        let radius = 6371.0
+        let radius = 6378.1 // km
         let x = radius * cos(lat * Double.pi / 180) * cos(lon * Double.pi / 180)
         let y = radius * cos(lat * Double.pi / 180) * sin(lon * Double.pi / 180)
         let z = radius * sin(lat * Double.pi / 180)
@@ -177,8 +177,9 @@ extension ViewController: CLLocationManagerDelegate{
             self.createTextNode(title: "north", size: 1.8, x: 0, y: 0, z: 50)
             
             // hard code position
-            let pos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: -11, countryLon: 17.8)
-            print("Mexico location is \(pos.x) \(pos.y) \(pos.z)")
+            // opposite side of the globe
+            let pos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: -location.latitude, countryLon: 180+location.longitude)
+            print("World location XYZ is \(pos.x) \(pos.y) \(pos.z)")
             // add box
             self.createBoxNode(pos: pos)
         }
