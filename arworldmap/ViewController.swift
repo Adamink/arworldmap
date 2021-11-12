@@ -10,7 +10,7 @@ import ARKit
 import AVFoundation
 import CoreLocation
 
-class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDelegate, ARSessionDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDelegate, ARSessionDelegate, UITextFieldDelegate {
     
     @IBOutlet var sceneView: ARSCNView!
     
@@ -21,6 +21,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     var didFindLocation = false
     
     let locationManager = CLLocationManager()
+    
+    var latitudeField: UITextField = UITextField()
+    var longitudeField: UITextField = UITextField()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,18 +55,96 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         boxNode.position = SCNVector3(0,0,-0.5)
         scene.rootNode.addChildNode(boxNode)
         
-//        boxNode1 = SCNNode(geometry: box)
-//        boxNode1.position = SCNVector3(-0.5,0,0)
-//        scene.rootNode.addChildNode(boxNode1)
-//
-//        boxNode2 = SCNNode(geometry: box)
-//        boxNode2.position = SCNVector3(0,-0.5,0)
-//        scene.rootNode.addChildNode(boxNode2)
+
+        let midX = self.view.bounds.midX
+        let midY = self.view.bounds.midY
+
+        let rect1 = CGRect(x: midX - 100, y: midY + 200, width: 200, height: 70)
+        
+        // search button
+        let searchButton = UIButton(frame: rect1)
+        searchButton.setTitle("Search Position", for: .normal)
+        searchButton.addTarget(self, action: #selector(search), for: .touchUpInside)
+        let image = UIImage(named: "./art.scnassets/52016_preview.png")
+        searchButton.setBackgroundImage(image, for: UIControl.State.normal)
+
+        self.view.addSubview(searchButton)
+        
+        // Create UITextField
+        latitudeField = UITextField(frame: CGRect(x: 20, y: midY + 100, width: self.view.bounds.width - 40, height: 40.00));
+        latitudeField.placeholder = "Input latitude"
+        latitudeField.borderStyle = UITextField.BorderStyle.line
+        latitudeField.backgroundColor = UIColor.white
+        latitudeField.textColor = UIColor.black
+        latitudeField.keyboardType = .numberPad
+        
+        latitudeField.delegate = self
+        latitudeField.returnKeyType = .done
+        self.view.addSubview(latitudeField)
+        
+        longitudeField = UITextField(frame: CGRect(x: 20, y: midY + 140, width: self.view.bounds.width - 40, height: 40.00));
+        longitudeField.placeholder = "Input longitude"
+        longitudeField.borderStyle = UITextField.BorderStyle.line
+        longitudeField.backgroundColor = UIColor.white
+        longitudeField.textColor = UIColor.black
+        longitudeField.keyboardType = .numberPad
+        
+        longitudeField.delegate = self
+        longitudeField.returnKeyType = .done
+        self.view.addSubview(longitudeField)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
+        self.view.addGestureRecognizer(tapGesture)
         
         // Set the scene to the view
         sceneView.scene = scene
         sceneView.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil);
+
     }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
+        latitudeField.resignFirstResponder()
+        longitudeField.resignFirstResponder()
+    }
+    
+    @objc func keyboardWillShow(sender: NSNotification) {
+         self.view.frame.origin.y = -200 // Move view 200 points upward
+    }
+
+    @objc func keyboardWillHide(sender: NSNotification) {
+         self.view.frame.origin.y = 0 // Move view to original position
+    }
+    
+    @objc func search(sender: UIButton!) {
+        print("Touch search button")
+        var latitude = latitudeField.text
+        var longitude = longitudeField.text
+        let latitude_converted = Double(latitude ?? "0")
+        let longitude_converted = Double(longitude ?? "0")
+        print(latitude_converted)
+        print(longitude_converted)
+        if (latitude?.isEmpty)!
+        {
+          // Display Alert dialog window if the TextField is empty
+//            makeAlert("No latitude", message: "Please input latitude.", printStatement: "No latitude")
+            print("empty")
+            return
+        }
+        else
+        {
+            
+        }
+        
+    }
+
     /* This method creates only Text Nodes.
      */
     func createTextNode(title: String, size: CGFloat, x: Float, y: Float, z: Float){
