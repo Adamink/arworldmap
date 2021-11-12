@@ -25,6 +25,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     var latitudeField: UITextField = UITextField()
     var longitudeField: UITextField = UITextField()
     
+    var latitudeCountry = 0.0
+    var longitudeCountry = 0.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -125,12 +128,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     
     @objc func search(sender: UIButton!) {
         print("Touch search button")
-        var latitude = latitudeField.text
-        var longitude = longitudeField.text
-        let latitude_converted = Double(latitude ?? "0")
-        let longitude_converted = Double(longitude ?? "0")
-        print(latitude_converted)
-        print(longitude_converted)
+        let latitude = latitudeField.text
+        let longitude = longitudeField.text
+        latitudeCountry = Double(latitude ?? "0") ?? 0.0
+        longitudeCountry = Double(longitude ?? "0") ?? 0.0
+        print(latitudeCountry)
+        print(longitudeCountry)
         if (latitude?.isEmpty)!
         {
           // Display Alert dialog window if the TextField is empty
@@ -140,7 +143,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         }
         else
         {
-            
+            let currentLocation = self.locationManager.location?.coordinate
+            print(currentLocation?.latitude ?? 0)
+            print(currentLocation?.longitude ?? 0)
+            let pos = coordinateTransform(selfLat: currentLocation!.latitude, selfLon: currentLocation!.longitude, countryLat: latitudeCountry, countryLon: longitudeCountry)
+            print("World location XYZ is \(pos.x) \(pos.y) \(pos.z)")
+            // add box
+            createBoxNode(pos: pos)
         }
         
     }
