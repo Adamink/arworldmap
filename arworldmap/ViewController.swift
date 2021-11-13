@@ -93,16 +93,26 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
 //        let sphere = SCNSphere(radius: 0.5)
         let planeMaterial = SCNMaterial()
 //        planeMaterial.diffuse.contents = UIImage(named:"art.scnassets/worldRussiaSplitHigh.png")
-        planeMaterial.diffuse.contents = UIImage(named:"art.scnassets/chinaHigh.png")
+        // planeMaterial.diffuse.contents = UIImage(named:"art.scnassets/chinaHigh.png")
+        planeMaterial.diffuse.contents = UIImage(named:"art.scnassets/sun.jpg")
 //        planeMaterial.diffuse.contentsTransform = SCNMatrix4MakeScale(0.1, 0.1, 0.1)
-        planeMaterial.isDoubleSided = true
+        // planeMaterial.isDoubleSided = true
         
         plane.materials = [planeMaterial]
         let mapNode = SCNNode(geometry: plane)
         mapNode.position = pos
 //        mapNode.position = SCNVector3(1, -1, 0)
         // some random angle
-        mapNode.eulerAngles = SCNVector3(0, 90 / 180 * Double.pi, 0)
+        // mapNode.eulerAngles = SCNVector3(0, 90 / 180 * Double.pi, 0)
+        
+        // calculate eulerAngle
+        let planeDir = -simd_normalize(simd_double3((Double)(pos.x), (Double)(pos.y), (Double)(pos.z)) - 0)
+        let alpha = atan(planeDir.y / sqrt(planeDir.x*planeDir.x + planeDir.z*planeDir.z)) * 180 / Double.pi
+        let beta = atan(planeDir.z / planeDir.x) * 180 / Double.pi
+        let xAngle = -alpha * Double.pi / 180
+        let yAngle = (90-beta) * Double.pi / 180
+        mapNode.eulerAngles = SCNVector3(xAngle, yAngle, 0)
+        
         scene.rootNode.addChildNode(mapNode)
     }
     
@@ -204,29 +214,25 @@ extension ViewController: CLLocationManagerDelegate{
             
             let pos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: bottomLat, countryLon: leftLon)
             print("World location XYZ is \(pos.x) \(pos.y) \(pos.z)")
-            // add box
-            self.createBoxNode(pos: pos)
+            // self.createBoxNode(pos: pos)
             
             let pos0 = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: bottomLat, countryLon: rightLon)
             print("World location XYZ is \(pos0.x) \(pos0.y) \(pos0.z)")
-            // add box
-            self.createBoxNode(pos: pos0)
+            // self.createBoxNode(pos: pos0)
             
             let pos1 = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: topLat, countryLon: leftLon)
             print("World location XYZ is \(pos1.x) \(pos1.y) \(pos1.z)")
-            // add box
-            self.createBoxNode(pos: pos1)
+            // self.createBoxNode(pos: pos1)
             
             let pos2 = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: topLat, countryLon: rightLon)
             print("World location XYZ is \(pos2.x) \(pos2.y) \(pos2.z)")
-            // add box
-            self.createBoxNode(pos: pos2)
+            // self.createBoxNode(pos: pos2)
             
-            let mapPos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: (topLat+bottomLat)/2, countryLon: (leftLon+rightLon)/2)
-            print("World location XYZ is \(mapPos.x) \(mapPos.y) \(mapPos.z)")
-            // add box
+            // let mapPos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: (topLat+bottomLat)/2, countryLon: (leftLon+rightLon)/2)
+            let mapPos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: -location.latitude, countryLon: location.longitude)
+            // print("World location XYZ is \(mapPos.x) \(mapPos.y) \(mapPos.z)")
             self.createMapNode(width: (rightLon-leftLon)/90,
-                               height: (topLat-bottomLat)/90, pos: mapPos)
+                               height: (topLat-bottomLat)/90, pos: SCNVector3(mapPos.x, mapPos.y, mapPos.z))
         }
     }
 }
