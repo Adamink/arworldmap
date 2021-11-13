@@ -108,9 +108,17 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         // calculate eulerAngle
         let planeDir = -simd_normalize(simd_double3((Double)(pos.x), (Double)(pos.y), (Double)(pos.z)) - 0)
         let alpha = atan(planeDir.y / sqrt(planeDir.x*planeDir.x + planeDir.z*planeDir.z)) * 180 / Double.pi
-        let beta = atan(planeDir.z / planeDir.x) * 180 / Double.pi
+        // let beta = atan(planeDir.z / planeDir.x) * 180 / Double.pi
+        let beta = atan(planeDir.x / planeDir.z) * 180 / Double.pi
+        var betaReformat = beta
+        // if (planeDir.x < 0)
+        if (planeDir.z < 0)
+        {
+            betaReformat = beta + 180
+        }
         let xAngle = -alpha * Double.pi / 180
-        let yAngle = (90-beta) * Double.pi / 180
+        // let yAngle = (90-betaReformat) * Double.pi / 180
+        let yAngle = betaReformat * Double.pi / 180
         mapNode.eulerAngles = SCNVector3(xAngle, yAngle, 0)
         
         scene.rootNode.addChildNode(mapNode)
@@ -228,8 +236,8 @@ extension ViewController: CLLocationManagerDelegate{
             print("World location XYZ is \(pos2.x) \(pos2.y) \(pos2.z)")
             // self.createBoxNode(pos: pos2)
             
-            // let mapPos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: (topLat+bottomLat)/2, countryLon: (leftLon+rightLon)/2)
-            let mapPos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: -location.latitude, countryLon: location.longitude)
+            let mapPos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: (topLat+bottomLat)/2, countryLon: (leftLon+rightLon)/2)
+            // let mapPos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: location.latitude, countryLon: location.longitude-60)
             // print("World location XYZ is \(mapPos.x) \(mapPos.y) \(mapPos.z)")
             self.createMapNode(width: (rightLon-leftLon)/90,
                                height: (topLat-bottomLat)/90, pos: SCNVector3(mapPos.x, mapPos.y, mapPos.z))
