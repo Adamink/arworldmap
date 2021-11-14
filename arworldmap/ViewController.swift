@@ -58,7 +58,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         
         boxNode = SCNNode(geometry: box)
         boxNode.position = SCNVector3(0,0,-0.5)
-        scene.rootNode.addChildNode(boxNode)
+//        scene.rootNode.addChildNode(boxNode)
         
 
         let midX = self.view.bounds.midX
@@ -81,7 +81,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         latitudeField.borderStyle = UITextField.BorderStyle.line
         latitudeField.backgroundColor = UIColor.white
         latitudeField.textColor = UIColor.black
-        latitudeField.keyboardType = .numberPad
+        latitudeField.keyboardType = .numbersAndPunctuation
         
         latitudeField.delegate = self
         latitudeField.returnKeyType = .done
@@ -92,7 +92,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         longitudeField.borderStyle = UITextField.BorderStyle.line
         longitudeField.backgroundColor = UIColor.white
         longitudeField.textColor = UIColor.black
-        longitudeField.keyboardType = .numberPad
+        longitudeField.keyboardType = .numbersAndPunctuation
         
         longitudeField.delegate = self
         longitudeField.returnKeyType = .done
@@ -136,6 +136,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         longitudeCountry = Double(longitude ?? "0") ?? 0.0
         print(latitudeCountry)
         print(longitudeCountry)
+        let currentLocation = self.locationManager.location?.coordinate
+        
         if (latitude?.isEmpty)!
         {
           // Display Alert dialog window if the TextField is empty
@@ -143,9 +145,27 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
             print("empty")
             return
         }
+        else if (latitudeCountry == -25.0 && longitudeCountry == 130.0)
+        {
+            let leftLon = 112.901452
+            let rightLon = 158.966830
+            let topLat = -10.132839
+            let bottomLat = -54.757221
+            let mapPos = self.coordinateTransform(selfLat: currentLocation!.latitude, selfLon: currentLocation!.longitude, countryLat: (topLat+bottomLat)/2, countryLon: (leftLon+rightLon)/2)
+            createMapNode(width: CGFloat(rightLon-leftLon)/90, height: CGFloat(topLat-bottomLat)/90, pos: SCNVector3(mapPos.x, mapPos.y, mapPos.z))
+        }
+        else if (latitudeCountry == 30.0 && longitudeCountry == 100.0)
+        {
+            let leftLon = 73.554302
+            let rightLon = 134.775703
+            let topLat = 53.561780
+            let bottomLat = 18.155060
+            let mapPos = self.coordinateTransform(selfLat: currentLocation!.latitude, selfLon: currentLocation!.longitude, countryLat: (topLat+bottomLat)/2, countryLon: (leftLon+rightLon)/2)
+            createMapNodeChina(width: CGFloat(rightLon-leftLon)/90, height: CGFloat(topLat-bottomLat)/90, pos: SCNVector3(mapPos.x, mapPos.y, mapPos.z))
+            
+        }
         else
         {
-            let currentLocation = self.locationManager.location?.coordinate
             print(currentLocation?.latitude ?? 0)
             print(currentLocation?.longitude ?? 0)
             pos = coordinateTransform(selfLat: currentLocation!.latitude, selfLon: currentLocation!.longitude, countryLat: latitudeCountry, countryLon: longitudeCountry)
@@ -167,6 +187,58 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         textNode.position.y = boxNode.position.y - y
         textNode.position.z = boxNode.position.z - z
         scene.rootNode.addChildNode(textNode)
+    }
+    
+    func createMapNode(width : CGFloat, height: CGFloat,pos: SCNVector3){
+            let plane = SCNPlane(width: width, height: height)
+            let planeMaterial = SCNMaterial()
+
+            planeMaterial.diffuse.contents = UIImage(named:"art.scnassets/Aus.jpg")
+            
+            plane.materials = [planeMaterial]
+            let mapNode = SCNNode(geometry: plane)
+            mapNode.position = pos
+        
+            // calculate eulerAngle
+            let planeDir = -simd_normalize(simd_double3((Double)(pos.x), (Double)(pos.y), (Double)(pos.z)) - 0)
+            let alpha = atan(planeDir.y / sqrt(planeDir.x*planeDir.x + planeDir.z*planeDir.z)) * 180 / Double.pi
+            let beta = atan(planeDir.x / planeDir.z) * 180 / Double.pi
+            var betaReformat = beta
+            if (planeDir.z < 0)
+            {
+                betaReformat = beta + 180
+            }
+            let xAngle = -alpha * Double.pi / 180
+            let yAngle = betaReformat * Double.pi / 180
+            mapNode.eulerAngles = SCNVector3(xAngle, yAngle, 0)
+            
+            scene.rootNode.addChildNode(mapNode)
+    }
+    
+    func createMapNodeChina(width : CGFloat, height: CGFloat,pos: SCNVector3){
+            let plane = SCNPlane(width: width, height: height)
+            let planeMaterial = SCNMaterial()
+            planeMaterial.diffuse.contents = UIImage(named:"art.scnassets/chinaHigh.png")
+            
+            plane.materials = [planeMaterial]
+            let mapNode = SCNNode(geometry: plane)
+            mapNode.position = pos
+
+            // calculate eulerAngle
+            let planeDir = -simd_normalize(simd_double3((Double)(pos.x), (Double)(pos.y), (Double)(pos.z)) - 0)
+            let alpha = atan(planeDir.y / sqrt(planeDir.x*planeDir.x + planeDir.z*planeDir.z)) * 180 / Double.pi
+            let beta = atan(planeDir.x / planeDir.z) * 180 / Double.pi
+            var betaReformat = beta
+            // if (planeDir.x < 0)
+            if (planeDir.z < 0)
+            {
+                betaReformat = beta + 180
+            }
+            let xAngle = -alpha * Double.pi / 180
+            let yAngle = betaReformat * Double.pi / 180
+            mapNode.eulerAngles = SCNVector3(xAngle, yAngle, 0)
+            
+            scene.rootNode.addChildNode(mapNode)
     }
     
     func createBoxNode(pos: SCNVector3){
@@ -270,10 +342,10 @@ extension ViewController: CLLocationManagerDelegate{
             
             // hard code position
             // opposite side of the globe
-            let pos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: -location.latitude, countryLon: 180+location.longitude)
-            print("World location XYZ is \(pos.x) \(pos.y) \(pos.z)")
-            // add box
-            self.createBoxNode(pos: pos)
+//            let pos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: -location.latitude, countryLon: 180+location.longitude)
+//            print("World location XYZ is \(pos.x) \(pos.y) \(pos.z)")
+//            // add box
+////            self.createBoxNode(pos: pos)
         }
     }
 }
