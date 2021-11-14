@@ -53,7 +53,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         boxNode = SCNNode(geometry: box)
         boxNode.position = SCNVector3(0,0,-0.5)
         boxNode.eulerAngles = SCNVector3(0,60,0)
-        scene.rootNode.addChildNode(boxNode)
+//        scene.rootNode.addChildNode(boxNode)
         
         let midX = self.view.bounds.midX
         let midY = self.view.bounds.midY
@@ -66,6 +66,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         self.view.addSubview(searchButton)
         
         dropDown.dataSource = ["China", "Switzerland", "America"]
+        
         // hard code position
         // opposite side of the globe
         let leftLon = 73.554302
@@ -82,13 +83,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
             self!.createMapNode(width: CGFloat(rightLon-leftLon)/90,
                                height: CGFloat(topLat-bottomLat)/90, pos: SCNVector3(mapPos.x, mapPos.y, mapPos.z))
         }
-//        boxNode1 = SCNNode(geometry: box)
-//        boxNode1.position = SCNVector3(-0.5,0,0)
-//        scene.rootNode.addChildNode(boxNode1)
-//
-//        boxNode2 = SCNNode(geometry: box)
-//        boxNode2.position = SCNVector3(0,-0.5,0)
-//        scene.rootNode.addChildNode(boxNode2)
         
         // Set the scene to the view
         sceneView.scene = scene
@@ -242,7 +236,7 @@ extension ViewController: CLLocationManagerDelegate{
             // Just some test text
             self.createTextNode(title: "lat:\(location.latitude)", size: 1.8, x: 0, y: 9, z: 50)
             self.createTextNode(title: "lon:\(location.longitude)", size: 1.8, x: 0, y: 6, z: 50)
-//            self.createTextNode(title: "north", size: 1.8, x: 0, y: 0, z: 50)
+            self.createTextNode(title: "north", size: 1.8, x: 0, y: 0, z: 50)
             
             // hard code position
             // opposite side of the globe
