@@ -28,6 +28,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     var latitudeCountry = 0.0
     var longitudeCountry = 0.0
     
+    var pos: SCNVector3 = SCNVector3()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -146,7 +148,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
             let currentLocation = self.locationManager.location?.coordinate
             print(currentLocation?.latitude ?? 0)
             print(currentLocation?.longitude ?? 0)
-            let pos = coordinateTransform(selfLat: currentLocation!.latitude, selfLon: currentLocation!.longitude, countryLat: latitudeCountry, countryLon: longitudeCountry)
+            pos = coordinateTransform(selfLat: currentLocation!.latitude, selfLon: currentLocation!.longitude, countryLat: latitudeCountry, countryLon: longitudeCountry)
             print("World location XYZ is \(pos.x) \(pos.y) \(pos.z)")
             // add box
             createBoxNode(pos: pos)
