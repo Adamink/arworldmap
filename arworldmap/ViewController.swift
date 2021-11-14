@@ -8,6 +8,7 @@ import SceneKit
 import ARKit
 import AVFoundation
 import CoreLocation
+import DropDown
 
 class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDelegate, ARSessionDelegate {
     
@@ -20,6 +21,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     var didFindLocation = false
     
     let locationManager = CLLocationManager()
+    
+    let dropDown = DropDown()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +55,33 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         boxNode.eulerAngles = SCNVector3(0,60,0)
         scene.rootNode.addChildNode(boxNode)
         
+        let midX = self.view.bounds.midX
+        let midY = self.view.bounds.midY
+        let rect1 = CGRect(x: midX - 80, y: midY - 130, width: 160, height: 70)
+        let searchButton = UIButton(frame: rect1)
+        searchButton.setTitle("Search Position", for: .normal)
+        searchButton.addTarget(self, action: #selector(search), for: .touchUpInside)
+        let image = UIImage(named: "./art.scnassets/52016_preview.png")
+        searchButton.setBackgroundImage(image, for: UIControl.State.normal)
+        self.view.addSubview(searchButton)
+        
+        dropDown.dataSource = ["China", "Switzerland", "America"]
+        // hard code position
+        // opposite side of the globe
+        let leftLon = 73.554302
+        let rightLon = 134.775703
+        let topLat = 53.561780
+        let bottomLat = 18.155060
+        let location = self.locationManager.location?.coordinate
+        
+        DropDown.appearance().setupCornerRadius(10)
+        DropDown.appearance().textFont = UIFont.systemFont(ofSize: 20)
+        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+            print("Selected item: \(item) at index: \(index)")
+            let mapPos = self!.coordinateTransform(selfLat: location!.latitude, selfLon: location!.longitude, countryLat: (topLat+bottomLat)/2, countryLon: (leftLon+rightLon)/2)
+            self!.createMapNode(width: CGFloat(rightLon-leftLon)/90,
+                               height: CGFloat(topLat-bottomLat)/90, pos: SCNVector3(mapPos.x, mapPos.y, mapPos.z))
+        }
 //        boxNode1 = SCNNode(geometry: box)
 //        boxNode1.position = SCNVector3(-0.5,0,0)
 //        scene.rootNode.addChildNode(boxNode1)
@@ -66,6 +96,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     }
     /* This method creates only Text Nodes.
      */
+    @objc func search(sender: UIButton!) {
+        dropDown.show()
+    }
+    
     func createTextNode(title: String, size: CGFloat, x: Float, y: Float, z: Float){
         let text = SCNText(string: title, extrusionDepth: 0)
         text.firstMaterial?.diffuse.contents = UIColor.white
@@ -91,9 +125,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         let plane = SCNPlane(width: width, height: height)
 //        let sphere = SCNSphere(radius: 0.5)
         let planeMaterial = SCNMaterial()
-//        planeMaterial.diffuse.contents = UIImage(named:"art.scnassets/worldRussiaSplitHigh.png")
-        // planeMaterial.diffuse.contents = UIImage(named:"art.scnassets/chinaHigh.png")
-        planeMaterial.diffuse.contents = UIImage(named:"art.scnassets/sun.jpg")
+        planeMaterial.diffuse.contents = UIImage(named:"art.scnassets/chinaHigh.png")
 //        planeMaterial.diffuse.contentsTransform = SCNMatrix4MakeScale(0.1, 0.1, 0.1)
         // planeMaterial.isDoubleSided = true
         
@@ -210,7 +242,7 @@ extension ViewController: CLLocationManagerDelegate{
             // Just some test text
             self.createTextNode(title: "lat:\(location.latitude)", size: 1.8, x: 0, y: 9, z: 50)
             self.createTextNode(title: "lon:\(location.longitude)", size: 1.8, x: 0, y: 6, z: 50)
-            self.createTextNode(title: "north", size: 1.8, x: 0, y: 0, z: 50)
+//            self.createTextNode(title: "north", size: 1.8, x: 0, y: 0, z: 50)
             
             // hard code position
             // opposite side of the globe
@@ -235,11 +267,9 @@ extension ViewController: CLLocationManagerDelegate{
             print("World location XYZ is \(pos2.x) \(pos2.y) \(pos2.z)")
             // self.createBoxNode(pos: pos2)
             
-            let mapPos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: (topLat+bottomLat)/2, countryLon: (leftLon+rightLon)/2)
-            // let mapPos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: location.latitude, countryLon: location.longitude-60)
-            // print("World location XYZ is \(mapPos.x) \(mapPos.y) \(mapPos.z)")
-            self.createMapNode(width: CGFloat(rightLon-leftLon)/90,
-                               height: CGFloat(topLat-bottomLat)/90, pos: SCNVector3(mapPos.x, mapPos.y, mapPos.z))
+//            let mapPos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: (topLat+bottomLat)/2, countryLon: (leftLon+rightLon)/2)
+//            self.createMapNode(width: CGFloat(rightLon-leftLon)/90,
+//                               height: CGFloat(topLat-bottomLat)/90, pos: SCNVector3(mapPos.x, mapPos.y, mapPos.z))
         }
     }
 }
