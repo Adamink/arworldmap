@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02228101F4021D84B8165AF8 /* Pods_arworldmap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23231007F01095B77CAA721B /* Pods_arworldmap.framework */; };
 		25C6CF182736B35900963586 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6CF172736B35900963586 /* AppDelegate.swift */; };
 		25C6CF1A2736B35900963586 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 25C6CF192736B35900963586 /* art.scnassets */; };
 		25C6CF1C2736B35900963586 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6CF1B2736B35900963586 /* ViewController.swift */; };
@@ -16,6 +17,8 @@
 		25C6CF2E2736B35900963586 /* arworldmapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6CF2D2736B35900963586 /* arworldmapTests.swift */; };
 		25C6CF382736B35900963586 /* arworldmapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6CF372736B35900963586 /* arworldmapUITests.swift */; };
 		25C6CF3A2736B35900963586 /* arworldmapUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6CF392736B35900963586 /* arworldmapUITestsLaunchTests.swift */; };
+		AFD009A29166305744386BF3 /* Pods_arworldmap_arworldmapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29AEBF31F099024263F7E402 /* Pods_arworldmap_arworldmapUITests.framework */; };
+		C47C23C1BA0F01E4D26E2D69 /* Pods_arworldmapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E112C175A339E1F4C06EEA /* Pods_arworldmapTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		23231007F01095B77CAA721B /* Pods_arworldmap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_arworldmap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		25C6CF142736B35900963586 /* arworldmap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = arworldmap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25C6CF172736B35900963586 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25C6CF192736B35900963586 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -49,6 +53,14 @@
 		25C6CF372736B35900963586 /* arworldmapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = arworldmapUITests.swift; sourceTree = "<group>"; };
 		25C6CF392736B35900963586 /* arworldmapUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = arworldmapUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		25C6CF462736B62100963586 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		26E112C175A339E1F4C06EEA /* Pods_arworldmapTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_arworldmapTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		29AEBF31F099024263F7E402 /* Pods_arworldmap_arworldmapUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_arworldmap_arworldmapUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5157DD4E0E1C412FF550F3E7 /* Pods-arworldmap-arworldmapUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-arworldmap-arworldmapUITests.debug.xcconfig"; path = "Target Support Files/Pods-arworldmap-arworldmapUITests/Pods-arworldmap-arworldmapUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		7895EB43AD5E5C13A9F9FAF3 /* Pods-arworldmap-arworldmapUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-arworldmap-arworldmapUITests.release.xcconfig"; path = "Target Support Files/Pods-arworldmap-arworldmapUITests/Pods-arworldmap-arworldmapUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9A09E76AECBBFC4BF624C64B /* Pods-arworldmapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-arworldmapTests.debug.xcconfig"; path = "Target Support Files/Pods-arworldmapTests/Pods-arworldmapTests.debug.xcconfig"; sourceTree = "<group>"; };
+		ADB5855390ABBD121BA3A959 /* Pods-arworldmap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-arworldmap.release.xcconfig"; path = "Target Support Files/Pods-arworldmap/Pods-arworldmap.release.xcconfig"; sourceTree = "<group>"; };
+		B0D0BBA2288D4038DEEF4BDC /* Pods-arworldmapTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-arworldmapTests.release.xcconfig"; path = "Target Support Files/Pods-arworldmapTests/Pods-arworldmapTests.release.xcconfig"; sourceTree = "<group>"; };
+		D992CBD4635121E2F4E0861D /* Pods-arworldmap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-arworldmap.debug.xcconfig"; path = "Target Support Files/Pods-arworldmap/Pods-arworldmap.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02228101F4021D84B8165AF8 /* Pods_arworldmap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C47C23C1BA0F01E4D26E2D69 /* Pods_arworldmapTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFD009A29166305744386BF3 /* Pods_arworldmap_arworldmapUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +98,8 @@
 				25C6CF2C2736B35900963586 /* arworldmapTests */,
 				25C6CF362736B35900963586 /* arworldmapUITests */,
 				25C6CF152736B35900963586 /* Products */,
+				FF013E4F78AABE430A3A3CA2 /* Pods */,
+				61378AD42698AB341E05AA24 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,6 +144,30 @@
 			path = arworldmapUITests;
 			sourceTree = "<group>";
 		};
+		61378AD42698AB341E05AA24 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				23231007F01095B77CAA721B /* Pods_arworldmap.framework */,
+				29AEBF31F099024263F7E402 /* Pods_arworldmap_arworldmapUITests.framework */,
+				26E112C175A339E1F4C06EEA /* Pods_arworldmapTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FF013E4F78AABE430A3A3CA2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D992CBD4635121E2F4E0861D /* Pods-arworldmap.debug.xcconfig */,
+				ADB5855390ABBD121BA3A959 /* Pods-arworldmap.release.xcconfig */,
+				5157DD4E0E1C412FF550F3E7 /* Pods-arworldmap-arworldmapUITests.debug.xcconfig */,
+				7895EB43AD5E5C13A9F9FAF3 /* Pods-arworldmap-arworldmapUITests.release.xcconfig */,
+				9A09E76AECBBFC4BF624C64B /* Pods-arworldmapTests.debug.xcconfig */,
+				B0D0BBA2288D4038DEEF4BDC /* Pods-arworldmapTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -134,9 +175,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 25C6CF3D2736B35900963586 /* Build configuration list for PBXNativeTarget "arworldmap" */;
 			buildPhases = (
+				1381B327728FC4DD4DD9DB01 /* [CP] Check Pods Manifest.lock */,
 				25C6CF102736B35900963586 /* Sources */,
 				25C6CF112736B35900963586 /* Frameworks */,
 				25C6CF122736B35900963586 /* Resources */,
+				1AD751B3706D11DD69AB16CE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -151,6 +194,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 25C6CF402736B35900963586 /* Build configuration list for PBXNativeTarget "arworldmapTests" */;
 			buildPhases = (
+				3FCB7402FEBA7B01E1F88DC3 /* [CP] Check Pods Manifest.lock */,
 				25C6CF252736B35900963586 /* Sources */,
 				25C6CF262736B35900963586 /* Frameworks */,
 				25C6CF272736B35900963586 /* Resources */,
@@ -169,9 +213,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 25C6CF432736B35900963586 /* Build configuration list for PBXNativeTarget "arworldmapUITests" */;
 			buildPhases = (
+				316B6B29BFBE2D33EB5AC513 /* [CP] Check Pods Manifest.lock */,
 				25C6CF2F2736B35900963586 /* Sources */,
 				25C6CF302736B35900963586 /* Frameworks */,
 				25C6CF312736B35900963586 /* Resources */,
+				0C5D4F437EF8516EC829A459 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -253,6 +299,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0C5D4F437EF8516EC829A459 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-arworldmap-arworldmapUITests/Pods-arworldmap-arworldmapUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-arworldmap-arworldmapUITests/Pods-arworldmap-arworldmapUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-arworldmap-arworldmapUITests/Pods-arworldmap-arworldmapUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1381B327728FC4DD4DD9DB01 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-arworldmap-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1AD751B3706D11DD69AB16CE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-arworldmap/Pods-arworldmap-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-arworldmap/Pods-arworldmap-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-arworldmap/Pods-arworldmap-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		316B6B29BFBE2D33EB5AC513 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-arworldmap-arworldmapUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3FCB7402FEBA7B01E1F88DC3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-arworldmapTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		25C6CF102736B35900963586 /* Sources */ = {
@@ -434,6 +583,7 @@
 		};
 		25C6CF3E2736B35900963586 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D992CBD4635121E2F4E0861D /* Pods-arworldmap.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -469,6 +619,7 @@
 		};
 		25C6CF3F2736B35900963586 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADB5855390ABBD121BA3A959 /* Pods-arworldmap.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -504,6 +655,7 @@
 		};
 		25C6CF412736B35900963586 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A09E76AECBBFC4BF624C64B /* Pods-arworldmapTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -529,6 +681,7 @@
 		};
 		25C6CF422736B35900963586 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0D0BBA2288D4038DEEF4BDC /* Pods-arworldmapTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -554,6 +707,7 @@
 		};
 		25C6CF442736B35900963586 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5157DD4E0E1C412FF550F3E7 /* Pods-arworldmap-arworldmapUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -577,6 +731,7 @@
 		};
 		25C6CF452736B35900963586 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7895EB43AD5E5C13A9F9FAF3 /* Pods-arworldmap-arworldmapUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

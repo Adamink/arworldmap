@@ -3,14 +3,13 @@
 //  arworldmap
 //
 //
-
 import UIKit
 import SceneKit
 import ARKit
 import AVFoundation
 import CoreLocation
 
-class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDelegate, ARSessionDelegate, UITextFieldDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDelegate, ARSessionDelegate {
     
     @IBOutlet var sceneView: ARSCNView!
     
@@ -21,14 +20,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     var didFindLocation = false
     
     let locationManager = CLLocationManager()
-    
-    var latitudeField: UITextField = UITextField()
-    var longitudeField: UITextField = UITextField()
-    
-    var latitudeCountry = 0.0
-    var longitudeCountry = 0.0
-    
-    var pos: SCNVector3 = SCNVector3()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,104 +49,21 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         
         boxNode = SCNNode(geometry: box)
         boxNode.position = SCNVector3(0,0,-0.5)
+        boxNode.eulerAngles = SCNVector3(0,60,0)
         scene.rootNode.addChildNode(boxNode)
         
-
-        let midX = self.view.bounds.midX
-        let midY = self.view.bounds.midY
-
-        let rect1 = CGRect(x: midX - 100, y: midY + 200, width: 200, height: 70)
-        
-        // search button
-        let searchButton = UIButton(frame: rect1)
-        searchButton.setTitle("Search Position", for: .normal)
-        searchButton.addTarget(self, action: #selector(search), for: .touchUpInside)
-        let image = UIImage(named: "./art.scnassets/52016_preview.png")
-        searchButton.setBackgroundImage(image, for: UIControl.State.normal)
-
-        self.view.addSubview(searchButton)
-        
-        // Create UITextField
-        latitudeField = UITextField(frame: CGRect(x: 20, y: midY + 100, width: self.view.bounds.width - 40, height: 40.00));
-        latitudeField.placeholder = "Input latitude"
-        latitudeField.borderStyle = UITextField.BorderStyle.line
-        latitudeField.backgroundColor = UIColor.white
-        latitudeField.textColor = UIColor.black
-        latitudeField.keyboardType = .numberPad
-        
-        latitudeField.delegate = self
-        latitudeField.returnKeyType = .done
-        self.view.addSubview(latitudeField)
-        
-        longitudeField = UITextField(frame: CGRect(x: 20, y: midY + 140, width: self.view.bounds.width - 40, height: 40.00));
-        longitudeField.placeholder = "Input longitude"
-        longitudeField.borderStyle = UITextField.BorderStyle.line
-        longitudeField.backgroundColor = UIColor.white
-        longitudeField.textColor = UIColor.black
-        longitudeField.keyboardType = .numberPad
-        
-        longitudeField.delegate = self
-        longitudeField.returnKeyType = .done
-        self.view.addSubview(longitudeField)
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
-        self.view.addGestureRecognizer(tapGesture)
+//        boxNode1 = SCNNode(geometry: box)
+//        boxNode1.position = SCNVector3(-0.5,0,0)
+//        scene.rootNode.addChildNode(boxNode1)
+//
+//        boxNode2 = SCNNode(geometry: box)
+//        boxNode2.position = SCNVector3(0,-0.5,0)
+//        scene.rootNode.addChildNode(boxNode2)
         
         // Set the scene to the view
         sceneView.scene = scene
         sceneView.delegate = self
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil);
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil);
-
     }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool
-    {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
-        latitudeField.resignFirstResponder()
-        longitudeField.resignFirstResponder()
-    }
-    
-    @objc func keyboardWillShow(sender: NSNotification) {
-         self.view.frame.origin.y = -200 // Move view 200 points upward
-    }
-
-    @objc func keyboardWillHide(sender: NSNotification) {
-         self.view.frame.origin.y = 0 // Move view to original position
-    }
-    
-    @objc func search(sender: UIButton!) {
-        print("Touch search button")
-        let latitude = latitudeField.text
-        let longitude = longitudeField.text
-        latitudeCountry = Double(latitude ?? "0") ?? 0.0
-        longitudeCountry = Double(longitude ?? "0") ?? 0.0
-        print(latitudeCountry)
-        print(longitudeCountry)
-        if (latitude?.isEmpty)!
-        {
-          // Display Alert dialog window if the TextField is empty
-//            makeAlert("No latitude", message: "Please input latitude.", printStatement: "No latitude")
-            print("empty")
-            return
-        }
-        else
-        {
-            let currentLocation = self.locationManager.location?.coordinate
-            print(currentLocation?.latitude ?? 0)
-            print(currentLocation?.longitude ?? 0)
-            pos = coordinateTransform(selfLat: currentLocation!.latitude, selfLon: currentLocation!.longitude, countryLat: latitudeCountry, countryLon: longitudeCountry)
-            print("World location XYZ is \(pos.x) \(pos.y) \(pos.z)")
-            // add box
-            createBoxNode(pos: pos)
-        }
-        
-    }
-
     /* This method creates only Text Nodes.
      */
     func createTextNode(title: String, size: CGFloat, x: Float, y: Float, z: Float){
@@ -177,6 +85,42 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         let boxNode = SCNNode(geometry: box)
         boxNode.position = pos
         scene.rootNode.addChildNode(boxNode)
+    }
+    
+    func createMapNode(width : CGFloat, height: CGFloat,pos: SCNVector3){
+        let plane = SCNPlane(width: width, height: height)
+//        let sphere = SCNSphere(radius: 0.5)
+        let planeMaterial = SCNMaterial()
+//        planeMaterial.diffuse.contents = UIImage(named:"art.scnassets/worldRussiaSplitHigh.png")
+        // planeMaterial.diffuse.contents = UIImage(named:"art.scnassets/chinaHigh.png")
+        planeMaterial.diffuse.contents = UIImage(named:"art.scnassets/sun.jpg")
+//        planeMaterial.diffuse.contentsTransform = SCNMatrix4MakeScale(0.1, 0.1, 0.1)
+        // planeMaterial.isDoubleSided = true
+        
+        plane.materials = [planeMaterial]
+        let mapNode = SCNNode(geometry: plane)
+        mapNode.position = pos
+//        mapNode.position = SCNVector3(1, -1, 0)
+        // some random angle
+        // mapNode.eulerAngles = SCNVector3(0, 90 / 180 * Double.pi, 0)
+        
+        // calculate eulerAngle
+        let planeDir = -simd_normalize(simd_double3((Double)(pos.x), (Double)(pos.y), (Double)(pos.z)) - 0)
+        let alpha = atan(planeDir.y / sqrt(planeDir.x*planeDir.x + planeDir.z*planeDir.z)) * 180 / Double.pi
+        // let beta = atan(planeDir.z / planeDir.x) * 180 / Double.pi
+        let beta = atan(planeDir.x / planeDir.z) * 180 / Double.pi
+        var betaReformat = beta
+        // if (planeDir.x < 0)
+        if (planeDir.z < 0)
+        {
+            betaReformat = beta + 180
+        }
+        let xAngle = -alpha * Double.pi / 180
+        // let yAngle = (90-betaReformat) * Double.pi / 180
+        let yAngle = betaReformat * Double.pi / 180
+        mapNode.eulerAngles = SCNVector3(xAngle, yAngle, 0)
+        
+        scene.rootNode.addChildNode(mapNode)
     }
     
     func coordinateTransform(selfLat: CLLocationDegrees, selfLon: CLLocationDegrees, countryLat: CLLocationDegrees, countryLon: CLLocationDegrees) -> SCNVector3 {
@@ -270,10 +214,32 @@ extension ViewController: CLLocationManagerDelegate{
             
             // hard code position
             // opposite side of the globe
-            let pos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: -location.latitude, countryLon: 180+location.longitude)
+            let leftLon = 73.554302
+            let rightLon = 134.775703
+            let topLat = 53.561780
+            let bottomLat = 18.155060
+            
+            let pos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: bottomLat, countryLon: leftLon)
             print("World location XYZ is \(pos.x) \(pos.y) \(pos.z)")
-            // add box
-            self.createBoxNode(pos: pos)
+            // self.createBoxNode(pos: pos)
+            
+            let pos0 = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: bottomLat, countryLon: rightLon)
+            print("World location XYZ is \(pos0.x) \(pos0.y) \(pos0.z)")
+            // self.createBoxNode(pos: pos0)
+            
+            let pos1 = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: topLat, countryLon: leftLon)
+            print("World location XYZ is \(pos1.x) \(pos1.y) \(pos1.z)")
+            // self.createBoxNode(pos: pos1)
+            
+            let pos2 = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: topLat, countryLon: rightLon)
+            print("World location XYZ is \(pos2.x) \(pos2.y) \(pos2.z)")
+            // self.createBoxNode(pos: pos2)
+            
+            let mapPos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: (topLat+bottomLat)/2, countryLon: (leftLon+rightLon)/2)
+            // let mapPos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: location.latitude, countryLon: location.longitude-60)
+            // print("World location XYZ is \(mapPos.x) \(mapPos.y) \(mapPos.z)")
+            self.createMapNode(width: CGFloat(rightLon-leftLon)/90,
+                               height: CGFloat(topLat-bottomLat)/90, pos: SCNVector3(mapPos.x, mapPos.y, mapPos.z))
         }
     }
 }
