@@ -50,6 +50,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         
         boxNode = SCNNode(geometry: box)
         boxNode.position = SCNVector3(0,0,-0.5)
+        boxNode.eulerAngles = SCNVector3(0,60,0)
         scene.rootNode.addChildNode(boxNode)
         
 //        boxNode1 = SCNNode(geometry: box)
@@ -190,7 +191,12 @@ extension ViewController: CLLocationManagerDelegate{
             
             // hard code position
             // opposite side of the globe
-            let pos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: -location.latitude, countryLon: 180+location.longitude)
+            let leftLon = 73.554302
+            let rightLon = 134.775703
+            let topLat = 53.561780
+            let bottomLat = 18.155060
+            
+            let pos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: bottomLat, countryLon: leftLon)
             print("World location XYZ is \(pos.x) \(pos.y) \(pos.z)")
             // add box
             // self.createBoxNode(pos: pos)
