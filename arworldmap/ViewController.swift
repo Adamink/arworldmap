@@ -88,7 +88,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         scene.rootNode.addChildNode(boxNode)
     }
     
-    func createSphereNode(pos: SCNVector3){
+    func createSphereNode(pos: SCNVector3, selfLat: CLLocationDegrees, selfLon: CLLocationDegrees){
         let sphere = SCNSphere(radius: 1)
         let sphereMaterial = SCNMaterial()
         sphereMaterial.diffuse.contents = UIImage(named:"art.scnassets/China_small.png")
@@ -97,6 +97,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         sphere.materials = [sphereMaterial]
         let sphereNode = SCNNode(geometry: sphere)
         sphereNode.position = pos
+        sphereNode.eulerAngles = SCNVector3(-(90-selfLat)/180*Double.pi, -selfLon/180*Double.pi,0)
         scene.rootNode.addChildNode(sphereNode)
     }
     
@@ -196,11 +197,11 @@ extension ViewController: CLLocationManagerDelegate{
             let topLat = 53.561780
             let bottomLat = 18.155060
             
-            let pos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: bottomLat, countryLon: leftLon)
+            let pos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: (bottomLat+topLat)/2, countryLon: (leftLon+rightLon)/2)
             print("World location XYZ is \(pos.x) \(pos.y) \(pos.z)")
             // add box
-            // self.createBoxNode(pos: pos)
-            self.createSphereNode(pos: SCNVector3(0, -1, 0))
+            self.createBoxNode(pos: pos)
+            self.createSphereNode(pos: SCNVector3(0, -1, 0), selfLat: location.latitude, selfLon: location.longitude)
         }
     }
 }
