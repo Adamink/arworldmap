@@ -9,8 +9,37 @@ import ARKit
 import AVFoundation
 import CoreLocation
 import DropDown
+import SideMenu
 
-class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDelegate, ARSessionDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDelegate, ARSessionDelegate, MenuControllerDelegate {
+    
+    func didSelectMenuItem(named: String) {
+        sideMenu?.dismiss(animated: true, completion: {[weak self] in
+            
+            self?.title = named
+            
+            if named == "Home" {
+                self?.settingsController.view.isHidden = true
+                self?.infoController.view.isHidden = true
+            }
+            else if named == "Info" {
+//                self?.addChild(self!.infoController)
+//                self?.view.addSubview(self!.infoController.view)
+//                self?.infoController.didMove(toParent: self)
+                self?.settingsController.view.isHidden = true
+                self?.infoController.view.isHidden = false
+            }
+            else if named == "Settings" {
+//                self?.addChild(self!.settingsController)
+//                self?.view.addSubview(self!.settingsController.view)
+//                self?.settingsController.didMove(toParent: self)
+                self?.settingsController.view.isHidden = false
+                self?.infoController.view.isHidden = true
+            }
+        })
+        
+    }
+    
     
     @IBOutlet var sceneView: ARSCNView!
     
@@ -23,7 +52,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     let locationManager = CLLocationManager()
     
     let dropDown = DropDown()
+    var searchButton = UIButton()
     
+    // to do: change content
+    private var sideMenu: SideMenuNavigationController?
+    
+    private let settingsController = SettingsViewController()
+    private let infoController = InfoViewController()
+                                                            
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -54,11 +90,20 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         boxNode.position = SCNVector3(0,0,-0.5)
         boxNode.eulerAngles = SCNVector3(0,60,0)
 //        scene.rootNode.addChildNode(boxNode)
-        
         let midX = self.view.bounds.midX
         let midY = self.view.bounds.midY
+        
+        let menu = MenuController(with: ["Home", "Info", "Settings"])
+        menu.delegate = self
+        sideMenu = SideMenuNavigationController(rootViewController: menu)
+        sideMenu?.leftSide = true
+        SideMenuManager.default.leftMenuNavigationController = sideMenu
+        SideMenuManager.default.addPanGestureToPresent(toView: view)
+        
+        addChildControllers()
+        
         let rect1 = CGRect(x: midX - 80, y: midY - 130, width: 160, height: 70)
-        let searchButton = UIButton(frame: rect1)
+        searchButton = UIButton(frame: rect1)
         searchButton.setTitle("Search Position", for: .normal)
         searchButton.addTarget(self, action: #selector(search), for: .touchUpInside)
         let image = UIImage(named: "./art.scnassets/52016_preview.png")
@@ -92,6 +137,28 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
      */
     @objc func search(sender: UIButton!) {
         dropDown.show()
+    }
+    
+    
+    @IBAction func didTapMenuButton() {
+        present(sideMenu!, animated: true)
+    }
+    
+    private func addChildControllers() {
+        addChild(self.settingsController)
+        addChild(self.infoController)
+        
+        view.addSubview(settingsController.view)
+        view.addSubview(infoController.view)
+        
+//        settingsController.view.frame = view.bounds
+//        infoController.view.frame = view.bounds
+        
+        settingsController.didMove(toParent: self)
+        infoController.didMove(toParent: self)
+        
+        settingsController.view.isHidden = true
+        infoController.view.isHidden = true
     }
     
     func createTextNode(title: String, size: CGFloat, x: Float, y: Float, z: Float){

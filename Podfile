@@ -7,6 +7,8 @@ target 'arworldmap' do
 
   pod 'DropDown'
   
+  pod 'SideMenu', '~> 6.0'
+  
   # Pods for arworldmap
 
   target 'arworldmapTests' do
