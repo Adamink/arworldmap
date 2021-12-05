@@ -13,34 +13,6 @@ import SideMenu
 
 class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDelegate, ARSessionDelegate, MenuControllerDelegate {
     
-    func didSelectMenuItem(named: String) {
-        sideMenu?.dismiss(animated: true, completion: {[weak self] in
-            
-            self?.title = named
-            
-            if named == "Home" {
-                self?.settingsController.view.isHidden = true
-                self?.infoController.view.isHidden = true
-            }
-            else if named == "Info" {
-//                self?.addChild(self!.infoController)
-//                self?.view.addSubview(self!.infoController.view)
-//                self?.infoController.didMove(toParent: self)
-                self?.settingsController.view.isHidden = true
-                self?.infoController.view.isHidden = false
-            }
-            else if named == "Settings" {
-//                self?.addChild(self!.settingsController)
-//                self?.view.addSubview(self!.settingsController.view)
-//                self?.settingsController.didMove(toParent: self)
-                self?.settingsController.view.isHidden = false
-                self?.infoController.view.isHidden = true
-            }
-        })
-        
-    }
-    
-    
     @IBOutlet var sceneView: ARSCNView!
     
     var boxNode = SCNNode()
@@ -139,6 +111,29 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         dropDown.show()
     }
     
+    func didSelectMenuItem(named: String) {
+        sideMenu?.dismiss(animated: true, completion: {[weak self] in
+            
+            self?.title = named
+            self?.scene.rootNode.enumerateChildNodes { (node, stop) in
+                    node.removeFromParentNode()
+            }
+            
+            if named == "Home" {
+                self?.settingsController.view.isHidden = true
+                self?.infoController.view.isHidden = true
+            }
+            else if named == "Info" {
+                self?.settingsController.view.isHidden = true
+                self?.infoController.view.isHidden = false
+            }
+            else if named == "Settings" {
+                self?.settingsController.view.isHidden = false
+                self?.infoController.view.isHidden = true
+            }
+        })
+        
+    }
     
     @IBAction func didTapMenuButton() {
         present(sideMenu!, animated: true)
