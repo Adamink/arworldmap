@@ -2,7 +2,6 @@
 //  SettingsViewController.swift
 //  arworldmap
 //
-//  Created by 时海彤 on 05.12.21.
 //
 
 import UIKit

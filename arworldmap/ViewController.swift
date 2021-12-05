@@ -96,7 +96,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         DropDown.appearance().textFont = UIFont.systemFont(ofSize: 20)
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             print("Selected item: \(item) at index: \(index)")
-            let mapPos = self!.coordinateTransform(selfLat: location!.latitude, selfLon: location!.longitude, countryLat: (topLat+bottomLat)/2, countryLon: (leftLon+rightLon)/2)
+            let mapPos = coordinateTransform(selfLat: location!.latitude, selfLon: location!.longitude, countryLat: (topLat+bottomLat)/2, countryLon: (leftLon+rightLon)/2)
             self!.createMapNode(width: CGFloat(rightLon-leftLon)/90,
                                height: CGFloat(topLat-bottomLat)/90, pos: SCNVector3(mapPos.x, mapPos.y, mapPos.z))
         }
@@ -211,62 +211,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         scene.rootNode.addChildNode(mapNode)
     }
     
-    func coordinateTransform(selfLat: CLLocationDegrees, selfLon: CLLocationDegrees, countryLat: CLLocationDegrees, countryLon: CLLocationDegrees) -> SCNVector3 {
-        let selfPosWorld = LatLonToXYZ(lat: selfLat, lon: selfLon)
-        let countryPosWorld = LatLonToXYZ(lat: countryLat, lon: countryLon)
-        var countryPosLocal = countryPosWorld - selfPosWorld
-        var transMtx = makeRotationMatrixAlongZ(angle: 90-selfLon)
-        transMtx = simd_mul(makeRotationMatrixAlongX(angle: -selfLat), transMtx)
-        transMtx = simd_mul(makeRotationMatrixAlongY(angle: 180), transMtx)
-        countryPosLocal = simd_mul(transMtx, countryPosLocal) // remove simd_normalize, change radius to change object size
-        return SCNVector3(countryPosLocal.x, countryPosLocal.y, countryPosLocal.z)
-    }
-    
-    func LatLonToXYZ(lat: CLLocationDegrees, lon: CLLocationDegrees) -> simd_double3 {
-        let radius = 1.0 // can change
-        let x = radius * cos(lat * Double.pi / 180) * cos(lon * Double.pi / 180)
-        let y = radius * cos(lat * Double.pi / 180) * sin(lon * Double.pi / 180)
-        let z = radius * sin(lat * Double.pi / 180)
-        return simd_double3(x, y, z)
-    }
-    
-    func XYZToLatLon(x: Double, y: Double, z: Double) -> simd_double2 {
-        let radius = sqrt(x*x + y*y + z*z)
-        let lat = asin(z / radius) * 180 / Double.pi
-        let long = atan(y / x) * 180 / Double.pi
-        return simd_double2(lat, long)
-    }
-    
-    func makeRotationMatrixAlongX(angle: Double) -> simd_double3x3 {
-        let rows = [
-            simd_double3(1,     0,      0),
-            simd_double3(0,     cos(angle * Double.pi / 180), -sin(angle * Double.pi / 180)),
-            simd_double3(0,     sin(angle * Double.pi / 180), cos(angle * Double.pi / 180))
-        ]
-        
-        return simd_double3x3(rows: rows)
-    }
-    
-    func makeRotationMatrixAlongY(angle: Double) -> simd_double3x3 {
-        let rows = [
-            simd_double3(cos(angle * Double.pi / 180),    0,     sin(angle * Double.pi / 180)),
-            simd_double3(0,     1,     0),
-            simd_double3(-sin(angle * Double.pi / 180),   0,      cos(angle * Double.pi / 180))
-        ]
-        
-        return simd_double3x3(rows: rows)
-    }
-    
-    func makeRotationMatrixAlongZ(angle: Double) -> simd_double3x3 {
-        let rows = [
-            simd_double3(cos(angle * Double.pi / 180), -sin(angle * Double.pi / 180), 0),
-            simd_double3(sin(angle * Double.pi / 180), cos(angle * Double.pi / 180), 0),
-            simd_double3(0,          0,          1)
-        ]
-        
-        return simd_double3x3(rows: rows)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -307,19 +251,19 @@ extension ViewController: CLLocationManagerDelegate{
             let topLat = 53.561780
             let bottomLat = 18.155060
             
-            let pos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: bottomLat, countryLon: leftLon)
+            let pos = coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: bottomLat, countryLon: leftLon)
             print("World location XYZ is \(pos.x) \(pos.y) \(pos.z)")
             // self.createBoxNode(pos: pos)
             
-            let pos0 = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: bottomLat, countryLon: rightLon)
+            let pos0 = coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: bottomLat, countryLon: rightLon)
             print("World location XYZ is \(pos0.x) \(pos0.y) \(pos0.z)")
             // self.createBoxNode(pos: pos0)
             
-            let pos1 = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: topLat, countryLon: leftLon)
+            let pos1 = coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: topLat, countryLon: leftLon)
             print("World location XYZ is \(pos1.x) \(pos1.y) \(pos1.z)")
             // self.createBoxNode(pos: pos1)
             
-            let pos2 = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: topLat, countryLon: rightLon)
+            let pos2 = coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: topLat, countryLon: rightLon)
             print("World location XYZ is \(pos2.x) \(pos2.y) \(pos2.z)")
             // self.createBoxNode(pos: pos2)
             

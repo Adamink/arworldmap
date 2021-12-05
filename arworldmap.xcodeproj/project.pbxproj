@@ -20,6 +20,7 @@
 		3866E514275D00A0009DABDD /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3866E513275D00A0009DABDD /* SideMenu.swift */; };
 		3866E516275D0153009DABDD /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3866E515275D0153009DABDD /* InfoViewController.swift */; };
 		3866E518275D0179009DABDD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3866E517275D0179009DABDD /* SettingsViewController.swift */; };
+		3866E51A275D23C7009DABDD /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3866E519275D23C7009DABDD /* util.swift */; };
 		AFD009A29166305744386BF3 /* Pods_arworldmap_arworldmapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29AEBF31F099024263F7E402 /* Pods_arworldmap_arworldmapUITests.framework */; };
 		C47C23C1BA0F01E4D26E2D69 /* Pods_arworldmapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E112C175A339E1F4C06EEA /* Pods_arworldmapTests.framework */; };
 /* End PBXBuildFile section */
@@ -61,6 +62,7 @@
 		3866E513275D00A0009DABDD /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
 		3866E515275D0153009DABDD /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		3866E517275D0179009DABDD /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		3866E519275D23C7009DABDD /* util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = util.swift; sourceTree = "<group>"; };
 		5157DD4E0E1C412FF550F3E7 /* Pods-arworldmap-arworldmapUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-arworldmap-arworldmapUITests.debug.xcconfig"; path = "Target Support Files/Pods-arworldmap-arworldmapUITests/Pods-arworldmap-arworldmapUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7895EB43AD5E5C13A9F9FAF3 /* Pods-arworldmap-arworldmapUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-arworldmap-arworldmapUITests.release.xcconfig"; path = "Target Support Files/Pods-arworldmap-arworldmapUITests/Pods-arworldmap-arworldmapUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9A09E76AECBBFC4BF624C64B /* Pods-arworldmapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-arworldmapTests.debug.xcconfig"; path = "Target Support Files/Pods-arworldmapTests/Pods-arworldmapTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				3866E513275D00A0009DABDD /* SideMenu.swift */,
 				3866E515275D0153009DABDD /* InfoViewController.swift */,
 				3866E517275D0179009DABDD /* SettingsViewController.swift */,
+				3866E519275D23C7009DABDD /* util.swift */,
 			);
 			path = arworldmap;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				3866E514275D00A0009DABDD /* SideMenu.swift in Sources */,
 				25C6CF1C2736B35900963586 /* ViewController.swift in Sources */,
 				3866E516275D0153009DABDD /* InfoViewController.swift in Sources */,
+				3866E51A275D23C7009DABDD /* util.swift in Sources */,
 				3866E518275D0179009DABDD /* SettingsViewController.swift in Sources */,
 				25C6CF182736B35900963586 /* AppDelegate.swift in Sources */,
 			);
