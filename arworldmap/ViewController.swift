@@ -19,6 +19,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     var boxNode2 = SCNNode()
     var scene =  SCNScene()
     var didFindLocation = false
+    var headlines = [SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode()]
+    var news_images = [SKSpriteNode(), SKSpriteNode(), SKSpriteNode(), SKSpriteNode()]
     
     let locationManager = CLLocationManager()
     
@@ -50,8 +52,90 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         
         boxNode = SCNNode(geometry: box)
         boxNode.position = SCNVector3(0,0,-0.5)
-        boxNode.eulerAngles = SCNVector3(0,60,0)
+//        boxNode.eulerAngles = SCNVector3(0,60,0)
         scene.rootNode.addChildNode(boxNode)
+        
+        let spriteKitScene = SKScene(size: CGSize(width: sceneView.frame.width, height: sceneView.frame.height))
+        spriteKitScene.scaleMode = .aspectFit
+//        guard let url = URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4") else { return }
+//
+        // Create an AVPlayer, passing it the HTTP Live Streaming URL.
+//        let player = AVPlayer(url: url)
+        
+        let videoSpriteKitNode = SKVideoNode(fileNamed: "australia.mp4")
+//        let videoSpriteKitNode = SKVideoNode(avPlayer: player)
+        videoSpriteKitNode.position = CGPoint(x: spriteKitScene.size.width / 2.0, y: spriteKitScene.size.height / 2.0)
+        videoSpriteKitNode.size = spriteKitScene.size
+        videoSpriteKitNode.yScale = -1
+        videoSpriteKitNode.play()
+        spriteKitScene.addChild(videoSpriteKitNode)
+        let background = SCNPlane(width: CGFloat(1.6), height: CGFloat(0.9))
+        background.firstMaterial?.diffuse.contents = spriteKitScene
+        let backgroundNode = SCNNode(geometry: background)
+        backgroundNode.position = SCNVector3(2,0,0)
+        backgroundNode.eulerAngles = SCNVector3(0, -0.4 * Double.pi, 0)
+        scene.rootNode.addChildNode(backgroundNode)
+        
+//        let spriteKitScene1 = SKScene(size: CGSize(width: sceneView.frame.width, height: sceneView.frame.height))
+//        spriteKitScene1.scaleMode = .aspectFit
+//        spriteKitScene1.backgroundColor = UIColor(cgColor: CGColor(gray: 1, alpha: 0))
+//        let map = SKSpriteNode(imageNamed: "art.scnassets/australiaHigh.png")
+//        map.position = CGPoint(x: spriteKitScene1.size.width / 2.0, y: spriteKitScene1.size.height / 2.0)
+//        map.yScale = -0.5
+//        map.xScale = 0.5
+//        spriteKitScene1.addChild(map)
+//
+//        let background1 = SCNPlane(width: CGFloat(1.5), height: CGFloat(2))
+//        background1.firstMaterial?.diffuse.contents = spriteKitScene1
+//        let backgroundNode1 = SCNNode(geometry: background1)
+//        backgroundNode1.position = SCNVector3(2,0,1)
+//        backgroundNode1.eulerAngles = SCNVector3(0, -0.6 * Double.pi, 0)
+//        scene.rootNode.addChildNode(backgroundNode1)
+        
+        let spriteKitScene2 = SKScene(size: CGSize(width: 1600, height: 600))
+        for i in 0...3 {
+            news_images[i].position = CGPoint(x: spriteKitScene2.size.width / 2.0 - 600 + 400 * CGFloat(i), y: spriteKitScene2.size.height / 2.0 - 150)
+            news_images[i].size = CGSize(width: 400, height: 300)
+            news_images[i].yScale = -1
+            spriteKitScene2.addChild(news_images[i])
+        }
+        
+        let news = SKLabelNode(text: "News in Australia")
+        news.position = CGPoint(x: spriteKitScene2.size.width / 2.0, y: spriteKitScene2.size.height / 2.0 + 50)
+        news.yScale = -1
+        news.fontName = "Avenir Next"
+        spriteKitScene2.addChild(news)
+        
+        for i in 0...3 {
+            headlines[i].position = CGPoint(x: spriteKitScene2.size.width / 2.0, y: spriteKitScene2.size.height / 2.0 + 100 + 50 * CGFloat(i))
+            headlines[i].yScale = -1
+            headlines[i].fontSize = 20
+            headlines[i].fontName = "Avenir Next"
+            spriteKitScene2.addChild(headlines[i])
+        }
+        
+        let background2 = SCNPlane(width: CGFloat(8), height: CGFloat(3))
+        background2.firstMaterial?.diffuse.contents = spriteKitScene2
+        let backgroundNode2 = SCNNode(geometry: background2)
+        backgroundNode2.position = SCNVector3(2,0,5)
+        backgroundNode2.eulerAngles = SCNVector3(0, -0.9 * Double.pi, 0)
+        scene.rootNode.addChildNode(backgroundNode2)
+        
+        getHeadlines(country: "australia")
+//        let text1 = SCNText(string: "Australia", extrusionDepth: 0)
+//        text1.firstMaterial?.diffuse.contents = UIColor.white
+//        text1.font = UIFont(name: "Avenir Next", size: 0.3)
+//        let textNode1 = SCNNode(geometry: text1)
+//        textNode1.position = SCNVector3(2,-1,1.5)
+//        textNode1.eulerAngles = SCNVector3(0, -0.6 * Double.pi, 0)
+//        scene.rootNode.addChildNode(textNode1)
+        
+        let mapPlane = SCNPlane(width: 0.8, height: 0.6)
+        mapPlane.firstMaterial?.diffuse.contents = UIImage(named:"art.scnassets/australiaHigh.png")
+        let mapNode = SCNNode(geometry: mapPlane)
+        mapNode.position = SCNVector3(1,-0.5,0.5)
+        mapNode.eulerAngles = SCNVector3(0, -0.6 * Double.pi, 0)
+        scene.rootNode.addChildNode(mapNode)
         
 //        boxNode1 = SCNNode(geometry: box)
 //        boxNode1.position = SCNVector3(-0.5,0,0)
@@ -65,6 +149,69 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         sceneView.scene = scene
         sceneView.delegate = self
     }
+    
+    func getHeadlines(country: String){
+        let newsEndpoint = "https://newsapi.org/v2/top-headlines?q=\(country)&apiKey=b36706581f614d52828c4cd597af6065"
+        
+        guard let url = URL(string: newsEndpoint) else {
+            print("Error: cannot create URL")
+            return
+        }
+        
+        let urlRequest = URLRequest(url: url)
+        let session = URLSession.shared
+        let task = session.dataTask(with: urlRequest) {
+            (data, response, error) in
+            guard error == nil else {
+                print("error calling GET")
+                print(error!)
+                return
+            }
+            guard let responseData = data else {
+                print("Error: did not receive data")
+                return
+            }
+            do {
+                guard let data = try JSONSerialization.jsonObject(with: responseData, options: [])
+                    as? [String: Any] else {
+                        print("error trying to convert data to JSON")
+                        return
+                }
+                guard let newsList = data["articles"] as? [[String: Any]] else {
+                    print("Could not get w as AnyeatherList from JSON")
+                    return
+                }
+                
+                for i in 0...3 {
+                    self.headlines[i].text = newsList[i]["title"] as? String
+                    let img_url = newsList[i]["urlToImage"] as? String
+                    self.load_news_img(urlString: img_url!, num: i)
+                }
+                
+            } catch  {
+                print("error trying to convert data to JSON")
+                return
+            }
+        }
+        task.resume()
+    }
+    
+    func load_news_img(urlString : String, num: Int) {
+        guard let url = URL(string: urlString)else {
+            return
+        }
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.news_images[num].texture = SKTexture(image: image)
+                        print("loaded!")
+                    }
+                }
+            }
+        }
+    }
+    
     /* This method creates only Text Nodes.
      */
     func createTextNode(title: String, size: CGFloat, x: Float, y: Float, z: Float){
