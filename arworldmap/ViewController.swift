@@ -57,7 +57,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         boxNode = SCNNode(geometry: box)
         boxNode.position = SCNVector3(0,0,-0.5)
         boxNode.eulerAngles = SCNVector3(0,60,0)
+
 //        scene.rootNode.addChildNode(boxNode)
+
         
         let menu = MenuController(with: ["Home", "Info", "Settings"])
         menu.delegate = self
