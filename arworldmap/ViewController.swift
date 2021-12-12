@@ -19,6 +19,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     var boxNode2 = SCNNode()
     var scene =  SCNScene()
     var newsBoard = SCNNode()
+    var countryInfoBoard = SCNNode()
     var videoBoard = SCNNode()
     var didFindLocation = false
 
@@ -53,11 +54,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         boxNode = SCNNode(geometry: box)
         boxNode.position = SCNVector3(0,0,-0.5)
 //        boxNode.eulerAngles = SCNVector3(0,60,0)
-        scene.rootNode.addChildNode(boxNode)
+        // scene.rootNode.addChildNode(boxNode)
         
-        createNewsBoard()
-        newsBoard.removeFromParentNode()
-        createNewsBoard()
+        createNewsBoard(transparentBackground: false)
+        createCountryInfoBoard(transparentBackground: false)
+        // newsBoard.removeFromParentNode()
         createVideoBoard()
         
         let mapPlane = SCNPlane(width: 0.8, height: 0.6)
@@ -76,6 +77,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     func createVideoBoard()
     {
         let spriteKitScene = SKScene(size: CGSize(width: sceneView.frame.width, height: sceneView.frame.height))
+        // print("sceneView.frame.width is \(sceneView.frame.width)")
+        // print("sceneView.frame.height is \(sceneView.frame.height)")
         spriteKitScene.scaleMode = .aspectFit
 //        guard let url = URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4") else { return }
 //
@@ -98,12 +101,18 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     }
     
 //    func createNewsBoard(pos: SCNVector3, eulerAngles: SCNVector3, country: String)
-    func createNewsBoard()
+    func createNewsBoard(transparentBackground: Bool)
     {
         let headlines = [SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode()]
         let news_images = [SKSpriteNode(), SKSpriteNode(), SKSpriteNode(), SKSpriteNode()]
         
         let spriteKitScene = SKScene(size: CGSize(width: 1600, height: 600))
+        var fontColor = UIColor.white
+        if transparentBackground{
+            spriteKitScene.backgroundColor = UIColor.clear
+            fontColor = UIColor.black
+        }
+        
         for i in 0...3 {
             news_images[i].position = CGPoint(x: spriteKitScene.size.width / 2.0 - 600 + 400 * CGFloat(i), y: spriteKitScene.size.height / 2.0 - 150)
             news_images[i].size = CGSize(width: 400, height: 300)
@@ -114,6 +123,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         let news = SKLabelNode(text: "News in Australia")
         news.position = CGPoint(x: spriteKitScene.size.width / 2.0, y: spriteKitScene.size.height / 2.0 + 50)
         news.yScale = -1
+        if transparentBackground{
+            spriteKitScene.backgroundColor = UIColor.clear
+        }
+        news.fontColor = fontColor
         news.fontName = "Avenir Next"
         spriteKitScene.addChild(news)
         
@@ -121,6 +134,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
             headlines[i].position = CGPoint(x: spriteKitScene.size.width / 2.0, y: spriteKitScene.size.height / 2.0 + 100 + 50 * CGFloat(i))
             headlines[i].yScale = -1
             headlines[i].fontSize = 20
+            headlines[i].fontColor = fontColor
             headlines[i].fontName = "Avenir Next"
             spriteKitScene.addChild(headlines[i])
         }
@@ -197,7 +211,147 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
                 if let image = UIImage(data: data) {
                     DispatchQueue.main.async {
                         imgs[num].texture = SKTexture(image: image)
-                        print("loaded!")
+                        print("Loaded news img!")
+                    }
+                }
+            }
+        }
+    }
+    
+    func createCountryInfoBoard(transparentBackground: Bool)
+    {
+        let country_info = [SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode()] // common name, official name, continents, latlng, capital, population
+        let country_flag_img = SKSpriteNode()
+        
+        let spriteKitScene = SKScene(size: CGSize(width: 600, height: 1600))
+        var fontColor = UIColor.white
+        if transparentBackground{
+            spriteKitScene.backgroundColor = UIColor.clear
+            fontColor = UIColor.black
+        }
+        
+        // add images
+        country_flag_img.position = CGPoint(x: 300, y: 300) // spriteKitScene.size.width / height
+        country_flag_img.size = CGSize(width: 600, height: 600)
+        country_flag_img.yScale = -1
+        spriteKitScene.addChild(country_flag_img)
+        
+        // add country info text
+        for i in 0...5 {
+            country_info[i].position = CGPoint(x: spriteKitScene.size.width / 2.0, y: 600 + 100 + 50 * CGFloat(i))
+            country_info[i].yScale = -1
+            if (i==0) {
+                country_info[i].fontSize = 32
+            }
+            else {
+                country_info[i].fontSize = 20
+            }
+            country_info[i].fontColor = fontColor
+            country_info[i].fontName = "Avenir Next"
+            spriteKitScene.addChild(country_info[i])
+        }
+        
+        let background = SCNPlane(width: CGFloat(2), height: CGFloat(3))
+        background.firstMaterial?.diffuse.contents = spriteKitScene
+        countryInfoBoard = SCNNode(geometry: background)
+        countryInfoBoard.position = SCNVector3(-3,0,5.5)
+        countryInfoBoard.eulerAngles = SCNVector3(0, -1.2 * Double.pi, 0)
+        scene.rootNode.addChildNode(countryInfoBoard)
+        getCountryInfo(country: "australia", infotexts: country_info, img: country_flag_img)
+    }
+    
+    func getCountryInfo(country: String, infotexts: [SKLabelNode], img: SKSpriteNode){
+        let infoEndpoint = "https://restcountries.com/v3.1/name/\(country)"
+        
+        guard let url = URL(string: infoEndpoint) else {
+            print("Error: cannot create URL")
+            return
+        }
+        
+        let urlRequest = URLRequest(url: url)
+        let session = URLSession.shared
+        let task = session.dataTask(with: urlRequest) {
+            (data, response, error) in
+            guard error == nil else {
+                print("error calling GET")
+                print(error!)
+                return
+            }
+            guard let responseData = data else {
+                print("Error: did not receive data")
+                return
+            }
+            do {
+                guard let data_retrieve = try JSONSerialization.jsonObject(with: responseData, options: [])
+                    as? [[String: Any]] else {
+                        print("error trying to convert data to JSON")
+                        return
+                }
+                let data = data_retrieve[0]
+                
+                // common name, official name, continents, latlng, capital, population
+                
+                guard let countryName = data["name"] as? [String: Any] else {
+                    print("Could not get country name from JSON")
+                    return
+                }
+                
+                infotexts[0].text = countryName["common"] as? String
+                infotexts[1].text = "Official Name:  \(countryName["official"])"
+                
+                guard let countryContinent = data["continents"] as? [String] else {
+                    print("Could not get country continents from JSON")
+                    return
+                }
+                infotexts[2].text = "Continent: \(countryContinent[0])"
+                
+                guard let countryLatLon = data["latlng"] as? [Float] else {
+                    print("Could not get country latlon from JSON")
+                    return
+                }
+                infotexts[3].text = "Latitude: \(countryLatLon[0]) " + " Longitude: \(countryLatLon[1])"
+                
+                guard let countryCaptial = data["capital"] as? [String] else {
+                    print("Could not get country capital from JSON")
+                    return
+                }
+                infotexts[4].text = "Captial: \(countryCaptial[0])"
+                
+                guard let countryPopulation = data["population"] as? Int else {
+                    print("Could not get country population from JSON")
+                    return
+                }
+                infotexts[5].text = "Population: \(countryPopulation)"
+                
+                guard let countryFlagImg = data["flags"] as? [String: Any] else {
+                    print("Could not get country flag image from JSON")
+                    return
+                }
+                
+                guard let img_url = countryFlagImg["png"] as? String else {
+                    print("Could not get country image url from JSON")
+                    return
+                }
+                self.load_country_img(urlString: img_url, img: img)
+                
+            } catch  {
+                print("error trying to convert data to JSON")
+                return
+            }
+        }
+        task.resume()
+    }
+    
+    func load_country_img(urlString : String, img: SKSpriteNode) {
+        guard let url = URL(string: urlString)else {
+            return
+        }
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        img.texture = SKTexture(image: image)
+                        print("Loaded country img!")
                     }
                 }
             }
@@ -325,9 +479,9 @@ extension ViewController: CLLocationManagerDelegate{
             manager.stopUpdatingLocation()
             manager.delegate = nil
             // Just some test text
-            self.createTextNode(title: "lat:\(location.latitude)", size: 1.8, x: 0, y: 9, z: 50)
-            self.createTextNode(title: "lon:\(location.longitude)", size: 1.8, x: 0, y: 6, z: 50)
-            self.createTextNode(title: "north", size: 1.8, x: 0, y: 0, z: 50)
+            // self.createTextNode(title: "lat:\(location.latitude)", size: 1.8, x: 0, y: 9, z: 50)
+            // self.createTextNode(title: "lon:\(location.longitude)", size: 1.8, x: 0, y: 6, z: 50)
+            // self.createTextNode(title: "north", size: 1.8, x: 0, y: 0, z: 50)
             
             // hard code position
             // opposite side of the globe
@@ -339,8 +493,8 @@ extension ViewController: CLLocationManagerDelegate{
             let pos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: (bottomLat+topLat)/2, countryLon: (leftLon+rightLon)/2)
             print("World location XYZ is \(pos.x) \(pos.y) \(pos.z)")
             // add box
-            self.createBoxNode(pos: pos)
-            self.createSphereNode(pos: SCNVector3(0, -1, 0), selfLat: location.latitude, selfLon: location.longitude)
+            // self.createBoxNode(pos: pos)
+            // self.createSphereNode(pos: SCNVector3(0, -1, 0), selfLat: location.latitude, selfLon: location.longitude)
         }
     }
 }
