@@ -59,7 +59,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         boxNode.eulerAngles = SCNVector3(0,60,0)
 //        scene.rootNode.addChildNode(boxNode)
         
-        let menu = MenuController(with: ["Home", "Info", "Settings"])
+        let menu = MenuController(with: ["Home", "Search Country", "Search Position"])
         menu.delegate = self
         sideMenu = SideMenuNavigationController(rootViewController: menu)
         sideMenu?.leftSide = true
@@ -85,11 +85,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
                 self?.settingsController.view.isHidden = true
                 self?.infoController.view.isHidden = true
             }
-            else if named == "Info" {
+            else if named == "Search Country" {
                 self?.settingsController.view.isHidden = true
                 self?.infoController.view.isHidden = false
             }
-            else if named == "Settings" {
+            else if named == "Search Position" {
                 self?.settingsController.view.isHidden = false
                 self?.infoController.view.isHidden = true
             }
