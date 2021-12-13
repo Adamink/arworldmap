@@ -25,7 +25,6 @@ class InfoViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        view.backgroundColor = .blue
         // Do any additional setup after loading the view.
         self.locationManager.requestAlwaysAuthorization()
         
@@ -51,7 +50,25 @@ class InfoViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererD
         searchButton.setBackgroundImage(image, for: UIControl.State.normal)
         self.view.addSubview(searchButton)
         
-        dropDown.dataSource = ["China", "Switzerland", "America"]
+        dropDown.anchorView = searchButton
+        dropDown.bottomOffset = CGPoint(x: -50, y:(dropDown.anchorView?.plainView.bounds.height)! - 5)
+        dropDown.width = 260
+        dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
+                    // Setup your custom UI components
+                    cell.optionLabel.textAlignment = .center
+        } // center text
+        
+        dropDown.dataSource = ["China", "Switzerland", "America", "Australia"]
+        
+        let countries = NSLocale.isoCountryCodes.map { (code:String) -> String in
+            let id = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
+            return NSLocale(localeIdentifier: "en_US").displayName(forKey: NSLocale.Key.identifier, value: id) ?? "Country not found for code: \(code)"
+        }
+
+        print(countries)
+        print(countries.count) // 256
+        
+         dropDown.dataSource = countries
         
         // hard code position
         // opposite side of the globe
