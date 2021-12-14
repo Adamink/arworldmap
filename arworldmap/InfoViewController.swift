@@ -15,7 +15,7 @@ class InfoViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererD
     
     var searchView: ARSCNView!
     
-    var scene =  SCNScene()
+    var sceneInfo =  SCNScene()
     var didFindLocation = false
     
     let locationManager = CLLocationManager()
@@ -86,7 +86,7 @@ class InfoViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererD
         searchView?.showsStatistics = true
         
         // Set the scene to the view
-        searchView?.scene = scene
+        searchView?.scene = sceneInfo
     }
     
     @objc func search(sender: UIButton!) {
@@ -115,9 +115,9 @@ class InfoViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererD
         let yAngle = betaReformat * Double.pi / 180
         mapNode.eulerAngles = SCNVector3(xAngle, yAngle, 0)
         
-        self.scene.rootNode.addChildNode(mapNode)  // not shown
+        self.sceneInfo.rootNode.addChildNode(mapNode)  // not shown
         print("new node")
-        self.scene.rootNode.enumerateChildNodes { (node, stop) in
+        self.sceneInfo.rootNode.enumerateChildNodes { (node, stop) in
             print(node)
         }
     }
