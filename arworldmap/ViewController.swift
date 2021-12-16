@@ -491,7 +491,21 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         sceneView.session.run(configuration)
         sceneView.session.delegate = self
     }
+    
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
+        let cameraTransform = SCNMatrix4(frame.camera.transform)
+        let cameraDirection = simd_double3(-1 * Double(cameraTransform.m31),
+                                       -1 * Double(cameraTransform.m32),
+                                       -1 * Double(cameraTransform.m33))
+        let a = cameraDirection.x
+        let b = cameraDirection.y
+        let c = cameraDirection.z
+        let x = -2 * b / (a * a + b * b + c * c)
+        let intersect_pos = simd_double3(a * x, b * x, c * x)
+        if(dot(intersect_pos, cameraDirection) > 0)
+        {
+            print(intersect_pos)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
