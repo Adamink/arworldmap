@@ -68,6 +68,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         mapNode.eulerAngles = SCNVector3(0, -0.6 * Double.pi, 0)
         scene.rootNode.addChildNode(mapNode)
         
+        getCountryAndCity(lat: 39.916668, long: 116.383331)
+        getCountryAndCity(lat: 47.373878, long: 8.545094)
         // Set the scene to the view
         sceneView.scene = scene
         sceneView.delegate = self
@@ -356,6 +358,34 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
                 }
             }
         }
+    }
+    
+    func getCountryAndCity(lat:Double, long:Double) {
+
+        let tmpCLGeocoder = CLGeocoder.init()
+        let tmpDataLoc = CLLocation.init(latitude: lat, longitude: long)
+        let language_loc = Locale(identifier: "en_US")
+        tmpCLGeocoder.reverseGeocodeLocation(tmpDataLoc, preferredLocale: language_loc, completionHandler: {(placemarks,error) in
+
+            guard let tmpPlacemarks = placemarks else{
+                return
+            }
+            let placeMark = tmpPlacemarks[0] as CLPlacemark
+
+            // Country
+            guard let countryLocality = placeMark.country else{
+                return
+            }
+
+            // City
+            guard let cityLocality = placeMark.locality else{
+                return
+            }
+
+            print(placeMark)
+            print(countryLocality)
+            print(cityLocality)
+        })
     }
     
     /* This method creates only Text Nodes.
