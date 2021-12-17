@@ -122,6 +122,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         
         settingsController.view.isHidden = true
         infoController.view.isHidden = true
+        
+        infoController.sceneInfo = self.scene
+        settingsController.sceneSetting = self.scene
     }
     
     func addDiscoverButton(){

@@ -14,7 +14,7 @@ class SettingsViewController: UIViewController, ARSCNViewDelegate, SCNSceneRende
     
     var searchView: ARSCNView!
     
-    var scene =  SCNScene()
+    var sceneSetting =  SCNScene()
     var didFindLocation = false
     
     let locationManager = CLLocationManager()
@@ -52,7 +52,7 @@ class SettingsViewController: UIViewController, ARSCNViewDelegate, SCNSceneRende
         searchView?.showsStatistics = true
         
         // Set the scene to the view
-        searchView?.scene = scene
+        searchView?.scene = sceneSetting
         
         // add search button
         addButton()
@@ -156,9 +156,9 @@ class SettingsViewController: UIViewController, ARSCNViewDelegate, SCNSceneRende
         let yAngle = betaReformat * Double.pi / 180
         mapNode.eulerAngles = SCNVector3(xAngle, yAngle, 0)
         
-        self.scene.rootNode.addChildNode(mapNode)  // not shown
+        self.sceneSetting.rootNode.addChildNode(mapNode)  // not shown
         print("new node")
-        self.scene.rootNode.enumerateChildNodes { (node, stop) in
+        self.sceneSetting.rootNode.enumerateChildNodes { (node, stop) in
             print(node)
         }
     }
@@ -166,7 +166,7 @@ class SettingsViewController: UIViewController, ARSCNViewDelegate, SCNSceneRende
     func createMapNodeChina(width : CGFloat, height: CGFloat,pos: SCNVector3){
         let plane = SCNPlane(width: width, height: height)
         let planeMaterial = SCNMaterial()
-        planeMaterial.diffuse.contents = UIImage(named:"art.scnassets/sun.jpg")
+        planeMaterial.diffuse.contents = UIImage(named:"art.scnassets/chinaHigh.png")
         
         plane.materials = [planeMaterial]
         let mapNode = SCNNode(geometry: plane)
@@ -187,10 +187,10 @@ class SettingsViewController: UIViewController, ARSCNViewDelegate, SCNSceneRende
         let yAngle = betaReformat * Double.pi / 180
         mapNode.eulerAngles = SCNVector3(xAngle, yAngle, 0)
         
-        scene.rootNode.addChildNode(mapNode)
+        sceneSetting.rootNode.addChildNode(mapNode)
         print("hidden?  ", mapNode.isHidden)
         print("new node")
-        self.scene.rootNode.enumerateChildNodes { (node, stop) in
+        self.sceneSetting.rootNode.enumerateChildNodes { (node, stop) in
             print(node)
         }
     }
@@ -202,7 +202,7 @@ class SettingsViewController: UIViewController, ARSCNViewDelegate, SCNSceneRende
         box.materials = [boxMaterial]
         let boxNode = SCNNode(geometry: box)
         boxNode.position = pos
-        scene.rootNode.addChildNode(boxNode)
+        sceneSetting.rootNode.addChildNode(boxNode)
     }
     
     func addButton(){
