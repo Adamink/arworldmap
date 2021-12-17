@@ -9,6 +9,6 @@ def resize(input_pth, output_pth, ratio = 0.1):
     new_img.save(output_pth)
 
 if __name__=='__main__':
-    input_pth = './China.png'
-    output_pth = './China_small.png'
+    input_pth = '../art.scnassets/earth_16200_8100.jpg'
+    output_pth = '../art.scnassets/earth_1620_810.png'
     resize(input_pth, output_pth)

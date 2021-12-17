@@ -5,10 +5,11 @@ import os
 
 class Converter:
 
-    def __init__(self):
+    def __init__(self, img_size = (1620, 810)):
         self.geojson_file_pth = '../art.scnassets/country_shapes.geojson'
-        self.output_fd = '../art.scnassets/country_shapes/'
-    
+        self.output_fd = '../art.scnassets/country_shape_masks/'
+        self.img_size = img_size
+
     def run(self):
         if not os.path.exists(self.output_fd):
             os.makedirs(self.output_fd)
@@ -21,8 +22,8 @@ class Converter:
             coords = country['geometry']['coordinates']
             type = country['geometry']['type']
 
-            output_pth = os.path.join(self.output_fd, name + '.jpg')
-            drawer = Drawer(output_pth)
+            output_pth = os.path.join(self.output_fd, name + '.png')
+            drawer = Drawer(output_pth, color = (255, 255, 255), img_size = self.img_size)
             
             print(name)
 

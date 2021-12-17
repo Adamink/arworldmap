@@ -6,7 +6,7 @@ from scipy.spatial import ConvexHull
 
 class Drawer:
     
-    def __init__(self, file_pth, color = (255, 255, 255), img_size = (16200, 8100)):
+    def __init__(self, file_pth, color = (255, 255, 255), img_size = (1620, 810)):
         self.file_pth = file_pth
         self.color = color
         self.img_size = img_size
