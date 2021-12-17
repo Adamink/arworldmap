@@ -103,35 +103,74 @@ class SettingsViewController: UIViewController, ARSCNViewDelegate, SCNSceneRende
             print("empty")
             return
         }
-        else if (latitudeCountry == -25.0 && longitudeCountry == 130.0)
-        {
-            let leftLon = 112.901452
-            let rightLon = 158.966830
-            let topLat = -10.132839
-            let bottomLat = -54.757221
-            let mapPos = coordinateTransform(selfLat: currentLocation!.latitude, selfLon: currentLocation!.longitude, countryLat: (topLat+bottomLat)/2, countryLon: (leftLon+rightLon)/2)
-            createMapNode(width: CGFloat(rightLon-leftLon)/90, height: CGFloat(topLat-bottomLat)/90, pos: SCNVector3(mapPos.x, mapPos.y, mapPos.z))
-        }
-        else if (latitudeCountry == 30.0 && longitudeCountry == 100.0)
-        {
-            let leftLon = 73.554302
-            let rightLon = 134.775703
-            let topLat = 53.561780
-            let bottomLat = 18.155060
-            let mapPos = coordinateTransform(selfLat: currentLocation!.latitude, selfLon: currentLocation!.longitude, countryLat: (topLat+bottomLat)/2, countryLon: (leftLon+rightLon)/2)
-            createMapNodeChina(width: CGFloat(rightLon-leftLon)/90, height: CGFloat(topLat-bottomLat)/90, pos: SCNVector3(mapPos.x, mapPos.y, mapPos.z))
+//        else if (latitudeCountry == -25.0 && longitudeCountry == 130.0)
+//        {
+//            let leftLon = 112.901452
+//            let rightLon = 158.966830
+//            let topLat = -10.132839
+//            let bottomLat = -54.757221
+//            let mapPos = coordinateTransform(selfLat: currentLocation!.latitude, selfLon: currentLocation!.longitude, countryLat: (topLat+bottomLat)/2, countryLon: (leftLon+rightLon)/2)
+//            createMapNode(width: CGFloat(rightLon-leftLon)/90, height: CGFloat(topLat-bottomLat)/90, pos: SCNVector3(mapPos.x, mapPos.y, mapPos.z))
+//        }
+//        else if (latitudeCountry == 30.0 && longitudeCountry == 100.0)
+//        {
+//            let leftLon = 73.554302
+//            let rightLon = 134.775703
+//            let topLat = 53.561780
+//            let bottomLat = 18.155060
+//            let mapPos = coordinateTransform(selfLat: currentLocation!.latitude, selfLon: currentLocation!.longitude, countryLat: (topLat+bottomLat)/2, countryLon: (leftLon+rightLon)/2)
+//            createMapNodeChina(width: CGFloat(rightLon-leftLon)/90, height: CGFloat(topLat-bottomLat)/90, pos: SCNVector3(mapPos.x, mapPos.y, mapPos.z))
+//            
+//        }
+//        else
+//        {
+//            print(currentLocation?.latitude ?? 0)
+//            print(currentLocation?.longitude ?? 0)
+//            pos = coordinateTransform(selfLat: currentLocation!.latitude, selfLon: currentLocation!.longitude, countryLat: latitudeCountry, countryLon: longitudeCountry)
+//            print("World location XYZ is \(pos.x) \(pos.y) \(pos.z)")
+//            // add box
+//            createBoxNode(pos: pos)
+//        }
+        getCountry(lat: latitudeCountry, long: longitudeCountry)
+    }
+    
+    func getCountry(lat:Double, long:Double) {
+        let tmpCLGeocoder = CLGeocoder.init()
+        let tmpDataLoc = CLLocation.init(latitude: lat, longitude: long)
+        let language_loc = Locale(identifier: "en_US")
+        tmpCLGeocoder.reverseGeocodeLocation(tmpDataLoc, preferredLocale: language_loc, completionHandler: {(placemarks,error) in
+
+            guard let tmpPlacemarks = placemarks else{
+                print("error get placemark")
+                return
+            }
+            let placeMark = tmpPlacemarks[0] as CLPlacemark
+
+            // Country
+            guard let countryLocality = placeMark.country else{
+                print("error get country")
+                return
+            }
+
+            // City
+    //        guard let cityLocality = placeMark.locality else{
+    //            print("error get city")
+    //            return
+    //        }
+
+//            print(placeMark)
+//            print(countryLocality)
+//            print(cityLocality)
             
-        }
-        else
-        {
-            print(currentLocation?.latitude ?? 0)
-            print(currentLocation?.longitude ?? 0)
-            pos = coordinateTransform(selfLat: currentLocation!.latitude, selfLon: currentLocation!.longitude, countryLat: latitudeCountry, countryLon: longitudeCountry)
-            print("World location XYZ is \(pos.x) \(pos.y) \(pos.z)")
-            // add box
-            createBoxNode(pos: pos)
-        }
-        
+            if (countryNames.contains(countryLocality))
+            {
+                print("find corresponding country")
+                // do something
+            }
+            else{
+                print("country not found")
+            }
+        })
     }
     
     func createMapNode(width : CGFloat, height: CGFloat,pos: SCNVector3){
