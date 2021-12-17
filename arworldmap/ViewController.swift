@@ -21,6 +21,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     var newsBoard = SCNNode()
     var countryInfoBoard = SCNNode()
     var videoBoard = SCNNode()
+    var anchorNode = SCNNode()
     var didFindLocation = false
 
     let locationManager = CLLocationManager()
@@ -56,17 +57,19 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
 //        boxNode.eulerAngles = SCNVector3(0,60,0)
         // scene.rootNode.addChildNode(boxNode)
         
-        createNewsBoard(transparentBackground: false)
-        createCountryInfoBoard(transparentBackground: false)
-        // newsBoard.removeFromParentNode()
-        createVideoBoard()
+        scene.rootNode.addChildNode(anchorNode)
+//        anchorNode.position = SCNVector3(0, 2, 0)
+        anchorNode.eulerAngles = SCNVector3(0, 0.5 * Double.pi, 0)
+//        createNewsBoard(transparentBackground: false)
+//        createCountryInfoBoard(transparentBackground: false)
+//        createVideoBoard()
         
-        let mapPlane = SCNPlane(width: 0.8, height: 0.6)
-        mapPlane.firstMaterial?.diffuse.contents = UIImage(named:"art.scnassets/australiaHigh.png")
-        let mapNode = SCNNode(geometry: mapPlane)
-        mapNode.position = SCNVector3(1,-0.5,0.5)
-        mapNode.eulerAngles = SCNVector3(0, -0.6 * Double.pi, 0)
-        scene.rootNode.addChildNode(mapNode)
+//        let mapPlane = SCNPlane(width: 0.8, height: 0.6)
+//        mapPlane.firstMaterial?.diffuse.contents = UIImage(named:"art.scnassets/australiaHigh.png")
+//        let mapNode = SCNNode(geometry: mapPlane)
+//        mapNode.position = SCNVector3(1,-0.5,0.5)
+//        mapNode.eulerAngles = SCNVector3(0, -0.6 * Double.pi, 0)
+//        scene.rootNode.addChildNode(mapNode)
         
         getCountryAndCity(lat: 39.916668, long: 116.383331)
         getCountryAndCity(lat: 47.373878, long: 8.545094)
@@ -99,7 +102,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         videoBoard = SCNNode(geometry: background)
         videoBoard.position = SCNVector3(2,0,0)
         videoBoard.eulerAngles = SCNVector3(0, -0.4 * Double.pi, 0)
-        scene.rootNode.addChildNode(videoBoard)
+        anchorNode.addChildNode(videoBoard)
     }
     
 //    func createNewsBoard(pos: SCNVector3, eulerAngles: SCNVector3, country: String)
@@ -146,7 +149,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         newsBoard = SCNNode(geometry: background)
         newsBoard.position = SCNVector3(2,0,5)
         newsBoard.eulerAngles = SCNVector3(0, -0.9 * Double.pi, 0)
-        scene.rootNode.addChildNode(newsBoard)
+        anchorNode.addChildNode(newsBoard)
         getHeadlines(country: "australia", headlines: headlines, imgs: news_images)
     }
     
@@ -258,7 +261,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         countryInfoBoard = SCNNode(geometry: background)
         countryInfoBoard.position = SCNVector3(-3,0,5.5)
         countryInfoBoard.eulerAngles = SCNVector3(0, -1.2 * Double.pi, 0)
-        scene.rootNode.addChildNode(countryInfoBoard)
+        anchorNode.addChildNode(countryInfoBoard)
         getCountryInfo(country: "australia", infotexts: country_info, img: country_flag_img)
     }
     
@@ -368,17 +371,20 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         tmpCLGeocoder.reverseGeocodeLocation(tmpDataLoc, preferredLocale: language_loc, completionHandler: {(placemarks,error) in
 
             guard let tmpPlacemarks = placemarks else{
+                print("error get placemark")
                 return
             }
             let placeMark = tmpPlacemarks[0] as CLPlacemark
 
             // Country
             guard let countryLocality = placeMark.country else{
+                print("error get country")
                 return
             }
 
             // City
             guard let cityLocality = placeMark.locality else{
+                print("error get city")
                 return
             }
 
@@ -411,8 +417,44 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         scene.rootNode.addChildNode(boxNode)
     }
     
+    func createPlaceMarkerNode(pos: SCNVector3, title: String)
+    {
+        let sphere = SCNSphere(radius: 0.03)
+        let sphereMaterial = SCNMaterial()
+        sphereMaterial.diffuse.contents = UIImage(named:"art.scnassets/sun.jpg")
+        sphere.materials = [sphereMaterial]
+        let sphereNode = SCNNode(geometry: sphere)
+        sphereNode.position = pos
+        scene.rootNode.addChildNode(sphereNode)
+        
+        let spriteKitScene = SKScene(size: CGSize(width: 400, height: 100))
+        spriteKitScene.backgroundColor = UIColor.clear
+        let text = SKLabelNode(text: title)
+        text.position = CGPoint(x: spriteKitScene.size.width / 2.0, y: spriteKitScene.size.height / 2.0)
+        text.yScale = -1
+        text.fontSize = 60
+        text.fontName = "Avenir Next"
+//        text.fontColor = UIColor.black
+        spriteKitScene.addChild(text)
+        let background = SCNPlane(width: CGFloat(0.2), height: CGFloat(0.05))
+        background.firstMaterial?.diffuse.contents = spriteKitScene
+        let backgroundNode = SCNNode(geometry: background)
+        backgroundNode.position.x = pos.x * 0.5
+        backgroundNode.position.y = pos.y * 0.5
+        backgroundNode.position.z = pos.z * 0.5
+        
+        let pos_normalized = -normalize(simd_double3(Double(pos.x), Double(pos.y), Double(pos.z)))
+        let z = simd_double3(0, 0, 1)
+        let half_vec = normalize((z + pos_normalized) / 2)
+        let angle = acos(half_vec.z)
+        let s = sin(angle)
+        let axis = cross(z, pos_normalized)
+        backgroundNode.rotate(by: SCNQuaternion(x: Float(s * axis.x), y: Float(s * axis.y), z: Float(s * axis.z), w: Float(half_vec.z)), aroundTarget: backgroundNode.position)
+        scene.rootNode.addChildNode(backgroundNode)
+    }
+    
     func createSphereNode(pos: SCNVector3, selfLat: CLLocationDegrees, selfLon: CLLocationDegrees){
-        let sphere = SCNSphere(radius: 1)
+        let sphere = SCNSphere(radius: 1.0)
         let sphereMaterial = SCNMaterial()
         sphereMaterial.diffuse.contents = UIImage(named:"art.scnassets/China_small.png")
         sphereMaterial.isDoubleSided = true
@@ -420,7 +462,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         sphere.materials = [sphereMaterial]
         let sphereNode = SCNNode(geometry: sphere)
         sphereNode.position = pos
-        sphereNode.eulerAngles = SCNVector3(-(90-selfLat)/180*Double.pi, -selfLon/180*Double.pi,0)
+//        sphereNode.eulerAngles = SCNVector3(-(90-selfLat)/180*Double.pi, -selfLon/180*Double.pi,0)
+        var s = sin(-selfLon/180*Double.pi/2)
+        var c = cos(-selfLon/180*Double.pi/2)
+        sphereNode.rotate(by: SCNQuaternion(x: 0, y: Float(s), z: 0, w: Float(c)), aroundTarget: pos)
+        
+        s = sin(-(90-selfLat)/180*Double.pi/2)
+        c = cos(-(90-selfLat)/180*Double.pi/2)
+        sphereNode.rotate(by: SCNQuaternion(x: Float(s), y: 0, z: 0, w: Float(c)), aroundTarget: pos)
         scene.rootNode.addChildNode(sphereNode)
     }
     
@@ -502,10 +551,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         let c = cameraDirection.z
         let x = -2 * b / (a * a + b * b + c * c)
         let intersect_pos = simd_double3(a * x, b * x, c * x)
-        if(dot(intersect_pos, cameraDirection) > 0)
-        {
-            print(intersect_pos)
-        }
+//        if(dot(intersect_pos, cameraDirection) > 0)
+//        {
+//            print(intersect_pos)
+//        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -534,11 +583,32 @@ extension ViewController: CLLocationManagerDelegate{
             let topLat = 53.561780
             let bottomLat = 18.155060
             
-            let pos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: (bottomLat+topLat)/2, countryLon: (leftLon+rightLon)/2)
-            print("World location XYZ is \(pos.x) \(pos.y) \(pos.z)")
-            // add box
-            // self.createBoxNode(pos: pos)
-            // self.createSphereNode(pos: SCNVector3(0, -1, 0), selfLat: location.latitude, selfLon: location.longitude)
+//            let leftLon = 112.901452
+//            let rightLon = 158.966830
+//            let topLat = -10.132839
+//            let bottomLat = -54.757221
+            
+            var pos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: (bottomLat+topLat)/2, countryLon: (leftLon+rightLon)/2)
+            self.createPlaceMarkerNode(pos: pos, title: "China")
+            print(pos.x * pos.x + (pos.y + 1) * (pos.y + 1) + pos.z * pos.z)
+            
+//            pos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: topLat, countryLon:leftLon)
+//            self.createPlaceMarkerNode(pos: pos, title: "China")
+//            print(pos.x * pos.x + (pos.y + 1) * (pos.y + 1) + pos.z * pos.z)
+//
+//            pos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: bottomLat, countryLon:leftLon)
+//            self.createPlaceMarkerNode(pos: pos, title: "China")
+//            print(pos.x * pos.x + (pos.y + 1) * (pos.y + 1) + pos.z * pos.z)
+//
+//            pos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: topLat, countryLon:rightLon)
+//            self.createPlaceMarkerNode(pos: pos, title: "China")
+//            print(pos.x * pos.x + (pos.y + 1) * (pos.y + 1) + pos.z * pos.z)
+//
+//            pos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: bottomLat, countryLon:rightLon)
+//            self.createPlaceMarkerNode(pos: pos, title: "China")
+//            print(pos.x * pos.x + (pos.y + 1) * (pos.y + 1) + pos.z * pos.z)
+            
+            self.createSphereNode(pos: SCNVector3(0, -1, 0), selfLat: location.latitude, selfLon: location.longitude)
         }
     }
 }
