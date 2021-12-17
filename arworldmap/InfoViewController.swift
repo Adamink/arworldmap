@@ -15,7 +15,7 @@ class InfoViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererD
     
     var searchView: ARSCNView!
     
-    var scene =  SCNScene()
+    var sceneInfo =  SCNScene()
     var didFindLocation = false
     
     let locationManager = CLLocationManager()
@@ -25,7 +25,6 @@ class InfoViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        view.backgroundColor = .blue
         // Do any additional setup after loading the view.
         self.locationManager.requestAlwaysAuthorization()
         
@@ -41,17 +40,27 @@ class InfoViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererD
             print("Location service disabled");
         }
         
-        let midX = self.view.bounds.midX
-        let midY = self.view.bounds.midY
-        let rect1 = CGRect(x: midX - 80, y: midY - 130, width: 160, height: 70)
-        searchButton = UIButton(frame: rect1)
-        searchButton.setTitle("Search Position", for: .normal)
-        searchButton.addTarget(self, action: #selector(search), for: .touchUpInside)
-        let image = UIImage(named: "./art.scnassets/52016_preview.png")
-        searchButton.setBackgroundImage(image, for: UIControl.State.normal)
-        self.view.addSubview(searchButton)
+        addSearchButton()
         
-        dropDown.dataSource = ["China", "Switzerland", "America"]
+        dropDown.anchorView = searchButton
+        dropDown.bottomOffset = CGPoint(x: -50, y:(dropDown.anchorView?.plainView.bounds.height)! - 5)
+        dropDown.width = 260
+        dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
+                    // Setup your custom UI components
+                    cell.optionLabel.textAlignment = .center
+        } // center text
+        
+        dropDown.dataSource = ["China", "Switzerland", "America", "Australia"]
+        
+        let countries = NSLocale.isoCountryCodes.map { (code:String) -> String in
+            let id = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
+            return NSLocale(localeIdentifier: "en_US").displayName(forKey: NSLocale.Key.identifier, value: id) ?? "Country not found for code: \(code)"
+        }
+
+        print(countries)
+        print(countries.count) // 256
+        
+         dropDown.dataSource = countries
         
         // hard code position
         // opposite side of the globe
@@ -77,7 +86,7 @@ class InfoViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererD
         searchView?.showsStatistics = true
         
         // Set the scene to the view
-        searchView?.scene = scene
+        searchView?.scene = sceneInfo
     }
     
     @objc func search(sender: UIButton!) {
@@ -106,11 +115,23 @@ class InfoViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererD
         let yAngle = betaReformat * Double.pi / 180
         mapNode.eulerAngles = SCNVector3(xAngle, yAngle, 0)
         
-        self.scene.rootNode.addChildNode(mapNode)  // not shown
+        self.sceneInfo.rootNode.addChildNode(mapNode)  // not shown
         print("new node")
-        self.scene.rootNode.enumerateChildNodes { (node, stop) in
+        self.sceneInfo.rootNode.enumerateChildNodes { (node, stop) in
             print(node)
         }
+    }
+    
+    func addSearchButton(){
+        let midX = self.view.bounds.midX
+        let midY = self.view.bounds.midY
+        let rect1 = CGRect(x: midX - 80, y: midY - 130, width: 160, height: 70)
+        searchButton = UIButton(frame: rect1)
+        searchButton.setTitle("Search Country", for: .normal)
+        searchButton.addTarget(self, action: #selector(search), for: .touchUpInside)
+        let image = UIImage(named: "./art.scnassets/52016_preview.png")
+        searchButton.setBackgroundImage(image, for: UIControl.State.normal)
+        self.view.addSubview(searchButton)
     }
 }
 
