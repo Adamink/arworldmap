@@ -22,11 +22,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     
     let locationManager = CLLocationManager()
     
-    // to do: change content
     private var sideMenu: SideMenuNavigationController?
     
     private let settingsController = SettingsViewController()
     private let infoController = InfoViewController()
+    
+    var searchButton = UIButton()
                                                             
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +60,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         boxNode.eulerAngles = SCNVector3(0,60,0)
 //        scene.rootNode.addChildNode(boxNode)
         
-        let menu = MenuController(with: ["Home", "Search Country", "Search Position"])
+        let menu = MenuController(with: ["Discover", "Search Country", "Search Position"])
         menu.delegate = self
         sideMenu = SideMenuNavigationController(rootViewController: menu)
         sideMenu?.leftSide = true
@@ -81,15 +82,18 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
 //                    node.removeFromParentNode()
 //            }
             
-            if named == "Home" {
+            if named == "Discover" {
                 self?.settingsController.view.isHidden = true
                 self?.infoController.view.isHidden = true
+                self!.addDiscoverButton()
             }
             else if named == "Search Country" {
+                self?.searchButton.removeFromSuperview()
                 self?.settingsController.view.isHidden = true
                 self?.infoController.view.isHidden = false
             }
             else if named == "Search Position" {
+                self?.searchButton.removeFromSuperview()
                 self?.settingsController.view.isHidden = false
                 self?.infoController.view.isHidden = true
             }
@@ -116,6 +120,35 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         
         settingsController.view.isHidden = true
         infoController.view.isHidden = true
+    }
+    
+    func addDiscoverButton(){
+        let midX = self.view.bounds.midX
+        let midY = self.view.bounds.midY
+
+        let rect1 = CGRect(x: midX - 80, y: midY + 200, width: 160, height: 70)
+        
+        // search button
+        searchButton = UIButton(frame: rect1)
+        searchButton.setTitle("Discover", for: .normal)
+        searchButton.addTarget(self, action: #selector(search), for: .touchUpInside)
+        let image = UIImage(named: "./art.scnassets/52016_preview.png")
+        searchButton.setBackgroundImage(image, for: UIControl.State.normal)
+
+        self.view.addSubview(searchButton)
+    }
+    
+    @objc func search(sender: UIButton!) {
+        if (searchButton.titleLabel?.text == "Discover") {
+            print("Touch search button")
+            // do something
+            searchButton.setTitle("Back", for: .normal)
+        }
+        else if (searchButton.titleLabel?.text == "Back"){
+            print("get back")
+            // do something
+            searchButton.setTitle("Discover", for: .normal)
+        }
     }
     
     func createTextNode(title: String, size: CGFloat, x: Float, y: Float, z: Float){

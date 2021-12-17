@@ -127,7 +127,7 @@ class InfoViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererD
         let midY = self.view.bounds.midY
         let rect1 = CGRect(x: midX - 80, y: midY - 130, width: 160, height: 70)
         searchButton = UIButton(frame: rect1)
-        searchButton.setTitle("Search Position", for: .normal)
+        searchButton.setTitle("Search Country", for: .normal)
         searchButton.addTarget(self, action: #selector(search), for: .touchUpInside)
         let image = UIImage(named: "./art.scnassets/52016_preview.png")
         searchButton.setBackgroundImage(image, for: UIControl.State.normal)
