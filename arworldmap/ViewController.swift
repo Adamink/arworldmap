@@ -8,6 +8,7 @@ import SceneKit
 import ARKit
 import AVFoundation
 import CoreLocation
+
 import SideMenu
 
 class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDelegate, ARSessionDelegate, MenuControllerDelegate {
@@ -230,6 +231,9 @@ extension ViewController: CLLocationManagerDelegate{
             print("World location XYZ is \(pos2.x) \(pos2.y) \(pos2.z)")
             // self.createBoxNode(pos: pos2)
             
+            let sphere = Sphere()
+            sphere.selectCountry(country: "United States of America")
+            sphere.addSphereNode(scene: scene)
 //            let mapPos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: (topLat+bottomLat)/2, countryLon: (leftLon+rightLon)/2)
 //            self.createMapNode(width: CGFloat(rightLon-leftLon)/90,
 //                               height: CGFloat(topLat-bottomLat)/90, pos: SCNVector3(mapPos.x, mapPos.y, mapPos.z))

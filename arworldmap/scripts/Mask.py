@@ -1,4 +1,5 @@
-from PIL import Image
+from PIL import Image, ImageOps
+import numpy as np
 
 def maskImage(img_pth: str, mask_pth: str, output_pth):
     img_file = Image.open(img_pth) # open colour image
@@ -17,8 +18,23 @@ def maskImage(img_pth: str, mask_pth: str, output_pth):
     
     img.save(output_pth)
 
+def genMask(mask_pth, output_pth):
+    img_file = Image.open(mask_pth)
+    # grayImage = img_file.convert('RGBA')
+    alpha = img_file.convert('L')
+
+    grayImage = Image.new('RGBA', img_file.size, color = 'black')
+    grayImage.putalpha(alpha)
+    grayImage.save(output_pth)
+
 if __name__=='__main__':
-    img_pth = '../art.scnassets/Earth_BumpMap_2.jpg'
-    mask_pth = '../art.scnassets/country_shapes/China.jpg'
-    output_pth =  './China.png'
-    maskImage(img_pth, mask_pth, output_pth)
+    # mask_pth ='../art.scnassets/sun.jpg'
+    mask_pth = '../art.scnassets/country_shape_masks/China.png'
+    output_pth = '../art.scnassets/China_gray.png'
+    genMask(mask_pth, output_pth)
+
+    # img_file = Image.open(mask_pth)
+    # grayImage = img_file.convert('RGBA')
+    # alpha = img_file.convert('L')
+    # grayImage.putalpha(alpha)
+    # np.array(grayImage)
