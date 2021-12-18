@@ -557,7 +557,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         let half_vec = normalize((z + pos_normalized) / 2)
         let angle = acos(half_vec.z)
         let s = sin(angle)
-        let axis = cross(z, half_vec)
+        let axis = normalize(cross(z, half_vec))
         backgroundNode.rotate(by: SCNQuaternion(x: Float(s * axis.x), y: Float(s * axis.y), z: Float(s * axis.z), w: Float(half_vec.z)), aroundTarget: backgroundNode.position)
         markersAnchorNode.addChildNode(backgroundNode)
     }
