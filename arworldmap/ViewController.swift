@@ -664,6 +664,9 @@ extension ViewController: CLLocationManagerDelegate{
             print(pos.x * pos.x + (pos.y + 1) * (pos.y + 1) + pos.z * pos.z)
             
             self.createSphereNode(pos: SCNVector3(0, -1, 0), selfLat: location.latitude, selfLon: location.longitude)
+            
+            let latLon = getCountryLongLatFromName(country: "Australia")
+            print("Latitude: " + String(format: "%.2f", latLon[0]) + "  Longitude: " + String(format: "%.2f", latLon[0]))
         }
     }
 }
