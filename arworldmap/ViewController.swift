@@ -22,7 +22,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     var countryInfoBoard = SCNNode()
     var videoBoard = SCNNode()
     var anchorNode = SCNNode()
+    var sphereNode = SCNNode()
+    var markersAnchorNode = SCNNode()
     var didFindLocation = false
+    
+    var curLatitude = 0.0
+    var curLongitude = 0.0
     
     let locationManager = CLLocationManager()
     
@@ -64,6 +69,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         SideMenuManager.default.addPanGestureToPresent(toView: view)
         
         addChildControllers()
+        
+        scene.rootNode.addChildNode(markersAnchorNode)
         
         // Set the scene to the view
         sceneView.scene = scene
@@ -119,6 +126,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         
         dropDownController.sceneInfo = self.scene
         searchLatLonController.sceneSetting = self.scene
+        
+        searchLatLonController.markersAnchorNode = self.markersAnchorNode
     }
     
     func addDiscoverButton(){
@@ -513,15 +522,19 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
             }
         }
     
-    func createPlaceMarkerNode(pos: SCNVector3, title: String)
+    func createPlaceMarkerNode(lat: Double, lon: Double, title: String)
     {
-        let sphere = SCNSphere(radius: 0.03)
+        let pos = coordinateTransform(selfLat: curLatitude, selfLon: curLongitude, countryLat: lat, countryLon: lon)
+        
+        let norm = sqrt(pos.x * pos.x + pos.y * pos.y + pos.z * pos.z)
+        
+        let sphere = SCNSphere(radius: 0.03 * CGFloat(norm))
         let sphereMaterial = SCNMaterial()
         sphereMaterial.diffuse.contents = UIImage(named:"art.scnassets/sun.jpg")
         sphere.materials = [sphereMaterial]
         let sphereNode = SCNNode(geometry: sphere)
         sphereNode.position = pos
-        scene.rootNode.addChildNode(sphereNode)
+        markersAnchorNode.addChildNode(sphereNode)
         
         let spriteKitScene = SKScene(size: CGSize(width: 400, height: 100))
         spriteKitScene.backgroundColor = UIColor.clear
@@ -532,7 +545,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         text.fontName = "Avenir Next"
 //        text.fontColor = UIColor.black
         spriteKitScene.addChild(text)
-        let background = SCNPlane(width: CGFloat(0.2), height: CGFloat(0.05))
+        let background = SCNPlane(width: CGFloat(0.2 * norm), height: CGFloat(0.05 * norm))
         background.firstMaterial?.diffuse.contents = spriteKitScene
         let backgroundNode = SCNNode(geometry: background)
         backgroundNode.position.x = pos.x * 0.5
@@ -544,9 +557,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         let half_vec = normalize((z + pos_normalized) / 2)
         let angle = acos(half_vec.z)
         let s = sin(angle)
-        let axis = cross(z, pos_normalized)
+        let axis = cross(z, half_vec)
         backgroundNode.rotate(by: SCNQuaternion(x: Float(s * axis.x), y: Float(s * axis.y), z: Float(s * axis.z), w: Float(half_vec.z)), aroundTarget: backgroundNode.position)
-        scene.rootNode.addChildNode(backgroundNode)
+        markersAnchorNode.addChildNode(backgroundNode)
     }
     
     func createSphereNode(pos: SCNVector3, selfLat: CLLocationDegrees, selfLon: CLLocationDegrees){
@@ -556,7 +569,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         sphereMaterial.isDoubleSided = true
         sphereMaterial.transparency = 1.0
         sphere.materials = [sphereMaterial]
-        let sphereNode = SCNNode(geometry: sphere)
+        sphereNode = SCNNode(geometry: sphere)
         sphereNode.position = pos
 //        sphereNode.eulerAngles = SCNVector3(-(90-selfLat)/180*Double.pi, -selfLon/180*Double.pi,0)
         var s = sin(-selfLon/180*Double.pi/2)
@@ -567,6 +580,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         c = cos(-(90-selfLat)/180*Double.pi/2)
         sphereNode.rotate(by: SCNQuaternion(x: Float(s), y: 0, z: 0, w: Float(c)), aroundTarget: pos)
         scene.rootNode.addChildNode(sphereNode)
+        searchLatLonController.sphereNode = self.sphereNode
     }
     
     func createTextNode(title: String, size: CGFloat, x: Float, y: Float, z: Float){
@@ -632,6 +646,11 @@ extension ViewController: CLLocationManagerDelegate{
             print("Your location is \(location.latitude) \(location.longitude)")
             manager.stopUpdatingLocation()
             manager.delegate = nil
+            
+            self.curLatitude = location.latitude
+            self.curLongitude = location.longitude
+            searchLatLonController.curLatitude = location.latitude
+            searchLatLonController.curLongitude = location.longitude
             // Just some test text
             self.createTextNode(title: "lat:\(location.latitude)", size: 1.8, x: 0, y: 9, z: 50)
             self.createTextNode(title: "lon:\(location.longitude)", size: 1.8, x: 0, y: 6, z: 50)
@@ -659,9 +678,9 @@ extension ViewController: CLLocationManagerDelegate{
 //            let pos2 = coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: topLat, countryLon: rightLon)
 //            print("World location XYZ is \(pos2.x) \(pos2.y) \(pos2.z)")
 //            // self.createBoxNode(pos: pos2)
-            var pos = coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: (bottomLat+topLat)/2, countryLon: (leftLon+rightLon)/2)
-            self.createPlaceMarkerNode(pos: pos, title: "China")
-            print(pos.x * pos.x + (pos.y + 1) * (pos.y + 1) + pos.z * pos.z)
+            
+//            var pos = coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: (bottomLat+topLat)/2, countryLon: (leftLon+rightLon)/2)
+            self.createPlaceMarkerNode(lat: (bottomLat+topLat)/2, lon: (leftLon+rightLon)/2, title: "China")
             
             self.createSphereNode(pos: SCNVector3(0, -1, 0), selfLat: location.latitude, selfLon: location.longitude)
             

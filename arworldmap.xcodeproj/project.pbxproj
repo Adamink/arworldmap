@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		02228101F4021D84B8165AF8 /* Pods_arworldmap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23231007F01095B77CAA721B /* Pods_arworldmap.framework */; };
+		25AC9519276E31830085CCAB /* SearchLatLonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AC9515276E31830085CCAB /* SearchLatLonViewController.swift */; };
+		25AC951A276E31830085CCAB /* DropDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AC9516276E31830085CCAB /* DropDownViewController.swift */; };
 		25C6CF182736B35900963586 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6CF172736B35900963586 /* AppDelegate.swift */; };
 		25C6CF1A2736B35900963586 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 25C6CF192736B35900963586 /* art.scnassets */; };
 		25C6CF1C2736B35900963586 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6CF1B2736B35900963586 /* ViewController.swift */; };
@@ -18,8 +20,6 @@
 		25C6CF382736B35900963586 /* arworldmapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6CF372736B35900963586 /* arworldmapUITests.swift */; };
 		25C6CF3A2736B35900963586 /* arworldmapUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6CF392736B35900963586 /* arworldmapUITestsLaunchTests.swift */; };
 		3866E514275D00A0009DABDD /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3866E513275D00A0009DABDD /* SideMenu.swift */; };
-		3866E516275D0153009DABDD /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3866E515275D0153009DABDD /* InfoViewController.swift */; };
-		3866E518275D0179009DABDD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3866E517275D0179009DABDD /* SettingsViewController.swift */; };
 		3866E51A275D23C7009DABDD /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3866E519275D23C7009DABDD /* util.swift */; };
 		AFD009A29166305744386BF3 /* Pods_arworldmap_arworldmapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29AEBF31F099024263F7E402 /* Pods_arworldmap_arworldmapUITests.framework */; };
 		C47C23C1BA0F01E4D26E2D69 /* Pods_arworldmapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E112C175A339E1F4C06EEA /* Pods_arworldmapTests.framework */; };
@@ -44,6 +44,8 @@
 
 /* Begin PBXFileReference section */
 		23231007F01095B77CAA721B /* Pods_arworldmap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_arworldmap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		25AC9515276E31830085CCAB /* SearchLatLonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLatLonViewController.swift; sourceTree = "<group>"; };
+		25AC9516276E31830085CCAB /* DropDownViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownViewController.swift; sourceTree = "<group>"; };
 		25C6CF142736B35900963586 /* arworldmap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = arworldmap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25C6CF172736B35900963586 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25C6CF192736B35900963586 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -60,8 +62,6 @@
 		26E112C175A339E1F4C06EEA /* Pods_arworldmapTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_arworldmapTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		29AEBF31F099024263F7E402 /* Pods_arworldmap_arworldmapUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_arworldmap_arworldmapUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3866E513275D00A0009DABDD /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
-		3866E515275D0153009DABDD /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
-		3866E517275D0179009DABDD /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3866E519275D23C7009DABDD /* util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = util.swift; sourceTree = "<group>"; };
 		5157DD4E0E1C412FF550F3E7 /* Pods-arworldmap-arworldmapUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-arworldmap-arworldmapUITests.debug.xcconfig"; path = "Target Support Files/Pods-arworldmap-arworldmapUITests/Pods-arworldmap-arworldmapUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7895EB43AD5E5C13A9F9FAF3 /* Pods-arworldmap-arworldmapUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-arworldmap-arworldmapUITests.release.xcconfig"; path = "Target Support Files/Pods-arworldmap-arworldmapUITests/Pods-arworldmap-arworldmapUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -124,6 +124,8 @@
 		25C6CF162736B35900963586 /* arworldmap */ = {
 			isa = PBXGroup;
 			children = (
+				25AC9516276E31830085CCAB /* DropDownViewController.swift */,
+				25AC9515276E31830085CCAB /* SearchLatLonViewController.swift */,
 				25C6CF462736B62100963586 /* Info.plist */,
 				25C6CF172736B35900963586 /* AppDelegate.swift */,
 				25C6CF192736B35900963586 /* art.scnassets */,
@@ -132,8 +134,6 @@
 				25C6CF202736B35900963586 /* Assets.xcassets */,
 				25C6CF222736B35900963586 /* LaunchScreen.storyboard */,
 				3866E513275D00A0009DABDD /* SideMenu.swift */,
-				3866E515275D0153009DABDD /* InfoViewController.swift */,
-				3866E517275D0179009DABDD /* SettingsViewController.swift */,
 				3866E519275D23C7009DABDD /* util.swift */,
 			);
 			path = arworldmap;
@@ -419,11 +419,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25AC9519276E31830085CCAB /* SearchLatLonViewController.swift in Sources */,
 				3866E514275D00A0009DABDD /* SideMenu.swift in Sources */,
+				25AC951A276E31830085CCAB /* DropDownViewController.swift in Sources */,
 				25C6CF1C2736B35900963586 /* ViewController.swift in Sources */,
-				3866E516275D0153009DABDD /* InfoViewController.swift in Sources */,
 				3866E51A275D23C7009DABDD /* util.swift in Sources */,
-				3866E518275D0179009DABDD /* SettingsViewController.swift in Sources */,
 				25C6CF182736B35900963586 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -604,7 +604,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3A6JS737Y5;
+				DEVELOPMENT_TEAM = XTWTN2D87K;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = arworldmap/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = yes;
@@ -624,7 +624,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Fiona.arworldmap;
+				PRODUCT_BUNDLE_IDENTIFIER = mr2.arworldmap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -640,7 +640,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3A6JS737Y5;
+				DEVELOPMENT_TEAM = XTWTN2D87K;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = arworldmap/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = yes;
@@ -660,7 +660,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Fiona.arworldmap;
+				PRODUCT_BUNDLE_IDENTIFIER = mr2.arworldmap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

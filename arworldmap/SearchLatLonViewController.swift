@@ -9,13 +9,15 @@ import SceneKit
 import ARKit
 import AVFoundation
 import CoreLocation
+import DropDown
 
 class SearchLatLonViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDelegate, ARSessionDelegate, CLLocationManagerDelegate, UITextFieldDelegate{
     
     var searchView: ARSCNView!
     
     var sceneSetting =  SCNScene()
-    var anchorNode = SCNNode()
+    var sphereNode = SCNNode()
+    var markersAnchorNode = SCNNode()
     var didFindLocation = false
     
     let locationManager = CLLocationManager()
@@ -23,8 +25,13 @@ class SearchLatLonViewController: UIViewController, ARSCNViewDelegate, SCNSceneR
     var latitudeField: UITextField = UITextField()
     var longitudeField: UITextField = UITextField()
     
+    var countryField: UITextField = UITextField()
+    
     var latitudeCountry = 0.0
     var longitudeCountry = 0.0
+    
+    var curLatitude = 0.0
+    var curLongitude = 0.0
     
     var pos: SCNVector3 = SCNVector3()
     
@@ -107,52 +114,25 @@ class SearchLatLonViewController: UIViewController, ARSCNViewDelegate, SCNSceneR
                 print("empty")
                 return
             }
-    //        else if (latitudeCountry == -25.0 && longitudeCountry == 130.0)
-    //        {
-    //            let leftLon = 112.901452
-    //            let rightLon = 158.966830
-    //            let topLat = -10.132839
-    //            let bottomLat = -54.757221
-    //            let mapPos = coordinateTransform(selfLat: currentLocation!.latitude, selfLon: currentLocation!.longitude, countryLat: (topLat+bottomLat)/2, countryLon: (leftLon+rightLon)/2)
-    //            createMapNode(width: CGFloat(rightLon-leftLon)/90, height: CGFloat(topLat-bottomLat)/90, pos: SCNVector3(mapPos.x, mapPos.y, mapPos.z))
-    //        }
-    //        else if (latitudeCountry == 30.0 && longitudeCountry == 100.0)
-    //        {
-    //            let leftLon = 73.554302
-    //            let rightLon = 134.775703
-    //            let topLat = 53.561780
-    //            let bottomLat = 18.155060
-    //            let mapPos = coordinateTransform(selfLat: currentLocation!.latitude, selfLon: currentLocation!.longitude, countryLat: (topLat+bottomLat)/2, countryLon: (leftLon+rightLon)/2)
-    //            createMapNodeChina(width: CGFloat(rightLon-leftLon)/90, height: CGFloat(topLat-bottomLat)/90, pos: SCNVector3(mapPos.x, mapPos.y, mapPos.z))
-    //
-    //        }
-    //        else
-    //        {
-    //            print(currentLocation?.latitude ?? 0)
-    //            print(currentLocation?.longitude ?? 0)
-    //            pos = coordinateTransform(selfLat: currentLocation!.latitude, selfLon: currentLocation!.longitude, countryLat: latitudeCountry, countryLon: longitudeCountry)
-    //            print("World location XYZ is \(pos.x) \(pos.y) \(pos.z)")
-    //            // add box
-    //            createBoxNode(pos: pos)
-    //        }
-            getCountry(lat: latitudeCountry, long: longitudeCountry)
+    
+            getCountry(lat: latitudeCountry, lon: longitudeCountry)
             latitudeField.removeFromSuperview()
             longitudeField.removeFromSuperview()
-            self.sceneSetting.rootNode.addChildNode(anchorNode)
+//            self.sceneSetting.rootNode.addChildNode(anchorNode)
             searchButton.setTitle("Back", for: .normal)
             
         }
         else if (searchButton.titleLabel?.text == "Back") {
             self.view.addSubview(latitudeField)
             self.view.addSubview(longitudeField)
-            anchorNode.removeFromParentNode()
-            searchButton.setTitle("Search Country", for: .normal)
+//            anchorNode.removeFromParentNode()
+            searchButton.setTitle("Search Position", for: .normal)
         }
     }
     
-    func getCountry(lat:Double, long:Double) {
+    func getCountry(lat: Double, lon: Double) {
         let tmpCLGeocoder = CLGeocoder.init()
-        let tmpDataLoc = CLLocation.init(latitude: lat, longitude: long)
+        let tmpDataLoc = CLLocation.init(latitude: lat, longitude: lon)
         let language_loc = Locale(identifier: "en_US")
         tmpCLGeocoder.reverseGeocodeLocation(tmpDataLoc, preferredLocale: language_loc, completionHandler: {(placemarks,error) in
 
@@ -165,29 +145,50 @@ class SearchLatLonViewController: UIViewController, ARSCNViewDelegate, SCNSceneR
             // Country
             guard let countryLocality = placeMark.country else{
                 print("error get country")
+                self.countryField.text = "This position doesn't belong to any country"
                 return
             }
 
             // City
-    //        guard let cityLocality = placeMark.locality else{
-    //            print("error get city")
-    //            return
-    //        }
+            guard let cityLocality = placeMark.locality else{
+                print("error get city")
+                if (countryNames.contains(countryLocality))
+                {
+                    print("find corresponding country")
+                    self.countryField.text = "This position is in \(countryLocality)"
+                    self.changeSphereTexture(countryName: countryLocality)
+                    self.createPlaceMarkerNode(lat: lat, lon: lon, title: countryLocality)
+                }
+                else{
+                    self.countryField.text = "This position doesn't belong to any country"
+                    print("country not found")
+                }
+                return
+            }
 
-//            print(placeMark)
-//            print(countryLocality)
-//            print(cityLocality)
-            
             if (countryNames.contains(countryLocality))
             {
                 print("find corresponding country")
+                self.countryField.text = "This position is \(cityLocality), \(countryLocality)"
                 // do something
-                // add new objects to anchorNode
+                self.changeSphereTexture(countryName: countryLocality)
+                self.createPlaceMarkerNode(lat: lat, lon: lon, title: "\(cityLocality), \(countryLocality)")
             }
             else{
+                self.countryField.text = "This position doesn't belong to any country"
                 print("country not found")
             }
         })
+    }
+    
+    func changeSphereTexture(countryName: String)
+    {
+//        let sphereMaterial = SCNMaterial()
+//        sphereMaterial.diffuse.contents = UIImage(named:"art.scnassets/\(countryName).png")
+//        sphereMaterial.isDoubleSided = true
+//        sphereMaterial.transparency = 1.0
+//        self.sphereNode.geometry?.materials = [sphereMaterial]
+//        self.sphereNode.geometry?.firstMaterial?.diffuse.contents = UIImage(named:"art.scnassets/sun.jpg")
     }
     
 //    func createMapNode(width : CGFloat, height: CGFloat,pos: SCNVector3){
@@ -213,38 +214,6 @@ class SearchLatLonViewController: UIViewController, ARSCNViewDelegate, SCNSceneR
 //        mapNode.eulerAngles = SCNVector3(xAngle, yAngle, 0)
 //
 //        self.sceneSetting.rootNode.addChildNode(mapNode)  // not shown
-//        print("new node")
-//        self.sceneSetting.rootNode.enumerateChildNodes { (node, stop) in
-//            print(node)
-//        }
-//    }
-//
-//    func createMapNodeChina(width : CGFloat, height: CGFloat,pos: SCNVector3){
-//        let plane = SCNPlane(width: width, height: height)
-//        let planeMaterial = SCNMaterial()
-//        planeMaterial.diffuse.contents = UIImage(named:"art.scnassets/chinaHigh.png")
-//
-//        plane.materials = [planeMaterial]
-//        let mapNode = SCNNode(geometry: plane)
-//        mapNode.position = pos
-////        mapNode.position = SCNVector3(0.5, 0.5, 0.5)
-//
-//        // calculate eulerAngle
-//        let planeDir = -simd_normalize(simd_double3((Double)(pos.x), (Double)(pos.y), (Double)(pos.z)) - 0)
-//        let alpha = atan(planeDir.y / sqrt(planeDir.x*planeDir.x + planeDir.z*planeDir.z)) * 180 / Double.pi
-//        let beta = atan(planeDir.x / planeDir.z) * 180 / Double.pi
-//        var betaReformat = beta
-//        // if (planeDir.x < 0)
-//        if (planeDir.z < 0)
-//        {
-//            betaReformat = beta + 180
-//        }
-//        let xAngle = -alpha * Double.pi / 180
-//        let yAngle = betaReformat * Double.pi / 180
-//        mapNode.eulerAngles = SCNVector3(xAngle, yAngle, 0)
-//
-//        sceneSetting.rootNode.addChildNode(mapNode)
-//        print("hidden?  ", mapNode.isHidden)
 //        print("new node")
 //        self.sceneSetting.rootNode.enumerateChildNodes { (node, stop) in
 //            print(node)
@@ -301,5 +270,64 @@ class SearchLatLonViewController: UIViewController, ARSCNViewDelegate, SCNSceneR
         longitudeField.delegate = self
         longitudeField.returnKeyType = .done
         self.view.addSubview(longitudeField)
+        
+        countryField = UITextField(frame: CGRect(x: 20, y: midY + 60, width: self.view.bounds.width - 40, height: 40.00));
+        countryField.placeholder = ""
+        countryField.borderStyle = UITextField.BorderStyle.none
+        countryField.backgroundColor = UIColor.clear
+        countryField.textColor = UIColor.white
+        countryField.keyboardType = .numbersAndPunctuation
+        
+        countryField.delegate = self
+        countryField.returnKeyType = .done
+        self.view.addSubview(countryField)
+    }
+    
+    func createPlaceMarkerNode(lat: Double, lon: Double, title: String)
+    {
+        let pos = coordinateTransform(selfLat: curLatitude, selfLon: curLongitude, countryLat: lat, countryLon: lon)
+        print(curLatitude, curLongitude)
+        
+        let norm = sqrt(pos.x * pos.x + pos.y * pos.y + pos.z * pos.z)
+        
+        // remove all old place markers
+        markersAnchorNode.enumerateChildNodes { (node, stop) in
+            node.removeFromParentNode()
+        }
+        
+        let sphere = SCNSphere(radius: 0.03 * CGFloat(norm))
+        let sphereMaterial = SCNMaterial()
+        sphereMaterial.diffuse.contents = UIImage(named:"art.scnassets/sun.jpg")
+        sphere.materials = [sphereMaterial]
+        let sphereNode = SCNNode(geometry: sphere)
+        sphereNode.position = pos
+        markersAnchorNode.addChildNode(sphereNode)
+        
+        let spriteKitScene = SKScene(size: CGSize(width: 800, height: 100))
+        spriteKitScene.backgroundColor = UIColor.clear
+        let text = SKLabelNode(text: title)
+        text.position = CGPoint(x: spriteKitScene.size.width / 2.0, y: spriteKitScene.size.height / 2.0)
+        text.yScale = -1
+        text.fontSize = 40
+        text.fontName = "Avenir Next"
+        spriteKitScene.addChild(text)
+        
+        let background = SCNPlane(width: CGFloat(0.4 * norm), height: CGFloat(0.05 * norm))
+        background.firstMaterial?.diffuse.contents = spriteKitScene
+        let backgroundNode = SCNNode(geometry: background)
+        backgroundNode.position.x = pos.x * 0.5
+        backgroundNode.position.y = pos.y * 0.5
+        backgroundNode.position.z = pos.z * 0.5
+        
+        let pos_normalized = -normalize(simd_double3(Double(pos.x), Double(pos.y), Double(pos.z)))
+        let z = simd_double3(0, 0, 1)
+        let half_vec = normalize((z + pos_normalized) / 2)
+        let angle = acos(half_vec.z)
+        let s = sin(angle)
+        let axis = cross(z, half_vec)
+        
+        backgroundNode.rotate(by: SCNQuaternion(x: Float(s * axis.x), y: Float(s * axis.y), z: Float(s * axis.z), w: Float(half_vec.z)), aroundTarget: backgroundNode.position)
+        
+        markersAnchorNode.addChildNode(backgroundNode)
     }
 }
