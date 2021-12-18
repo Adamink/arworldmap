@@ -47,5 +47,3 @@ class CountryShapeLoader {
     }
 }
 
-var countryLoader = CountryLoader()
-countryLoader.parse()
