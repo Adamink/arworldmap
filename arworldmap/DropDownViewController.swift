@@ -16,6 +16,7 @@ class DropDownViewController: UIViewController, ARSCNViewDelegate, SCNSceneRende
     var searchView: ARSCNView!
     
     var sceneInfo =  SCNScene()
+    var anchorNode = SCNNode()
     var didFindLocation = false
     
     let locationManager = CLLocationManager()
@@ -92,13 +93,21 @@ class DropDownViewController: UIViewController, ARSCNViewDelegate, SCNSceneRende
     }
     
     @objc func search(sender: UIButton!) {
-        dropDown.show()
+        if (searchButton.titleLabel?.text == "Search Country") {
+            dropDown.show()
+            self.sceneInfo.rootNode.addChildNode(anchorNode)
+            searchButton.setTitle("Back", for: .normal)
+        }
+        else if (searchButton.titleLabel?.text == "Back"){
+            anchorNode.removeFromParentNode()
+            searchButton.setTitle("Search Country", for: .normal)
+        }
     }
     
     func createMapNode(width : CGFloat, height: CGFloat,pos: SCNVector3){
         let plane = SCNPlane(width: width, height: height)
         let planeMaterial = SCNMaterial()
-        planeMaterial.diffuse.contents = UIImage(named:"art.scnassets/chinaHigh.png")
+        planeMaterial.diffuse.contents = UIImage(named:"art.scnassets/sun.jpg") //chinaHigh.png
         
         plane.materials = [planeMaterial]
         let mapNode = SCNNode(geometry: plane)
@@ -117,7 +126,7 @@ class DropDownViewController: UIViewController, ARSCNViewDelegate, SCNSceneRende
         let yAngle = betaReformat * Double.pi / 180
         mapNode.eulerAngles = SCNVector3(xAngle, yAngle, 0)
         
-        self.sceneInfo.rootNode.addChildNode(mapNode)  // not shown
+        anchorNode.addChildNode(mapNode)  // not shown
         print("new node")
         self.sceneInfo.rootNode.enumerateChildNodes { (node, stop) in
             print(node)

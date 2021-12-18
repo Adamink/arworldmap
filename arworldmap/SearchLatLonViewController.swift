@@ -15,6 +15,7 @@ class SearchLatLonViewController: UIViewController, ARSCNViewDelegate, SCNSceneR
     var searchView: ARSCNView!
     
     var sceneSetting =  SCNScene()
+    var anchorNode = SCNNode()
     var didFindLocation = false
     
     let locationManager = CLLocationManager()
@@ -26,6 +27,8 @@ class SearchLatLonViewController: UIViewController, ARSCNViewDelegate, SCNSceneR
     var longitudeCountry = 0.0
     
     var pos: SCNVector3 = SCNVector3()
+    
+    var searchButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,51 +90,64 @@ class SearchLatLonViewController: UIViewController, ARSCNViewDelegate, SCNSceneR
     }
     
     @objc func search(sender: UIButton!) {
-        print("Touch search button")
-        let latitude = latitudeField.text
-        let longitude = longitudeField.text
-        latitudeCountry = Double(latitude ?? "0") ?? 0.0
-        longitudeCountry = Double(longitude ?? "0") ?? 0.0
-        print(latitudeCountry)
-        print(longitudeCountry)
-        let currentLocation = self.locationManager.location?.coordinate
-        
-        if (latitude?.isEmpty)!
-        {
-          // Display Alert dialog window if the TextField is empty
-//            makeAlert("No latitude", message: "Please input latitude.", printStatement: "No latitude")
-            print("empty")
-            return
+        if (searchButton.titleLabel?.text == "Search Position") {
+            print("Touch search button")
+            let latitude = latitudeField.text
+            let longitude = longitudeField.text
+            latitudeCountry = Double(latitude ?? "0") ?? 0.0
+            longitudeCountry = Double(longitude ?? "0") ?? 0.0
+            print(latitudeCountry)
+            print(longitudeCountry)
+            let currentLocation = self.locationManager.location?.coordinate
+            
+            if (latitude?.isEmpty)!
+            {
+              // Display Alert dialog window if the TextField is empty
+    //            makeAlert("No latitude", message: "Please input latitude.", printStatement: "No latitude")
+                print("empty")
+                return
+            }
+    //        else if (latitudeCountry == -25.0 && longitudeCountry == 130.0)
+    //        {
+    //            let leftLon = 112.901452
+    //            let rightLon = 158.966830
+    //            let topLat = -10.132839
+    //            let bottomLat = -54.757221
+    //            let mapPos = coordinateTransform(selfLat: currentLocation!.latitude, selfLon: currentLocation!.longitude, countryLat: (topLat+bottomLat)/2, countryLon: (leftLon+rightLon)/2)
+    //            createMapNode(width: CGFloat(rightLon-leftLon)/90, height: CGFloat(topLat-bottomLat)/90, pos: SCNVector3(mapPos.x, mapPos.y, mapPos.z))
+    //        }
+    //        else if (latitudeCountry == 30.0 && longitudeCountry == 100.0)
+    //        {
+    //            let leftLon = 73.554302
+    //            let rightLon = 134.775703
+    //            let topLat = 53.561780
+    //            let bottomLat = 18.155060
+    //            let mapPos = coordinateTransform(selfLat: currentLocation!.latitude, selfLon: currentLocation!.longitude, countryLat: (topLat+bottomLat)/2, countryLon: (leftLon+rightLon)/2)
+    //            createMapNodeChina(width: CGFloat(rightLon-leftLon)/90, height: CGFloat(topLat-bottomLat)/90, pos: SCNVector3(mapPos.x, mapPos.y, mapPos.z))
+    //
+    //        }
+    //        else
+    //        {
+    //            print(currentLocation?.latitude ?? 0)
+    //            print(currentLocation?.longitude ?? 0)
+    //            pos = coordinateTransform(selfLat: currentLocation!.latitude, selfLon: currentLocation!.longitude, countryLat: latitudeCountry, countryLon: longitudeCountry)
+    //            print("World location XYZ is \(pos.x) \(pos.y) \(pos.z)")
+    //            // add box
+    //            createBoxNode(pos: pos)
+    //        }
+            getCountry(lat: latitudeCountry, long: longitudeCountry)
+            latitudeField.removeFromSuperview()
+            longitudeField.removeFromSuperview()
+            self.sceneSetting.rootNode.addChildNode(anchorNode)
+            searchButton.setTitle("Back", for: .normal)
+            
         }
-//        else if (latitudeCountry == -25.0 && longitudeCountry == 130.0)
-//        {
-//            let leftLon = 112.901452
-//            let rightLon = 158.966830
-//            let topLat = -10.132839
-//            let bottomLat = -54.757221
-//            let mapPos = coordinateTransform(selfLat: currentLocation!.latitude, selfLon: currentLocation!.longitude, countryLat: (topLat+bottomLat)/2, countryLon: (leftLon+rightLon)/2)
-//            createMapNode(width: CGFloat(rightLon-leftLon)/90, height: CGFloat(topLat-bottomLat)/90, pos: SCNVector3(mapPos.x, mapPos.y, mapPos.z))
-//        }
-//        else if (latitudeCountry == 30.0 && longitudeCountry == 100.0)
-//        {
-//            let leftLon = 73.554302
-//            let rightLon = 134.775703
-//            let topLat = 53.561780
-//            let bottomLat = 18.155060
-//            let mapPos = coordinateTransform(selfLat: currentLocation!.latitude, selfLon: currentLocation!.longitude, countryLat: (topLat+bottomLat)/2, countryLon: (leftLon+rightLon)/2)
-//            createMapNodeChina(width: CGFloat(rightLon-leftLon)/90, height: CGFloat(topLat-bottomLat)/90, pos: SCNVector3(mapPos.x, mapPos.y, mapPos.z))
-//            
-//        }
-//        else
-//        {
-//            print(currentLocation?.latitude ?? 0)
-//            print(currentLocation?.longitude ?? 0)
-//            pos = coordinateTransform(selfLat: currentLocation!.latitude, selfLon: currentLocation!.longitude, countryLat: latitudeCountry, countryLon: longitudeCountry)
-//            print("World location XYZ is \(pos.x) \(pos.y) \(pos.z)")
-//            // add box
-//            createBoxNode(pos: pos)
-//        }
-        getCountry(lat: latitudeCountry, long: longitudeCountry)
+        else if (searchButton.titleLabel?.text == "Back") {
+            self.view.addSubview(latitudeField)
+            self.view.addSubview(longitudeField)
+            anchorNode.removeFromParentNode()
+            searchButton.setTitle("Search Country", for: .normal)
+        }
     }
     
     func getCountry(lat:Double, long:Double) {
@@ -166,6 +182,7 @@ class SearchLatLonViewController: UIViewController, ARSCNViewDelegate, SCNSceneR
             {
                 print("find corresponding country")
                 // do something
+                // add new objects to anchorNode
             }
             else{
                 print("country not found")
@@ -173,66 +190,66 @@ class SearchLatLonViewController: UIViewController, ARSCNViewDelegate, SCNSceneR
         })
     }
     
-    func createMapNode(width : CGFloat, height: CGFloat,pos: SCNVector3){
-        let plane = SCNPlane(width: width, height: height)
-        let planeMaterial = SCNMaterial()
-        planeMaterial.diffuse.contents = UIImage(named:"art.scnassets/chinaHigh.png")
-        
-        plane.materials = [planeMaterial]
-        let mapNode = SCNNode(geometry: plane)
-        mapNode.position = pos
-        
-        // calculate eulerAngle
-        let planeDir = -simd_normalize(simd_double3((Double)(pos.x), (Double)(pos.y), (Double)(pos.z)) - 0)
-        let alpha = atan(planeDir.y / sqrt(planeDir.x*planeDir.x + planeDir.z*planeDir.z)) * 180 / Double.pi
-        let beta = atan(planeDir.x / planeDir.z) * 180 / Double.pi
-        var betaReformat = beta
-        if (planeDir.z < 0)
-        {
-            betaReformat = beta + 180
-        }
-        let xAngle = -alpha * Double.pi / 180
-        let yAngle = betaReformat * Double.pi / 180
-        mapNode.eulerAngles = SCNVector3(xAngle, yAngle, 0)
-        
-        self.sceneSetting.rootNode.addChildNode(mapNode)  // not shown
-        print("new node")
-        self.sceneSetting.rootNode.enumerateChildNodes { (node, stop) in
-            print(node)
-        }
-    }
-    
-    func createMapNodeChina(width : CGFloat, height: CGFloat,pos: SCNVector3){
-        let plane = SCNPlane(width: width, height: height)
-        let planeMaterial = SCNMaterial()
-        planeMaterial.diffuse.contents = UIImage(named:"art.scnassets/chinaHigh.png")
-        
-        plane.materials = [planeMaterial]
-        let mapNode = SCNNode(geometry: plane)
-        mapNode.position = pos
-//        mapNode.position = SCNVector3(0.5, 0.5, 0.5)
-
-        // calculate eulerAngle
-        let planeDir = -simd_normalize(simd_double3((Double)(pos.x), (Double)(pos.y), (Double)(pos.z)) - 0)
-        let alpha = atan(planeDir.y / sqrt(planeDir.x*planeDir.x + planeDir.z*planeDir.z)) * 180 / Double.pi
-        let beta = atan(planeDir.x / planeDir.z) * 180 / Double.pi
-        var betaReformat = beta
-        // if (planeDir.x < 0)
-        if (planeDir.z < 0)
-        {
-            betaReformat = beta + 180
-        }
-        let xAngle = -alpha * Double.pi / 180
-        let yAngle = betaReformat * Double.pi / 180
-        mapNode.eulerAngles = SCNVector3(xAngle, yAngle, 0)
-        
-        sceneSetting.rootNode.addChildNode(mapNode)
-        print("hidden?  ", mapNode.isHidden)
-        print("new node")
-        self.sceneSetting.rootNode.enumerateChildNodes { (node, stop) in
-            print(node)
-        }
-    }
+//    func createMapNode(width : CGFloat, height: CGFloat,pos: SCNVector3){
+//        let plane = SCNPlane(width: width, height: height)
+//        let planeMaterial = SCNMaterial()
+//        planeMaterial.diffuse.contents = UIImage(named:"art.scnassets/chinaHigh.png")
+//
+//        plane.materials = [planeMaterial]
+//        let mapNode = SCNNode(geometry: plane)
+//        mapNode.position = pos
+//
+//        // calculate eulerAngle
+//        let planeDir = -simd_normalize(simd_double3((Double)(pos.x), (Double)(pos.y), (Double)(pos.z)) - 0)
+//        let alpha = atan(planeDir.y / sqrt(planeDir.x*planeDir.x + planeDir.z*planeDir.z)) * 180 / Double.pi
+//        let beta = atan(planeDir.x / planeDir.z) * 180 / Double.pi
+//        var betaReformat = beta
+//        if (planeDir.z < 0)
+//        {
+//            betaReformat = beta + 180
+//        }
+//        let xAngle = -alpha * Double.pi / 180
+//        let yAngle = betaReformat * Double.pi / 180
+//        mapNode.eulerAngles = SCNVector3(xAngle, yAngle, 0)
+//
+//        self.sceneSetting.rootNode.addChildNode(mapNode)  // not shown
+//        print("new node")
+//        self.sceneSetting.rootNode.enumerateChildNodes { (node, stop) in
+//            print(node)
+//        }
+//    }
+//
+//    func createMapNodeChina(width : CGFloat, height: CGFloat,pos: SCNVector3){
+//        let plane = SCNPlane(width: width, height: height)
+//        let planeMaterial = SCNMaterial()
+//        planeMaterial.diffuse.contents = UIImage(named:"art.scnassets/chinaHigh.png")
+//
+//        plane.materials = [planeMaterial]
+//        let mapNode = SCNNode(geometry: plane)
+//        mapNode.position = pos
+////        mapNode.position = SCNVector3(0.5, 0.5, 0.5)
+//
+//        // calculate eulerAngle
+//        let planeDir = -simd_normalize(simd_double3((Double)(pos.x), (Double)(pos.y), (Double)(pos.z)) - 0)
+//        let alpha = atan(planeDir.y / sqrt(planeDir.x*planeDir.x + planeDir.z*planeDir.z)) * 180 / Double.pi
+//        let beta = atan(planeDir.x / planeDir.z) * 180 / Double.pi
+//        var betaReformat = beta
+//        // if (planeDir.x < 0)
+//        if (planeDir.z < 0)
+//        {
+//            betaReformat = beta + 180
+//        }
+//        let xAngle = -alpha * Double.pi / 180
+//        let yAngle = betaReformat * Double.pi / 180
+//        mapNode.eulerAngles = SCNVector3(xAngle, yAngle, 0)
+//
+//        sceneSetting.rootNode.addChildNode(mapNode)
+//        print("hidden?  ", mapNode.isHidden)
+//        print("new node")
+//        self.sceneSetting.rootNode.enumerateChildNodes { (node, stop) in
+//            print(node)
+//        }
+//    }
     
     func createBoxNode(pos: SCNVector3){
         let box = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0)
@@ -251,7 +268,7 @@ class SearchLatLonViewController: UIViewController, ARSCNViewDelegate, SCNSceneR
         let rect1 = CGRect(x: midX - 100, y: midY + 200, width: 200, height: 70)
         
         // search button
-        let searchButton = UIButton(frame: rect1)
+        searchButton = UIButton(frame: rect1)
         searchButton.setTitle("Search Position", for: .normal)
         searchButton.addTarget(self, action: #selector(search), for: .touchUpInside)
         let image = UIImage(named: "./art.scnassets/52016_preview.png")
