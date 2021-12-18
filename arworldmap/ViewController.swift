@@ -25,15 +25,21 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     var anchorNode = SCNNode()
     var sphereNode = SCNNode()
     var markersAnchorNode = SCNNode()
+    var curCountryMarkerNode = SCNNode()
     var didFindLocation = false
+    var discoverPaused = false
     
     // dictionary containing center lat & lon of countries
-    var countryLatLonDict: [String: simd_double2] = [:]
+    // todo: build this dict
+    var countryLatLonDict: [String: simd_double2] = ["China": simd_double2(30, 100),
+                                                     "Australia": simd_double2(-33, 151),
+                                                     "Japan": simd_double2(35, 140),
+                                                     "South Korea": simd_double2(37,127)]
     
     // dictionary containing center position of countries
     var countryCenterDict: [String: simd_double3] = [:]
     var lastCountry = ""
-    
+    var image_fd = "art.scnassets/country_shape_masks_alpha/"
     var curLatitude = 0.0
     var curLongitude = 0.0
     
@@ -97,16 +103,27 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
                 self?.searchLatLonController.view.isHidden = true
                 self?.dropDownController.view.isHidden = true
                 self!.addDiscoverButton()
+                self?.discoverPaused = false
             }
             else if named == "Search Country" {
                 self?.searchButton.removeFromSuperview()
                 self?.searchLatLonController.view.isHidden = true
                 self?.dropDownController.view.isHidden = false
+                self?.discoverPaused = true
+                self?.curCountryMarkerNode.removeFromParentNode()
+                self?.markersAnchorNode.enumerateChildNodes { (node, stop) in
+                    node.removeFromParentNode()
+                }
             }
             else if named == "Search Position" {
                 self?.searchButton.removeFromSuperview()
                 self?.searchLatLonController.view.isHidden = false
                 self?.dropDownController.view.isHidden = true
+                self?.discoverPaused = true
+                self?.curCountryMarkerNode.removeFromParentNode()
+                self?.markersAnchorNode.enumerateChildNodes { (node, stop) in
+                    node.removeFromParentNode()
+                }
             }
         })
         
@@ -157,7 +174,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     @objc func search(sender: UIButton!) {
         if (searchButton.titleLabel?.text == "Discover") {
             print("Touch search button")
-            enterDiscover(conutryName: "Anstralia", pos: SCNVector3(0,0,0))
+            // todo: set the board at the right position and direction
+            enterDiscover(countryName: lastCountry, pos: SCNVector3(0,0,0))
             searchButton.setTitle("Back", for: .normal)
         }
         else if (searchButton.titleLabel?.text == "Back"){
@@ -167,11 +185,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         }
     }
     
-    func enterDiscover(conutryName: String, pos: SCNVector3)
+    func enterDiscover(countryName: String, pos: SCNVector3)
     {
         self.scene.rootNode.addChildNode(anchorNode)
-        createNewsBoard(transparentBackground: false)
-        createCountryInfoBoard(transparentBackground: false)
+        // todo: api seems not to be very reliable; delays except for the first query
+        createNewsBoard(transparentBackground: false, country: countryName)
+        createCountryInfoBoard(transparentBackground: false, country: countryName)
 //        createVideoBoard()
     }
     
@@ -205,7 +224,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     }
         
     //    func createNewsBoard(pos: SCNVector3, eulerAngles: SCNVector3, country: String)
-    func createNewsBoard(transparentBackground: Bool)
+    func createNewsBoard(transparentBackground: Bool, country: String)
     {
         let headlines = [SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode()]
         let news_images = [SKSpriteNode(), SKSpriteNode(), SKSpriteNode(), SKSpriteNode()]
@@ -224,7 +243,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
             spriteKitScene.addChild(news_images[i])
         }
         
-        let news = SKLabelNode(text: "News in Australia")
+        let news = SKLabelNode(text: "News in \(country)")
         news.position = CGPoint(x: spriteKitScene.size.width / 2.0, y: spriteKitScene.size.height / 2.0 + 50)
         news.yScale = -1
         if transparentBackground{
@@ -249,14 +268,15 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         newsBoard.position = SCNVector3(2,0,5)
         newsBoard.eulerAngles = SCNVector3(0, -0.9 * Double.pi, 0)
         anchorNode.addChildNode(newsBoard)
-        getHeadlines(country: "australia", headlines: headlines, imgs: news_images)
+        getHeadlines(country: country, headlines: headlines, imgs: news_images)
     }
         
     func getHeadlines(country: String, headlines: [SKLabelNode], imgs: [SKSpriteNode]){
-        let newsEndpoint = "https://newsapi.org/v2/top-headlines?q=\(country)&apiKey=b36706581f614d52828c4cd597af6065"
+        let str1 = country.replacingOccurrences(of: " ", with: "")
+        let newsEndpoint = "https://newsapi.org/v2/everything?q=\(str1)&apiKey=b36706581f614d52828c4cd597af6065"
         
         guard let url = URL(string: newsEndpoint) else {
-            print("Error: cannot create URL")
+            print("Error: cannot create news URL")
             return
         }
         
@@ -322,7 +342,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         }
     }
     
-    func createCountryInfoBoard(transparentBackground: Bool)
+    func createCountryInfoBoard(transparentBackground: Bool, country: String)
         {
             let country_info = [SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode()] // common name, official name, continents, subregion, latlng, capital, population, area
             let country_flag_img = SKSpriteNode()
@@ -390,7 +410,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
             countryInfoBoard.position = SCNVector3(-3,0,5.5)
             countryInfoBoard.eulerAngles = SCNVector3(0, -1.2 * Double.pi, 0)
             anchorNode.addChildNode(countryInfoBoard)
-            getCountryInfo(country: "australia", infotexts: country_info, img1: country_flag_img, img2: country_coatOfArms_img) // australia / Malta / bosnia%20and%20herzegovina
+            getCountryInfo(country: country, infotexts: country_info, img1: country_flag_img, img2: country_coatOfArms_img) // australia / Malta / bosnia%20and%20herzegovina
         }
         
         func getCountryInfo(country: String, infotexts: [SKLabelNode], img1: SKSpriteNode, img2: SKSpriteNode){
@@ -536,9 +556,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         
         let norm = sqrt(pos.x * pos.x + pos.y * pos.y + pos.z * pos.z)
         
-        let sphere = SCNSphere(radius: 0.03 * CGFloat(norm))
+        let sphere = SCNSphere(radius: 0.01 * CGFloat(norm))
         let sphereMaterial = SCNMaterial()
-        sphereMaterial.diffuse.contents = UIImage(named:"art.scnassets/sun.jpg")
+        sphereMaterial.diffuse.contents = UIColor.blue
         sphere.materials = [sphereMaterial]
         let sphereNode = SCNNode(geometry: sphere)
         sphereNode.position = pos
@@ -570,10 +590,55 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         markersAnchorNode.addChildNode(backgroundNode)
     }
     
+    func createCurCountryPlaceMarkerNode(lat: Double, lon: Double, title: String)
+    {
+        curCountryMarkerNode.enumerateChildNodes { (node, stop) in
+            node.removeFromParentNode()
+        }
+        curCountryMarkerNode.removeFromParentNode()
+        let pos = coordinateTransform(selfLat: curLatitude, selfLon: curLongitude, countryLat: lat, countryLon: lon)
+        
+        let norm = sqrt(pos.x * pos.x + pos.y * pos.y + pos.z * pos.z)
+        
+        let sphere = SCNSphere(radius: 0.015 * CGFloat(norm))
+        let sphereMaterial = SCNMaterial()
+        sphereMaterial.diffuse.contents = UIColor.orange
+        sphere.materials = [sphereMaterial]
+        let sphereNode = SCNNode(geometry: sphere)
+        sphereNode.position = pos
+        curCountryMarkerNode.addChildNode(sphereNode)
+        
+        let spriteKitScene = SKScene(size: CGSize(width: 400, height: 100))
+        spriteKitScene.backgroundColor = UIColor.clear
+        let text = SKLabelNode(text: title)
+        text.position = CGPoint(x: spriteKitScene.size.width / 2.0, y: spriteKitScene.size.height / 2.0)
+        text.yScale = -1
+        text.fontSize = 60
+        text.fontName = "Avenir Next"
+//        text.fontColor = UIColor.black
+        spriteKitScene.addChild(text)
+        let background = SCNPlane(width: CGFloat(0.2 * norm), height: CGFloat(0.05 * norm))
+        background.firstMaterial?.diffuse.contents = spriteKitScene
+        let backgroundNode = SCNNode(geometry: background)
+        backgroundNode.position.x = pos.x * 0.5
+        backgroundNode.position.y = pos.y * 0.5
+        backgroundNode.position.z = pos.z * 0.5
+        
+        let pos_normalized = -normalize(simd_double3(Double(pos.x), Double(pos.y), Double(pos.z)))
+        let z = simd_double3(0, 0, 1)
+        let half_vec = normalize((z + pos_normalized) / 2)
+        let angle = acos(half_vec.z)
+        let s = sin(angle)
+        let axis = normalize(cross(z, half_vec))
+        backgroundNode.rotate(by: SCNQuaternion(x: Float(s * axis.x), y: Float(s * axis.y), z: Float(s * axis.z), w: Float(half_vec.z)), aroundTarget: backgroundNode.position)
+        curCountryMarkerNode.addChildNode(backgroundNode)
+        scene.rootNode.addChildNode(curCountryMarkerNode)
+    }
+    
     func createSphereNode(pos: SCNVector3, selfLat: CLLocationDegrees, selfLon: CLLocationDegrees){
         let sphere = SCNSphere(radius: 1.0)
         let sphereMaterial = SCNMaterial()
-        sphereMaterial.diffuse.contents = UIImage(named:"art.scnassets/China_small.png")
+        sphereMaterial.diffuse.contents = UIImage(named:"art.scnassets/earth_1620_810.png")
         sphereMaterial.isDoubleSided = true
         sphereMaterial.transparency = 1.0
         sphere.materials = [sphereMaterial]
@@ -617,6 +682,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
             let pos = coordinateTransform(selfLat: curLatitude, selfLon: curLongitude, countryLat: val.x, countryLon: val.y)
             countryCenterDict[key] = simd_double3(Double(pos.x), Double(pos.y), Double(pos.z))
         }
+//        print(countryCenterDict)
     }
     
     func getNearestCountryName(intersect_pos: simd_double3) -> String
@@ -642,6 +708,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         
         for (key, val) in countryCenterDict {
             let dist = distance(intersect_pos, val)
+//            print(key, dist)
             if (dist < dist_threshold)
             {
                 guard let latlon = countryLatLonDict[key] else {
@@ -655,11 +722,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     
     func changeSphereTexture(countryName: String)
     {
-//        let sphereMaterial = SCNMaterial()
-//        sphereMaterial.diffuse.contents = UIImage(named:"art.scnassets/\(countryName).png")
-//        sphereMaterial.isDoubleSided = true
-//        sphereMaterial.transparency = 1.0
-//        self.sphereNode.geometry?.materials = [sphereMaterial]
+        let mask_file = image_fd + countryName + ".png"
+        sphereNode.geometry?.firstMaterial?.transparent.contents = UIImage(named: mask_file)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -675,25 +739,29 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     }
     
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
-        let cameraTransform = SCNMatrix4(frame.camera.transform)
-        let cameraDirection = simd_double3(-1 * Double(cameraTransform.m31),
-                                       -1 * Double(cameraTransform.m32),
-                                       -1 * Double(cameraTransform.m33))
-        let a = cameraDirection.x
-        let b = cameraDirection.y
-        let c = cameraDirection.z
-        let x = -2 * b / (a * a + b * b + c * c)
-        let intersect_pos = simd_double3(a * x, b * x, c * x)
-        let curCountry = ""// get nearest country name
-        if(dot(intersect_pos, cameraDirection) > 0)
+        if(!discoverPaused)
         {
-            if(lastCountry != curCountry)
+            let cameraTransform = SCNMatrix4(frame.camera.transform)
+            let cameraDirection = simd_double3(-1 * Double(cameraTransform.m31),
+                                           -1 * Double(cameraTransform.m32),
+                                           -1 * Double(cameraTransform.m33))
+            let a = cameraDirection.x
+            let b = cameraDirection.y
+            let c = cameraDirection.z
+            let x = -2 * b / (a * a + b * b + c * c)
+            let intersect_pos = simd_double3(a * x, b * x, c * x)
+            let curCountry = getNearestCountryName(intersect_pos: intersect_pos)
+            if(dot(intersect_pos, cameraDirection) > 0)
             {
-                // trigger update of map and markers
-//                self.changeSphereTexture(countryName: curCountry)
-//                self.updatePlaceMarkers(intersect_pos: intersect_pos, dist_threshold: 0.1)
-                
-                lastCountry = curCountry
+                if(lastCountry != curCountry)
+                {
+                    // trigger update of map and markers
+                    self.changeSphereTexture(countryName: curCountry)
+                    let latlon = countryLatLonDict[curCountry]
+                    createCurCountryPlaceMarkerNode(lat: latlon!.x, lon: latlon!.y, title: curCountry)
+                    lastCountry = curCountry
+                }
+                self.updatePlaceMarkers(intersect_pos: intersect_pos, dist_threshold: 0.5)
             }
         }
     }
@@ -717,17 +785,19 @@ extension ViewController: CLLocationManagerDelegate{
             self.curLongitude = location.longitude
             searchLatLonController.curLatitude = location.latitude
             searchLatLonController.curLongitude = location.longitude
-            // Just some test text
-            self.createTextNode(title: "lat:\(location.latitude)", size: 1.8, x: 0, y: 9, z: 50)
-            self.createTextNode(title: "lon:\(location.longitude)", size: 1.8, x: 0, y: 6, z: 50)
-            self.createTextNode(title: "north", size: 1.8, x: 0, y: 0, z: 50)
             
-            // hard code position
-            // opposite side of the globe
-            let leftLon = 73.554302
-            let rightLon = 134.775703
-            let topLat = 53.561780
-            let bottomLat = 18.155060
+            calculateCountryCenterPositions()
+            // Just some test text
+//            self.createTextNode(title: "lat:\(location.latitude)", size: 1.8, x: 0, y: 9, z: 50)
+//            self.createTextNode(title: "lon:\(location.longitude)", size: 1.8, x: 0, y: 6, z: 50)
+//            self.createTextNode(title: "north", size: 1.8, x: 0, y: 0, z: 50)
+//
+//            // hard code position
+//            // opposite side of the globe
+//            let leftLon = 73.554302
+//            let rightLon = 134.775703
+//            let topLat = 53.561780
+//            let bottomLat = 18.155060
             
 //            let pos = coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: bottomLat, countryLon: leftLon)
 //            print("World location XYZ is \(pos.x) \(pos.y) \(pos.z)")
@@ -746,15 +816,15 @@ extension ViewController: CLLocationManagerDelegate{
 //            // self.createBoxNode(pos: pos2)
             
 //            var pos = coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: (bottomLat+topLat)/2, countryLon: (leftLon+rightLon)/2)
-            self.createPlaceMarkerNode(lat: (bottomLat+topLat)/2, lon: (leftLon+rightLon)/2, title: "China")
+//            self.createPlaceMarkerNode(lat: (bottomLat+topLat)/2, lon: (leftLon+rightLon)/2, title: "China")
             
-            // self.createSphereNode(pos: SCNVector3(0, -1, 0), selfLat: location.latitude, selfLon: location.longitude)
+             self.createSphereNode(pos: SCNVector3(0, -1, 0), selfLat: location.latitude, selfLon: location.longitude)
             
-            let sphere = Sphere()
-            sphere.addSphereNode(scene: scene)
-            sphere.rotate(selfLat: location.latitude, selfLon: location.longitude)
-            sphere.selectCountry(country: "Australia")
-            searchLatLonController.sphereNode = self.sphereNode
+//            let sphere = Sphere()
+//            sphere.addSphereNode(scene: scene)
+//            sphere.rotate(selfLat: location.latitude, selfLon: location.longitude)
+//            sphere.selectCountry(country: "Australia")
+//            searchLatLonController.sphereNode = self.sphereNode
 
             // sphere.selectCountry(country: "United States of America")
             // sphere.addSphereNode(scene: scene)

@@ -183,12 +183,8 @@ class SearchLatLonViewController: UIViewController, ARSCNViewDelegate, SCNSceneR
     
     func changeSphereTexture(countryName: String)
     {
-//        let sphereMaterial = SCNMaterial()
-//        sphereMaterial.diffuse.contents = UIImage(named:"art.scnassets/\(countryName).png")
-//        sphereMaterial.isDoubleSided = true
-//        sphereMaterial.transparency = 1.0
-//        self.sphereNode.geometry?.materials = [sphereMaterial]
-//        self.sphereNode.geometry?.firstMaterial?.diffuse.contents = UIImage(named:"art.scnassets/sun.jpg")
+        let mask_file = "art.scnassets/country_shape_masks_alpha/" + countryName + ".png"
+        sphereNode.geometry?.firstMaterial?.transparent.contents = UIImage(named: mask_file)
     }
     
 //    func createMapNode(width : CGFloat, height: CGFloat,pos: SCNVector3){
@@ -295,9 +291,9 @@ class SearchLatLonViewController: UIViewController, ARSCNViewDelegate, SCNSceneR
             node.removeFromParentNode()
         }
         
-        let sphere = SCNSphere(radius: 0.03 * CGFloat(norm))
+        let sphere = SCNSphere(radius: 0.02 * CGFloat(norm))
         let sphereMaterial = SCNMaterial()
-        sphereMaterial.diffuse.contents = UIImage(named:"art.scnassets/sun.jpg")
+        sphereMaterial.diffuse.contents = UIColor.orange
         sphere.materials = [sphereMaterial]
         let sphereNode = SCNNode(geometry: sphere)
         sphereNode.position = pos
