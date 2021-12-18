@@ -7,74 +7,67 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		057B453F4AE14D10EA77D38FA1A0B8FB /* SideMenuPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795026AB2B31EFAF8826D2BD69EFB3EB /* SideMenuPresentationController.swift */; };
-		1D3AAD97C820BF32E2F65D6F8B9D7C27 /* Pods-arworldmap-arworldmapUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D326D3532C6AABBFD6522BC7327D35 /* Pods-arworldmap-arworldmapUITests-dummy.m */; };
-		1F0DDBBAF86A028D6D60A7E10B4D3634 /* SideMenu-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B8092B0790259D322DC10078008A28 /* SideMenu-dummy.m */; };
-		2B2ABB2D47B3807A54B6692701E4A1E1 /* Pods-arworldmap-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6A7BD019114C7968C86946A218203B /* Pods-arworldmap-dummy.m */; };
-		34D86F4481D9328BF45B637B906B3122 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		3817F4830A10E51D20B72530EF6A56D2 /* SideMenuTransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107CB9DD78A13FB3BC089A86C5BE34C0 /* SideMenuTransitionController.swift */; };
-		3C951916501C4D9FFFFA0456170AADE5 /* Pods-arworldmap-arworldmapUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E479EC93F0BA228C5C4A0B4E42AA5F /* Pods-arworldmap-arworldmapUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3F0AACDE2793A02AF495E5F3FA1ADE93 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		515E22E4255B6073C1897BDDB091A2B8 /* DropDown+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1D84D3FBC4301AD4525E1B08F15F3B /* DropDown+Appearance.swift */; };
-		5587C359D9C8789950E7F6585C2292E7 /* SideMenuPresentationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C41B2FDEB30FE9E91C12A12644953D1 /* SideMenuPresentationStyle.swift */; };
-		68E1653C561E14BBEAC9CF4873570D58 /* DropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64B72F25D4B4EDA0905D7D2329E6992C /* DropDownCell.xib */; };
-		6E5CB51DD352AD377C6E28029DEBF70E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		7163D450CB988F691AE2252EA24883FE /* Pods-arworldmap-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BACFEE3882F4470CE6F14AB0260C4CB /* Pods-arworldmap-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74012B832FAF67F8D62A2B27CDAFE8B5 /* DPDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0162F2A3EAF7E5D6308F9FB0AB7E8EDC /* DPDConstants.swift */; };
-		74106BDED4B8B2281DFE4BE5E109D847 /* Initializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091745E6D4A5AA66EB18CAD7C97EA7C4 /* Initializable.swift */; };
-		84459C4824533C9C4FD12AFC941F3CE1 /* DropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED59EC5F34F87F547FA06B06DBB1B4B1 /* DropDown.swift */; };
-		887D7E546D6837CC964318D1B0C842D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		89A72A55273CE358DC4E7600F785C37B /* DPDKeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C78AEDF9559E8F4A6CDD7841B5699F /* DPDKeyboardListener.swift */; };
-		907338727C09F65DB75AA7AB9E10C3B4 /* DropDown-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C9601669CC1CE7E23E3380D669E0EE48 /* DropDown-dummy.m */; };
-		9E9F19E0120EA3C46967C28E637F52C8 /* SideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D561563F6A5D23BB855AD8C3F8965D5C /* SideMenuNavigationController.swift */; };
-		ADC762C1045B4232EF74AC739137D96B /* Pods-arworldmapTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D948B995387F1A7C02039EB5C2BEB937 /* Pods-arworldmapTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B0623E78A5907E8FCAC559F3C1D3204D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		B73E510E851686F8184E26986A470458 /* DPDUIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E092F59893DCC925ADB39F6AE37F3 /* DPDUIView+Extension.swift */; };
-		B804587E525773FCA9698855B2C752DC /* SideMenuAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCBD29795D9AC7A4D2E4698031CB385 /* SideMenuAnimationController.swift */; };
-		BC9C2E663681EDDBFE985034DCC7AAAF /* UITableViewVibrantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F94872CF160A5C342B8C2F61C2B17 /* UITableViewVibrantCell.swift */; };
-		BDC10974A8641F01C5665C61EA37A153 /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AC4107A0574D0D42C551B692E96042 /* DropDownCell.swift */; };
-		BE79F903F87E7D5918C6414E6203743E /* Print.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDF5A117B70C3FFA9D130423E50EB7F /* Print.swift */; };
-		D1F069612337AA446F5B47905DD96140 /* Pods-arworldmapTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B037C2368F048E9FFDCF2A2F3A28941 /* Pods-arworldmapTests-dummy.m */; };
-		D3BE0026C39E4B360BBDA0D5C57DD25D /* Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D4F1A7B1623BA0233452616B1E9498 /* Deprecations.swift */; };
-		DAD5950A205347FCDBD3751604472431 /* Protected.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BF5740209EBADCBABDE341841C7321 /* Protected.swift */; };
-		E0A8C46EEE733B55971B1CC5ED65C9AA /* DropDown-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5961F4F918B8807EDE322C43DA8CA244 /* DropDown-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E56EEF71CC5AF0DA40228F2CA67B4BA0 /* SideMenu-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E743B24412F9CA977042F8DD9F1768E9 /* SideMenu-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E709C98B763E8065628D8E88715E0BF8 /* SideMenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BBECF98970C464AAE8EE98F9355163 /* SideMenuManager.swift */; };
-		E72252B09CC270B50217CA6AEABD620A /* SideMenuPushCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE00D215E496111D149EB4353FB9E4AD /* SideMenuPushCoordinator.swift */; };
-		E97C7A323474D0205E872AE7BC773650 /* SideMenuInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E3CA562E11606E444C1010D93FC9AE /* SideMenuInteractionController.swift */; };
-		F28D439429A375B6D4FCD037ED317CD6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2312ED4EF7DB334FB4A7B71D4679B7E7 /* Extensions.swift */; };
+		072DCD1D82FDC0F9E8B45C95C192AC5D /* Pods-arworldmap-arworldmapUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE5FF08D094F145478BAE0565CBF01E /* Pods-arworldmap-arworldmapUITests-dummy.m */; };
+		09E9A6A046FBA5DA853BEC3527F452B1 /* DPDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0CEF242F6C7AE502684F152FEE4FAD /* DPDConstants.swift */; };
+		0DDBB3C50F10F7DD51518263CF24D520 /* SideMenu-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C4A38D75E02EA4042C26827A1FD67854 /* SideMenu-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1647FDEE5175351632037194728729D4 /* DropDown-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AA48BE83F6B191F8B25F7560FB44A02C /* DropDown-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1B364441A48CA2CA09C62510CD55CAC5 /* SideMenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5975782876B8CCD7BB0F1D921898514 /* SideMenuManager.swift */; };
+		1B57E54E51D2FC9E9A849F1744236F57 /* Print.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53B7066404F17877411AD541EAEBEAD /* Print.swift */; };
+		1C0B35002A5515E2BF2B3F4917013D79 /* SideMenuAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B844AF2C9E469EFC90B1D28643460532 /* SideMenuAnimationController.swift */; };
+		284E65FDA149FA10149873D520850181 /* SideMenuTransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D72633C1CBE99A6B170D44855EEA59C /* SideMenuTransitionController.swift */; };
+		46DD6092F3689AAA19C8669735186D30 /* DPDUIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0A64BF43213DBA952F1FC3E12398B2 /* DPDUIView+Extension.swift */; };
+		4B02153C4EB87A13506E56A07B779ED7 /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1943DF98FB6FD329FAA1C54C33680B62 /* DropDownCell.swift */; };
+		4CF932FF96CCDBFB9E7B9A71A1E58DCA /* DropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9ECB6F55EB81DADE34EAFA729AC1 /* DropDown.swift */; };
+		6182D7380CD4BD1F20B73FD1B9434B4A /* SideMenuInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FD5C47AE97EAC0105F69741FB1A295 /* SideMenuInteractionController.swift */; };
+		68B750F9158A0378BF78B035E7D16F90 /* Pods-arworldmap-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D714A42C6E5AC7834B52F88425512B27 /* Pods-arworldmap-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		70E440304D5C11FDF112517A58F64004 /* Initializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E301D5F6D4B5F9927AE94620BDF30A /* Initializable.swift */; };
+		7A31574C7D3A580455F36E8A899B127B /* Protected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445CD4BC94077C806D3EEA53FACDC018 /* Protected.swift */; };
+		7C46A2E4477547AE0313F7B84C191696 /* Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493D24BD599A8B8DD076322F919F3A17 /* Deprecations.swift */; };
+		7E78F6E36AD751443ED429A0E327A45B /* SideMenuPresentationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BE5D033A0705789D974FB89FCF4238 /* SideMenuPresentationStyle.swift */; };
+		7FCCBBCABD84E1A3A61CA83E842544BF /* UITableViewVibrantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA994546BC8A35FC49655A231ECDA4FE /* UITableViewVibrantCell.swift */; };
+		95EC0135159130854E6E4E7633C0C052 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB2D7BBEF1159BB83B9AF117FF8EB64 /* Extensions.swift */; };
+		9AF97C67C1482E988E2F39E3558CB4DE /* SideMenu-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A93757679DD1C4F12A72FD813C4EC82E /* SideMenu-dummy.m */; };
+		A323E67CEC0C04BAB2FB5FF00ABFE8A2 /* DropDown+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC19FB4944638F180DAAC9A32B20FAF /* DropDown+Appearance.swift */; };
+		AD18798F9C2B4ED200C4E44220D38F3B /* SideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A0FE5B72761C06AC308BABB9053B3B /* SideMenuNavigationController.swift */; };
+		C40700FDA27E21DBCFE6E1CDAA28D976 /* DropDown-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2539A2B506D51AE701E5385991AE7A66 /* DropDown-dummy.m */; };
+		CD689CFCE1C6EC8F42CE670B32867418 /* Pods-arworldmap-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C5ACC27428E0AC8D4631E86919C910 /* Pods-arworldmap-dummy.m */; };
+		DA73ADCB93872C1CDB40C1524A2627E9 /* DPDKeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6B72455EFA59D98DABF6404051CA48 /* DPDKeyboardListener.swift */; };
+		DADC0B680A73F3FFA230F687661C2030 /* SideMenuPushCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F17517B416CA08F375C1D4561E2464 /* SideMenuPushCoordinator.swift */; };
+		DE12FDFECE1CBA0CBA9A7B0BF5195E84 /* Pods-arworldmap-arworldmapUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E60D9C1A48DAF818F89D7F82E68BE23 /* Pods-arworldmap-arworldmapUITests-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E04E41508E67CBCDC0E27EEC31A7B7BE /* Pods-arworldmapTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FA180B47FB4E504EA20503DD4725BA /* Pods-arworldmapTests-dummy.m */; };
+		FBC4FAC3E9DFD128E0AED1701E84E902 /* SideMenuPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC68D324F74A8880AB0534B67D8FE5 /* SideMenuPresentationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		7ABB7A6CCF77C0F97AB3470A843FAFC1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E9F9401E9C74C0C393164FD8D86D0068;
-			remoteInfo = DropDown;
-		};
-		984DA204ADEF894AE33459B5E9E51E4E /* PBXContainerItemProxy */ = {
+		38269FB01182065B71372C152A10AFE4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C4A0A7D8591B67FB75E2E8D215E3735B;
 			remoteInfo = SideMenu;
 		};
-		A51EA07B19DE4E9D0F1C1BBE6B09EB8E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C4A0A7D8591B67FB75E2E8D215E3735B;
-			remoteInfo = SideMenu;
-		};
-		B077BD6FC366D0371B7B7A1B1F776B79 /* PBXContainerItemProxy */ = {
+		3AF240473424CC606A8630259A77BCC1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = E9F9401E9C74C0C393164FD8D86D0068;
 			remoteInfo = DropDown;
 		};
-		EF03D1CBEB1BCC1B7A90A631B4ED33B8 /* PBXContainerItemProxy */ = {
+		4685AC36BFB41C0637781546F2A3C6D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E9F9401E9C74C0C393164FD8D86D0068;
+			remoteInfo = DropDown;
+		};
+		8B7E6C853396E05D435A2ABCCA38F602 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C4A0A7D8591B67FB75E2E8D215E3735B;
+			remoteInfo = SideMenu;
+		};
+		9ED4D2D57B4D0924B7BD29C8AA100859 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -84,258 +77,140 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0162F2A3EAF7E5D6308F9FB0AB7E8EDC /* DPDConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDConstants.swift; path = DropDown/helpers/DPDConstants.swift; sourceTree = "<group>"; };
-		091745E6D4A5AA66EB18CAD7C97EA7C4 /* Initializable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Initializable.swift; path = Pod/Classes/Initializable.swift; sourceTree = "<group>"; };
-		107CB9DD78A13FB3BC089A86C5BE34C0 /* SideMenuTransitionController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuTransitionController.swift; path = Pod/Classes/SideMenuTransitionController.swift; sourceTree = "<group>"; };
-		10AFFE9F4E38FAD7107081AF3BCE0001 /* Pods-arworldmap-arworldmapUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-arworldmap-arworldmapUITests-frameworks.sh"; sourceTree = "<group>"; };
-		11D4F1A7B1623BA0233452616B1E9498 /* Deprecations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Deprecations.swift; path = Pod/Classes/Deprecations.swift; sourceTree = "<group>"; };
-		12AC4107A0574D0D42C551B692E96042 /* DropDownCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDownCell.swift; path = DropDown/src/DropDownCell.swift; sourceTree = "<group>"; };
-		167570045DCD75991349EDDF355E0104 /* DropDown-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "DropDown-Info.plist"; sourceTree = "<group>"; };
-		16A9E45B8C046F0DE20DB964F8579505 /* Pods-arworldmapTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-arworldmapTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		1BACFEE3882F4470CE6F14AB0260C4CB /* Pods-arworldmap-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-arworldmap-umbrella.h"; sourceTree = "<group>"; };
-		1FCBD29795D9AC7A4D2E4698031CB385 /* SideMenuAnimationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuAnimationController.swift; path = Pod/Classes/SideMenuAnimationController.swift; sourceTree = "<group>"; };
-		22D326D3532C6AABBFD6522BC7327D35 /* Pods-arworldmap-arworldmapUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-arworldmap-arworldmapUITests-dummy.m"; sourceTree = "<group>"; };
-		2312ED4EF7DB334FB4A7B71D4679B7E7 /* Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Pod/Classes/Extensions.swift; sourceTree = "<group>"; };
-		28BE34F2BA571853CD5BD45617656DE0 /* Pods-arworldmapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-arworldmapTests.debug.xcconfig"; sourceTree = "<group>"; };
-		29611474C73DDC14A47CCC9CDF94B6E2 /* Pods-arworldmap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-arworldmap.debug.xcconfig"; sourceTree = "<group>"; };
-		319D06AA0D1D0BA345459C039040A1ED /* SideMenu */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SideMenu; path = SideMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3215BC519FD97F48B5875F01E6D00CEF /* Pods-arworldmap-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-arworldmap-Info.plist"; sourceTree = "<group>"; };
-		32B8092B0790259D322DC10078008A28 /* SideMenu-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SideMenu-dummy.m"; sourceTree = "<group>"; };
-		3A68A88CF8BCE23C5DE18F16144AD863 /* DropDown.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DropDown.debug.xcconfig; sourceTree = "<group>"; };
-		3FDF5A117B70C3FFA9D130423E50EB7F /* Print.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Print.swift; path = Pod/Classes/Print.swift; sourceTree = "<group>"; };
-		47E3CA562E11606E444C1010D93FC9AE /* SideMenuInteractionController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuInteractionController.swift; path = Pod/Classes/SideMenuInteractionController.swift; sourceTree = "<group>"; };
-		4A89DBF61C07C7ABCB88DAD46DBC4D66 /* SideMenu-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SideMenu-prefix.pch"; sourceTree = "<group>"; };
-		54AF7040BEA5DBCECF71606FDB2EE053 /* Pods-arworldmap-arworldmapUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-arworldmap-arworldmapUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		567A427741B5B45B063BD3403ED76D2F /* DropDown-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DropDown-prefix.pch"; sourceTree = "<group>"; };
-		573685E374F54270301752305CDC06E5 /* Pods-arworldmap-arworldmapUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-arworldmap-arworldmapUITests.modulemap"; sourceTree = "<group>"; };
-		580363FE9DEE4454C0D20B60C2E4A226 /* Pods-arworldmap-arworldmapUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-arworldmap-arworldmapUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		5961F4F918B8807EDE322C43DA8CA244 /* DropDown-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DropDown-umbrella.h"; sourceTree = "<group>"; };
-		5F32E32B22705A3F2F6F5F7084B30B00 /* Pods-arworldmap */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-arworldmap"; path = Pods_arworldmap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		64B72F25D4B4EDA0905D7D2329E6992C /* DropDownCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DropDownCell.xib; path = DropDown/resources/DropDownCell.xib; sourceTree = "<group>"; };
-		66E479EC93F0BA228C5C4A0B4E42AA5F /* Pods-arworldmap-arworldmapUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-arworldmap-arworldmapUITests-umbrella.h"; sourceTree = "<group>"; };
-		6B037C2368F048E9FFDCF2A2F3A28941 /* Pods-arworldmapTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-arworldmapTests-dummy.m"; sourceTree = "<group>"; };
-		706F94872CF160A5C342B8C2F61C2B17 /* UITableViewVibrantCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UITableViewVibrantCell.swift; path = Pod/Classes/UITableViewVibrantCell.swift; sourceTree = "<group>"; };
-		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		73950D0C3928936EA50777862773311C /* Pods-arworldmap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-arworldmap.release.xcconfig"; sourceTree = "<group>"; };
-		795026AB2B31EFAF8826D2BD69EFB3EB /* SideMenuPresentationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuPresentationController.swift; path = Pod/Classes/SideMenuPresentationController.swift; sourceTree = "<group>"; };
-		7EE2F3449551B9B83507847745449696 /* Pods-arworldmap-arworldmapUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-arworldmap-arworldmapUITests-acknowledgements.plist"; sourceTree = "<group>"; };
-		80B74465B6DC70014845B523E754A309 /* DropDown.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DropDown.release.xcconfig; sourceTree = "<group>"; };
-		8C299BDBAF7BD5CA9144B93D1135477F /* SideMenu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SideMenu.debug.xcconfig; sourceTree = "<group>"; };
-		8C41B2FDEB30FE9E91C12A12644953D1 /* SideMenuPresentationStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuPresentationStyle.swift; path = Pod/Classes/SideMenuPresentationStyle.swift; sourceTree = "<group>"; };
-		912D984EE68165C60EEAC9CAB5249132 /* Pods-arworldmap-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-arworldmap-acknowledgements.markdown"; sourceTree = "<group>"; };
-		92C78AEDF9559E8F4A6CDD7841B5699F /* DPDKeyboardListener.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDKeyboardListener.swift; path = DropDown/helpers/DPDKeyboardListener.swift; sourceTree = "<group>"; };
-		9A795C6EEF32F5C82BAED2A81038D295 /* Pods-arworldmap-arworldmapUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-arworldmap-arworldmapUITests-Info.plist"; sourceTree = "<group>"; };
-		9B6725B782188F18CB76A740433F14E4 /* DropDown */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DropDown; path = DropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C0A64BF43213DBA952F1FC3E12398B2 /* DPDUIView+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DPDUIView+Extension.swift"; path = "DropDown/helpers/DPDUIView+Extension.swift"; sourceTree = "<group>"; };
+		1943DF98FB6FD329FAA1C54C33680B62 /* DropDownCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDownCell.swift; path = DropDown/src/DropDownCell.swift; sourceTree = "<group>"; };
+		1BC1F70AEEAB3538F0E5C4BEC867160F /* Pods-arworldmap-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-arworldmap-acknowledgements.plist"; sourceTree = "<group>"; };
+		1D72633C1CBE99A6B170D44855EEA59C /* SideMenuTransitionController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuTransitionController.swift; path = Pod/Classes/SideMenuTransitionController.swift; sourceTree = "<group>"; };
+		200C5894C3B55B1E9EE28C71E3FE8EA7 /* Pods-arworldmap-arworldmapUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-arworldmap-arworldmapUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		2539A2B506D51AE701E5385991AE7A66 /* DropDown-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DropDown-dummy.m"; sourceTree = "<group>"; };
+		319D06AA0D1D0BA345459C039040A1ED /* SideMenu */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = SideMenu; path = libSideMenu.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3667D416742EF4F8450E86CB714A32EF /* DropDown.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DropDown.debug.xcconfig; sourceTree = "<group>"; };
+		3AD748597D79B6CED07F20511C0EF98A /* Pods-arworldmap-arworldmapUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-arworldmap-arworldmapUITests.modulemap"; sourceTree = "<group>"; };
+		445CD4BC94077C806D3EEA53FACDC018 /* Protected.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Protected.swift; path = Pod/Classes/Protected.swift; sourceTree = "<group>"; };
+		493D24BD599A8B8DD076322F919F3A17 /* Deprecations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Deprecations.swift; path = Pod/Classes/Deprecations.swift; sourceTree = "<group>"; };
+		525BDE13D63D4A3649A613603EFD469C /* Pods-arworldmapTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-arworldmapTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		58970A8D885F0F5A1CBF6C524677D54A /* Pods-arworldmap-arworldmapUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-arworldmap-arworldmapUITests-resources.sh"; sourceTree = "<group>"; };
+		5F32E32B22705A3F2F6F5F7084B30B00 /* Pods-arworldmap */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-arworldmap"; path = "libPods-arworldmap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		64567C4445455115F68B26CB9EA7256A /* SideMenu.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SideMenu.modulemap; sourceTree = "<group>"; };
+		73BE5D033A0705789D974FB89FCF4238 /* SideMenuPresentationStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuPresentationStyle.swift; path = Pod/Classes/SideMenuPresentationStyle.swift; sourceTree = "<group>"; };
+		745C49C1BDC750F5386AEAB52A98DD67 /* Pods-arworldmap-arworldmapUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-arworldmap-arworldmapUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		747E1831C0D98D0E09E1DB8E808C782E /* Pods-arworldmapTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-arworldmapTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		7C6B72455EFA59D98DABF6404051CA48 /* DPDKeyboardListener.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDKeyboardListener.swift; path = DropDown/helpers/DPDKeyboardListener.swift; sourceTree = "<group>"; };
+		81FA180B47FB4E504EA20503DD4725BA /* Pods-arworldmapTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-arworldmapTests-dummy.m"; sourceTree = "<group>"; };
+		99141094F84E3B7059848E3C1F67034F /* Pods-arworldmap-arworldmapUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-arworldmap-arworldmapUITests.release.xcconfig"; sourceTree = "<group>"; };
+		99A0FE5B72761C06AC308BABB9053B3B /* SideMenuNavigationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuNavigationController.swift; path = Pod/Classes/SideMenuNavigationController.swift; sourceTree = "<group>"; };
+		9B6725B782188F18CB76A740433F14E4 /* DropDown */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = DropDown; path = libDropDown.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BB2D7BBEF1159BB83B9AF117FF8EB64 /* Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Pod/Classes/Extensions.swift; sourceTree = "<group>"; };
+		9CE110F9F220B391304E8593B76E4BF2 /* Pods-arworldmap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-arworldmap.release.xcconfig"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A559BB76954012B2EC9D09D917EC9484 /* Pods-arworldmap-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-arworldmap-frameworks.sh"; sourceTree = "<group>"; };
-		AB1D84D3FBC4301AD4525E1B08F15F3B /* DropDown+Appearance.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DropDown+Appearance.swift"; path = "DropDown/src/DropDown+Appearance.swift"; sourceTree = "<group>"; };
-		AB4E092F59893DCC925ADB39F6AE37F3 /* DPDUIView+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DPDUIView+Extension.swift"; path = "DropDown/helpers/DPDUIView+Extension.swift"; sourceTree = "<group>"; };
-		AC1C3C59554524A05C1AAB142D521E38 /* Pods-arworldmap-arworldmapUITests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-arworldmap-arworldmapUITests"; path = Pods_arworldmap_arworldmapUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE00D215E496111D149EB4353FB9E4AD /* SideMenuPushCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuPushCoordinator.swift; path = Pod/Classes/SideMenuPushCoordinator.swift; sourceTree = "<group>"; };
-		BF6A7BD019114C7968C86946A218203B /* Pods-arworldmap-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-arworldmap-dummy.m"; sourceTree = "<group>"; };
-		C2BBECF98970C464AAE8EE98F9355163 /* SideMenuManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuManager.swift; path = Pod/Classes/SideMenuManager.swift; sourceTree = "<group>"; };
-		C63B3EF082F92F5F51A9B1AADB9B32B1 /* Pods-arworldmapTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-arworldmapTests.release.xcconfig"; sourceTree = "<group>"; };
-		C9601669CC1CE7E23E3380D669E0EE48 /* DropDown-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DropDown-dummy.m"; sourceTree = "<group>"; };
-		D27BF3179E6FAA68A2FC4F0C3ED4CCFF /* Pods-arworldmap-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-arworldmap-acknowledgements.plist"; sourceTree = "<group>"; };
-		D561563F6A5D23BB855AD8C3F8965D5C /* SideMenuNavigationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuNavigationController.swift; path = Pod/Classes/SideMenuNavigationController.swift; sourceTree = "<group>"; };
-		D634C40E770D17EEC1770776632CC8C4 /* Pods-arworldmap.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-arworldmap.modulemap"; sourceTree = "<group>"; };
-		D927C64F4BD6EBA4845ADC731D3141E3 /* SideMenu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SideMenu.release.xcconfig; sourceTree = "<group>"; };
-		D948B995387F1A7C02039EB5C2BEB937 /* Pods-arworldmapTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-arworldmapTests-umbrella.h"; sourceTree = "<group>"; };
-		E0A279A5B6A638BDDD1EB02EC8EEEA03 /* Pods-arworldmapTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-arworldmapTests.modulemap"; sourceTree = "<group>"; };
-		E1BF5740209EBADCBABDE341841C7321 /* Protected.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Protected.swift; path = Pod/Classes/Protected.swift; sourceTree = "<group>"; };
-		E743B24412F9CA977042F8DD9F1768E9 /* SideMenu-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SideMenu-umbrella.h"; sourceTree = "<group>"; };
-		E8FC41D693AE5CAD5E0ED3785C2AF04A /* SideMenu-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SideMenu-Info.plist"; sourceTree = "<group>"; };
-		ECF4E99D0F93E05C441C16BCEF92C02B /* Pods-arworldmapTests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-arworldmapTests"; path = Pods_arworldmapTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		ED59EC5F34F87F547FA06B06DBB1B4B1 /* DropDown.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDown.swift; path = DropDown/src/DropDown.swift; sourceTree = "<group>"; };
-		F03F0F2560A46CCC6EE75F915A14B0B1 /* SideMenu.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SideMenu.modulemap; sourceTree = "<group>"; };
-		F4F3AA6464BD2068C8107B2AC8E6394E /* Pods-arworldmap-arworldmapUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-arworldmap-arworldmapUITests.release.xcconfig"; sourceTree = "<group>"; };
-		F565EF4A7A7CF6BD4C8FA478F21E2D9D /* Pods-arworldmapTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-arworldmapTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		F75912FA3F77388F17DDE32283CE5A45 /* DropDown.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = DropDown.modulemap; sourceTree = "<group>"; };
-		FBECF5E5C1F0AF085B8144C4D40EB671 /* Pods-arworldmapTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-arworldmapTests-Info.plist"; sourceTree = "<group>"; };
+		9E60D9C1A48DAF818F89D7F82E68BE23 /* Pods-arworldmap-arworldmapUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-arworldmap-arworldmapUITests-umbrella.h"; sourceTree = "<group>"; };
+		A0E301D5F6D4B5F9927AE94620BDF30A /* Initializable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Initializable.swift; path = Pod/Classes/Initializable.swift; sourceTree = "<group>"; };
+		A6C22038F0CC5F307643BD09F81D5649 /* Pods-arworldmap-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-arworldmap-acknowledgements.markdown"; sourceTree = "<group>"; };
+		A8F9C772CCBD774CF9498BEC44B15F9D /* Pods-arworldmap-arworldmapUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-arworldmap-arworldmapUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		A8FD5C47AE97EAC0105F69741FB1A295 /* SideMenuInteractionController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuInteractionController.swift; path = Pod/Classes/SideMenuInteractionController.swift; sourceTree = "<group>"; };
+		A93757679DD1C4F12A72FD813C4EC82E /* SideMenu-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SideMenu-dummy.m"; sourceTree = "<group>"; };
+		AA48BE83F6B191F8B25F7560FB44A02C /* DropDown-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DropDown-umbrella.h"; sourceTree = "<group>"; };
+		AC1C3C59554524A05C1AAB142D521E38 /* Pods-arworldmap-arworldmapUITests */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-arworldmap-arworldmapUITests"; path = "libPods-arworldmap-arworldmapUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2F17517B416CA08F375C1D4561E2464 /* SideMenuPushCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuPushCoordinator.swift; path = Pod/Classes/SideMenuPushCoordinator.swift; sourceTree = "<group>"; };
+		B844AF2C9E469EFC90B1D28643460532 /* SideMenuAnimationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuAnimationController.swift; path = Pod/Classes/SideMenuAnimationController.swift; sourceTree = "<group>"; };
+		B86A906B76F534084646FB2DD16E6DE8 /* SideMenu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SideMenu.release.xcconfig; sourceTree = "<group>"; };
+		BBE61DD944094E06A33EAF71B29996A4 /* Pods-arworldmapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-arworldmapTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C4A38D75E02EA4042C26827A1FD67854 /* SideMenu-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SideMenu-umbrella.h"; sourceTree = "<group>"; };
+		C4DC68D324F74A8880AB0534B67D8FE5 /* SideMenuPresentationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuPresentationController.swift; path = Pod/Classes/SideMenuPresentationController.swift; sourceTree = "<group>"; };
+		CD9CF08CB81510B598542D88A3B644BE /* DropDown-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DropDown-prefix.pch"; sourceTree = "<group>"; };
+		CDE3B58D335AF22787A441DB4DBE5171 /* SideMenu-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SideMenu-prefix.pch"; sourceTree = "<group>"; };
+		CDE51B180BC3C53658CF68E4AA83E3EA /* Pods-arworldmap.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-arworldmap.modulemap"; sourceTree = "<group>"; };
+		D1692A4022551D8FFCAA6131585B7B26 /* DropDown.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = DropDown.modulemap; sourceTree = "<group>"; };
+		D53B7066404F17877411AD541EAEBEAD /* Print.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Print.swift; path = Pod/Classes/Print.swift; sourceTree = "<group>"; };
+		D714A42C6E5AC7834B52F88425512B27 /* Pods-arworldmap-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-arworldmap-umbrella.h"; sourceTree = "<group>"; };
+		DEE5FF08D094F145478BAE0565CBF01E /* Pods-arworldmap-arworldmapUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-arworldmap-arworldmapUITests-dummy.m"; sourceTree = "<group>"; };
+		E0318A3FC5392A0AC15F5BD90BF3A8C3 /* DropDown.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DropDown.release.xcconfig; sourceTree = "<group>"; };
+		E1FA9ECB6F55EB81DADE34EAFA729AC1 /* DropDown.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DropDown.swift; path = DropDown/src/DropDown.swift; sourceTree = "<group>"; };
+		E57352D116F57E74E1DEAA9FDC428130 /* SideMenu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SideMenu.debug.xcconfig; sourceTree = "<group>"; };
+		E70C22762226D442171251F5E7BEF3B2 /* Pods-arworldmapTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-arworldmapTests.release.xcconfig"; sourceTree = "<group>"; };
+		E82B5AE38EBD93A6F6838EC050665FA3 /* Pods-arworldmap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-arworldmap.debug.xcconfig"; sourceTree = "<group>"; };
+		E8C5ACC27428E0AC8D4631E86919C910 /* Pods-arworldmap-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-arworldmap-dummy.m"; sourceTree = "<group>"; };
+		EA0CEF242F6C7AE502684F152FEE4FAD /* DPDConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DPDConstants.swift; path = DropDown/helpers/DPDConstants.swift; sourceTree = "<group>"; };
+		EA994546BC8A35FC49655A231ECDA4FE /* UITableViewVibrantCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UITableViewVibrantCell.swift; path = Pod/Classes/UITableViewVibrantCell.swift; sourceTree = "<group>"; };
+		ECF4E99D0F93E05C441C16BCEF92C02B /* Pods-arworldmapTests */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-arworldmapTests"; path = "libPods-arworldmapTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFC19FB4944638F180DAAC9A32B20FAF /* DropDown+Appearance.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DropDown+Appearance.swift"; path = "DropDown/src/DropDown+Appearance.swift"; sourceTree = "<group>"; };
+		F0B09BF65ACAD13A715C881D21828DE1 /* Pods-arworldmap-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-arworldmap-resources.sh"; sourceTree = "<group>"; };
+		F5975782876B8CCD7BB0F1D921898514 /* SideMenuManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuManager.swift; path = Pod/Classes/SideMenuManager.swift; sourceTree = "<group>"; };
+		F7AD8B3711F7EB230F71B590B0F8661B /* DropDownCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DropDownCell.xib; path = DropDown/resources/DropDownCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0419DA0A4C232DBFAB62CEA34B826C5C /* Frameworks */ = {
+		3621A3153FBAACEBF294D9DC6044BD15 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0623E78A5907E8FCAC559F3C1D3204D /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5DC25AA7986F2BF0AC82E6132A31A66D /* Frameworks */ = {
+		A229ED71040C74A118DF9D04D49EFD03 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				887D7E546D6837CC964318D1B0C842D9 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7F130BB7B2FDA432ABE2261FCC9D2128 /* Frameworks */ = {
+		AF0BDFD29A77BFADE861BD054AF67E98 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F0AACDE2793A02AF495E5F3FA1ADE93 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		808BE4E171BD75B6477EC2B77490C2B1 /* Frameworks */ = {
+		B7DD0C44B70914730A2B738C5FCC1A76 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34D86F4481D9328BF45B637B906B3122 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D6548CD6AC9324316B7ADF825CEB7BF3 /* Frameworks */ = {
+		F3CC41A529C9A8BC2AF1E78C9648C7F2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E5CB51DD352AD377C6E28029DEBF70E /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2C1D5218CDBFFFFA845C35823E069E86 /* Pods-arworldmap-arworldmapUITests */ = {
+		2EB1E13E7DEC06CD038B9EA744297AC8 /* Pods-arworldmap-arworldmapUITests */ = {
 			isa = PBXGroup;
 			children = (
-				573685E374F54270301752305CDC06E5 /* Pods-arworldmap-arworldmapUITests.modulemap */,
-				54AF7040BEA5DBCECF71606FDB2EE053 /* Pods-arworldmap-arworldmapUITests-acknowledgements.markdown */,
-				7EE2F3449551B9B83507847745449696 /* Pods-arworldmap-arworldmapUITests-acknowledgements.plist */,
-				22D326D3532C6AABBFD6522BC7327D35 /* Pods-arworldmap-arworldmapUITests-dummy.m */,
-				10AFFE9F4E38FAD7107081AF3BCE0001 /* Pods-arworldmap-arworldmapUITests-frameworks.sh */,
-				9A795C6EEF32F5C82BAED2A81038D295 /* Pods-arworldmap-arworldmapUITests-Info.plist */,
-				66E479EC93F0BA228C5C4A0B4E42AA5F /* Pods-arworldmap-arworldmapUITests-umbrella.h */,
-				580363FE9DEE4454C0D20B60C2E4A226 /* Pods-arworldmap-arworldmapUITests.debug.xcconfig */,
-				F4F3AA6464BD2068C8107B2AC8E6394E /* Pods-arworldmap-arworldmapUITests.release.xcconfig */,
+				3AD748597D79B6CED07F20511C0EF98A /* Pods-arworldmap-arworldmapUITests.modulemap */,
+				A8F9C772CCBD774CF9498BEC44B15F9D /* Pods-arworldmap-arworldmapUITests-acknowledgements.markdown */,
+				745C49C1BDC750F5386AEAB52A98DD67 /* Pods-arworldmap-arworldmapUITests-acknowledgements.plist */,
+				DEE5FF08D094F145478BAE0565CBF01E /* Pods-arworldmap-arworldmapUITests-dummy.m */,
+				58970A8D885F0F5A1CBF6C524677D54A /* Pods-arworldmap-arworldmapUITests-resources.sh */,
+				9E60D9C1A48DAF818F89D7F82E68BE23 /* Pods-arworldmap-arworldmapUITests-umbrella.h */,
+				200C5894C3B55B1E9EE28C71E3FE8EA7 /* Pods-arworldmap-arworldmapUITests.debug.xcconfig */,
+				99141094F84E3B7059848E3C1F67034F /* Pods-arworldmap-arworldmapUITests.release.xcconfig */,
 			);
 			name = "Pods-arworldmap-arworldmapUITests";
 			path = "Target Support Files/Pods-arworldmap-arworldmapUITests";
 			sourceTree = "<group>";
 		};
-		33C8B80E4009A8B6EADA8FC9A03E8316 /* Resources */ = {
+		3B9A393499D27E02FEC85D828995A88A /* DropDown */ = {
 			isa = PBXGroup;
 			children = (
-				64B72F25D4B4EDA0905D7D2329E6992C /* DropDownCell.xib */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		36B395A06F4BAF43BB22B6F97B5AA334 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				E76698B8B08E9D4FF421BF7FE45483A9 /* Pods-arworldmap */,
-				2C1D5218CDBFFFFA845C35823E069E86 /* Pods-arworldmap-arworldmapUITests */,
-				539E68C3CF953F309C03D4A5C9FEE2EA /* Pods-arworldmapTests */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		481A65DC8786946C240CBC1E52EC49B6 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				F75912FA3F77388F17DDE32283CE5A45 /* DropDown.modulemap */,
-				C9601669CC1CE7E23E3380D669E0EE48 /* DropDown-dummy.m */,
-				167570045DCD75991349EDDF355E0104 /* DropDown-Info.plist */,
-				567A427741B5B45B063BD3403ED76D2F /* DropDown-prefix.pch */,
-				5961F4F918B8807EDE322C43DA8CA244 /* DropDown-umbrella.h */,
-				3A68A88CF8BCE23C5DE18F16144AD863 /* DropDown.debug.xcconfig */,
-				80B74465B6DC70014845B523E754A309 /* DropDown.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/DropDown";
-			sourceTree = "<group>";
-		};
-		539E68C3CF953F309C03D4A5C9FEE2EA /* Pods-arworldmapTests */ = {
-			isa = PBXGroup;
-			children = (
-				E0A279A5B6A638BDDD1EB02EC8EEEA03 /* Pods-arworldmapTests.modulemap */,
-				16A9E45B8C046F0DE20DB964F8579505 /* Pods-arworldmapTests-acknowledgements.markdown */,
-				F565EF4A7A7CF6BD4C8FA478F21E2D9D /* Pods-arworldmapTests-acknowledgements.plist */,
-				6B037C2368F048E9FFDCF2A2F3A28941 /* Pods-arworldmapTests-dummy.m */,
-				FBECF5E5C1F0AF085B8144C4D40EB671 /* Pods-arworldmapTests-Info.plist */,
-				D948B995387F1A7C02039EB5C2BEB937 /* Pods-arworldmapTests-umbrella.h */,
-				28BE34F2BA571853CD5BD45617656DE0 /* Pods-arworldmapTests.debug.xcconfig */,
-				C63B3EF082F92F5F51A9B1AADB9B32B1 /* Pods-arworldmapTests.release.xcconfig */,
-			);
-			name = "Pods-arworldmapTests";
-			path = "Target Support Files/Pods-arworldmapTests";
-			sourceTree = "<group>";
-		};
-		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		62D7F0E13C29E070A85977AB47DE6F1C /* SideMenu */ = {
-			isa = PBXGroup;
-			children = (
-				11D4F1A7B1623BA0233452616B1E9498 /* Deprecations.swift */,
-				2312ED4EF7DB334FB4A7B71D4679B7E7 /* Extensions.swift */,
-				091745E6D4A5AA66EB18CAD7C97EA7C4 /* Initializable.swift */,
-				3FDF5A117B70C3FFA9D130423E50EB7F /* Print.swift */,
-				E1BF5740209EBADCBABDE341841C7321 /* Protected.swift */,
-				1FCBD29795D9AC7A4D2E4698031CB385 /* SideMenuAnimationController.swift */,
-				47E3CA562E11606E444C1010D93FC9AE /* SideMenuInteractionController.swift */,
-				C2BBECF98970C464AAE8EE98F9355163 /* SideMenuManager.swift */,
-				D561563F6A5D23BB855AD8C3F8965D5C /* SideMenuNavigationController.swift */,
-				795026AB2B31EFAF8826D2BD69EFB3EB /* SideMenuPresentationController.swift */,
-				8C41B2FDEB30FE9E91C12A12644953D1 /* SideMenuPresentationStyle.swift */,
-				AE00D215E496111D149EB4353FB9E4AD /* SideMenuPushCoordinator.swift */,
-				107CB9DD78A13FB3BC089A86C5BE34C0 /* SideMenuTransitionController.swift */,
-				706F94872CF160A5C342B8C2F61C2B17 /* UITableViewVibrantCell.swift */,
-				93A99FD2CBEC01EC24A9F5C31029257F /* Support Files */,
-			);
-			name = SideMenu;
-			path = SideMenu;
-			sourceTree = "<group>";
-		};
-		8B5BC12CC6ED73839E0AF051983B9C7E /* DropDown */ = {
-			isa = PBXGroup;
-			children = (
-				0162F2A3EAF7E5D6308F9FB0AB7E8EDC /* DPDConstants.swift */,
-				92C78AEDF9559E8F4A6CDD7841B5699F /* DPDKeyboardListener.swift */,
-				AB4E092F59893DCC925ADB39F6AE37F3 /* DPDUIView+Extension.swift */,
-				ED59EC5F34F87F547FA06B06DBB1B4B1 /* DropDown.swift */,
-				AB1D84D3FBC4301AD4525E1B08F15F3B /* DropDown+Appearance.swift */,
-				12AC4107A0574D0D42C551B692E96042 /* DropDownCell.swift */,
-				33C8B80E4009A8B6EADA8FC9A03E8316 /* Resources */,
-				481A65DC8786946C240CBC1E52EC49B6 /* Support Files */,
+				EA0CEF242F6C7AE502684F152FEE4FAD /* DPDConstants.swift */,
+				7C6B72455EFA59D98DABF6404051CA48 /* DPDKeyboardListener.swift */,
+				0C0A64BF43213DBA952F1FC3E12398B2 /* DPDUIView+Extension.swift */,
+				E1FA9ECB6F55EB81DADE34EAFA729AC1 /* DropDown.swift */,
+				EFC19FB4944638F180DAAC9A32B20FAF /* DropDown+Appearance.swift */,
+				1943DF98FB6FD329FAA1C54C33680B62 /* DropDownCell.swift */,
+				DE4D7C232AE7EAC9500D32836CFCC9AB /* Resources */,
+				B0E588A9D1A30EA9F44437A347C9BA83 /* Support Files */,
 			);
 			name = DropDown;
 			path = DropDown;
 			sourceTree = "<group>";
 		};
-		93A99FD2CBEC01EC24A9F5C31029257F /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				F03F0F2560A46CCC6EE75F915A14B0B1 /* SideMenu.modulemap */,
-				32B8092B0790259D322DC10078008A28 /* SideMenu-dummy.m */,
-				E8FC41D693AE5CAD5E0ED3785C2AF04A /* SideMenu-Info.plist */,
-				4A89DBF61C07C7ABCB88DAD46DBC4D66 /* SideMenu-prefix.pch */,
-				E743B24412F9CA977042F8DD9F1768E9 /* SideMenu-umbrella.h */,
-				8C299BDBAF7BD5CA9144B93D1135477F /* SideMenu.debug.xcconfig */,
-				D927C64F4BD6EBA4845ADC731D3141E3 /* SideMenu.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/SideMenu";
-			sourceTree = "<group>";
-		};
-		951EC2366E161F16B0FE9A960E66A502 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				8B5BC12CC6ED73839E0AF051983B9C7E /* DropDown */,
-				62D7F0E13C29E070A85977AB47DE6F1C /* SideMenu */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		A7B043AEAB712FE5414BE6B299519ADD /* Products */ = {
+		43E04ACEDEE398F02D5D79F5D5CD2F6C /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				9B6725B782188F18CB76A740433F14E4 /* DropDown */,
@@ -347,82 +222,170 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CF1408CF629C7361332E53B88F7BD30C = {
+		6E59157FA766663FE6DFA381746CC5C8 /* SideMenu */ = {
 			isa = PBXGroup;
 			children = (
-				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				951EC2366E161F16B0FE9A960E66A502 /* Pods */,
-				A7B043AEAB712FE5414BE6B299519ADD /* Products */,
-				36B395A06F4BAF43BB22B6F97B5AA334 /* Targets Support Files */,
+				493D24BD599A8B8DD076322F919F3A17 /* Deprecations.swift */,
+				9BB2D7BBEF1159BB83B9AF117FF8EB64 /* Extensions.swift */,
+				A0E301D5F6D4B5F9927AE94620BDF30A /* Initializable.swift */,
+				D53B7066404F17877411AD541EAEBEAD /* Print.swift */,
+				445CD4BC94077C806D3EEA53FACDC018 /* Protected.swift */,
+				B844AF2C9E469EFC90B1D28643460532 /* SideMenuAnimationController.swift */,
+				A8FD5C47AE97EAC0105F69741FB1A295 /* SideMenuInteractionController.swift */,
+				F5975782876B8CCD7BB0F1D921898514 /* SideMenuManager.swift */,
+				99A0FE5B72761C06AC308BABB9053B3B /* SideMenuNavigationController.swift */,
+				C4DC68D324F74A8880AB0534B67D8FE5 /* SideMenuPresentationController.swift */,
+				73BE5D033A0705789D974FB89FCF4238 /* SideMenuPresentationStyle.swift */,
+				B2F17517B416CA08F375C1D4561E2464 /* SideMenuPushCoordinator.swift */,
+				1D72633C1CBE99A6B170D44855EEA59C /* SideMenuTransitionController.swift */,
+				EA994546BC8A35FC49655A231ECDA4FE /* UITableViewVibrantCell.swift */,
+				F75B3A99E4B50F5C39BFCAF3DCAF93FB /* Support Files */,
 			);
+			name = SideMenu;
+			path = SideMenu;
 			sourceTree = "<group>";
 		};
-		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+		71D3C3678DA0691BE8B0F256360B6865 /* Pods-arworldmapTests */ = {
 			isa = PBXGroup;
 			children = (
-				578452D2E740E91742655AC8F1636D1F /* iOS */,
+				747E1831C0D98D0E09E1DB8E808C782E /* Pods-arworldmapTests-acknowledgements.markdown */,
+				525BDE13D63D4A3649A613603EFD469C /* Pods-arworldmapTests-acknowledgements.plist */,
+				81FA180B47FB4E504EA20503DD4725BA /* Pods-arworldmapTests-dummy.m */,
+				BBE61DD944094E06A33EAF71B29996A4 /* Pods-arworldmapTests.debug.xcconfig */,
+				E70C22762226D442171251F5E7BEF3B2 /* Pods-arworldmapTests.release.xcconfig */,
 			);
-			name = Frameworks;
+			name = "Pods-arworldmapTests";
+			path = "Target Support Files/Pods-arworldmapTests";
 			sourceTree = "<group>";
 		};
-		E76698B8B08E9D4FF421BF7FE45483A9 /* Pods-arworldmap */ = {
+		951EC2366E161F16B0FE9A960E66A502 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D634C40E770D17EEC1770776632CC8C4 /* Pods-arworldmap.modulemap */,
-				912D984EE68165C60EEAC9CAB5249132 /* Pods-arworldmap-acknowledgements.markdown */,
-				D27BF3179E6FAA68A2FC4F0C3ED4CCFF /* Pods-arworldmap-acknowledgements.plist */,
-				BF6A7BD019114C7968C86946A218203B /* Pods-arworldmap-dummy.m */,
-				A559BB76954012B2EC9D09D917EC9484 /* Pods-arworldmap-frameworks.sh */,
-				3215BC519FD97F48B5875F01E6D00CEF /* Pods-arworldmap-Info.plist */,
-				1BACFEE3882F4470CE6F14AB0260C4CB /* Pods-arworldmap-umbrella.h */,
-				29611474C73DDC14A47CCC9CDF94B6E2 /* Pods-arworldmap.debug.xcconfig */,
-				73950D0C3928936EA50777862773311C /* Pods-arworldmap.release.xcconfig */,
+				3B9A393499D27E02FEC85D828995A88A /* DropDown */,
+				6E59157FA766663FE6DFA381746CC5C8 /* SideMenu */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A82B302EB05D431D806BF1813D158CB0 /* Pods-arworldmap */ = {
+			isa = PBXGroup;
+			children = (
+				CDE51B180BC3C53658CF68E4AA83E3EA /* Pods-arworldmap.modulemap */,
+				A6C22038F0CC5F307643BD09F81D5649 /* Pods-arworldmap-acknowledgements.markdown */,
+				1BC1F70AEEAB3538F0E5C4BEC867160F /* Pods-arworldmap-acknowledgements.plist */,
+				E8C5ACC27428E0AC8D4631E86919C910 /* Pods-arworldmap-dummy.m */,
+				F0B09BF65ACAD13A715C881D21828DE1 /* Pods-arworldmap-resources.sh */,
+				D714A42C6E5AC7834B52F88425512B27 /* Pods-arworldmap-umbrella.h */,
+				E82B5AE38EBD93A6F6838EC050665FA3 /* Pods-arworldmap.debug.xcconfig */,
+				9CE110F9F220B391304E8593B76E4BF2 /* Pods-arworldmap.release.xcconfig */,
 			);
 			name = "Pods-arworldmap";
 			path = "Target Support Files/Pods-arworldmap";
 			sourceTree = "<group>";
 		};
+		AB61F7BD6DE6988E0119BF9984B812F1 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				A82B302EB05D431D806BF1813D158CB0 /* Pods-arworldmap */,
+				2EB1E13E7DEC06CD038B9EA744297AC8 /* Pods-arworldmap-arworldmapUITests */,
+				71D3C3678DA0691BE8B0F256360B6865 /* Pods-arworldmapTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		B0E588A9D1A30EA9F44437A347C9BA83 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D1692A4022551D8FFCAA6131585B7B26 /* DropDown.modulemap */,
+				2539A2B506D51AE701E5385991AE7A66 /* DropDown-dummy.m */,
+				CD9CF08CB81510B598542D88A3B644BE /* DropDown-prefix.pch */,
+				AA48BE83F6B191F8B25F7560FB44A02C /* DropDown-umbrella.h */,
+				3667D416742EF4F8450E86CB714A32EF /* DropDown.debug.xcconfig */,
+				E0318A3FC5392A0AC15F5BD90BF3A8C3 /* DropDown.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/DropDown";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
+				951EC2366E161F16B0FE9A960E66A502 /* Pods */,
+				43E04ACEDEE398F02D5D79F5D5CD2F6C /* Products */,
+				AB61F7BD6DE6988E0119BF9984B812F1 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D89477F20FB1DE18A04690586D7808C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DE4D7C232AE7EAC9500D32836CFCC9AB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F7AD8B3711F7EB230F71B590B0F8661B /* DropDownCell.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F75B3A99E4B50F5C39BFCAF3DCAF93FB /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				64567C4445455115F68B26CB9EA7256A /* SideMenu.modulemap */,
+				A93757679DD1C4F12A72FD813C4EC82E /* SideMenu-dummy.m */,
+				CDE3B58D335AF22787A441DB4DBE5171 /* SideMenu-prefix.pch */,
+				C4A38D75E02EA4042C26827A1FD67854 /* SideMenu-umbrella.h */,
+				E57352D116F57E74E1DEAA9FDC428130 /* SideMenu.debug.xcconfig */,
+				B86A906B76F534084646FB2DD16E6DE8 /* SideMenu.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SideMenu";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		3423D098EBF72636725AA76E838944FC /* Headers */ = {
+		2F14D8E710FE98E4A534D27F2A7438F1 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C951916501C4D9FFFFA0456170AADE5 /* Pods-arworldmap-arworldmapUITests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		808B3C78170DE39A17382B38756CAA06 /* Headers */ = {
+		7E5DBC4CFE4C11B496F23925D1EB400C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E56EEF71CC5AF0DA40228F2CA67B4BA0 /* SideMenu-umbrella.h in Headers */,
+				DE12FDFECE1CBA0CBA9A7B0BF5195E84 /* Pods-arworldmap-arworldmapUITests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		97CE91431E229797751455423C79CA4F /* Headers */ = {
+		7F47FF1D1150779802145945AE71CECA /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0A8C46EEE733B55971B1CC5ED65C9AA /* DropDown-umbrella.h in Headers */,
+				1647FDEE5175351632037194728729D4 /* DropDown-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A7FB6D74DE8C3F99B761D6CC3E0175E2 /* Headers */ = {
+		AB40752A056FBAE4EF970692DEF5D37B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADC762C1045B4232EF74AC739137D96B /* Pods-arworldmapTests-umbrella.h in Headers */,
+				68B750F9158A0378BF78B035E7D16F90 /* Pods-arworldmap-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BE345E212730BE8B52D8B5DED822AB3A /* Headers */ = {
+		E4E3DA06D646B1A215F644602DAC4C50 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7163D450CB988F691AE2252EA24883FE /* Pods-arworldmap-umbrella.h in Headers */,
+				0DDBB3C50F10F7DD51518263CF24D520 /* SideMenu-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,71 +394,68 @@
 /* Begin PBXNativeTarget section */
 		21977F85B197DECD957283EE6B823C3B /* Pods-arworldmap-arworldmapUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 60ACB4B5C280D3933453112CC8C6BFF2 /* Build configuration list for PBXNativeTarget "Pods-arworldmap-arworldmapUITests" */;
+			buildConfigurationList = 57D518D45FFEA70753B48B27059BE07B /* Build configuration list for PBXNativeTarget "Pods-arworldmap-arworldmapUITests" */;
 			buildPhases = (
-				3423D098EBF72636725AA76E838944FC /* Headers */,
-				64F0D81661046AB62258683380BF3615 /* Sources */,
-				D6548CD6AC9324316B7ADF825CEB7BF3 /* Frameworks */,
-				14D35F4F946860D45AF1EE0369634EEC /* Resources */,
+				7E5DBC4CFE4C11B496F23925D1EB400C /* Headers */,
+				99A42316C43E2181F3081E40D71A3CEA /* Sources */,
+				A229ED71040C74A118DF9D04D49EFD03 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				762593F4BE1A51F618F5189FDB592895 /* PBXTargetDependency */,
-				FA926590C1355E59897DD34498965F30 /* PBXTargetDependency */,
+				3A512B9A2BACF88A909DCD9F31FA88F3 /* PBXTargetDependency */,
+				B328C2428898DBDCA3EB969D0F7EF4A1 /* PBXTargetDependency */,
 			);
 			name = "Pods-arworldmap-arworldmapUITests";
-			productName = Pods_arworldmap_arworldmapUITests;
+			productName = "Pods-arworldmap-arworldmapUITests";
 			productReference = AC1C3C59554524A05C1AAB142D521E38 /* Pods-arworldmap-arworldmapUITests */;
-			productType = "com.apple.product-type.framework";
+			productType = "com.apple.product-type.library.static";
 		};
 		478FD12EA35EAF244EA1D372179C8AE7 /* Pods-arworldmapTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2668D23C670B7CBD88C79A0827A77B4B /* Build configuration list for PBXNativeTarget "Pods-arworldmapTests" */;
+			buildConfigurationList = 099DB67F5A783A853DA4DF3B94B5829C /* Build configuration list for PBXNativeTarget "Pods-arworldmapTests" */;
 			buildPhases = (
-				A7FB6D74DE8C3F99B761D6CC3E0175E2 /* Headers */,
-				3B2095A13BE6843353F67214A90C21EF /* Sources */,
-				7F130BB7B2FDA432ABE2261FCC9D2128 /* Frameworks */,
-				CF82178C139BDE8DB727FFCEE5C6534E /* Resources */,
+				2F14D8E710FE98E4A534D27F2A7438F1 /* Headers */,
+				87EFD42AE7DC20E36919DCE36F13F0F0 /* Sources */,
+				F3CC41A529C9A8BC2AF1E78C9648C7F2 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				DE7E2ABC9EF7D336FF39479BB957B8E6 /* PBXTargetDependency */,
+				A4744819892AB1DBF0F50A3594A11133 /* PBXTargetDependency */,
 			);
 			name = "Pods-arworldmapTests";
-			productName = Pods_arworldmapTests;
+			productName = "Pods-arworldmapTests";
 			productReference = ECF4E99D0F93E05C441C16BCEF92C02B /* Pods-arworldmapTests */;
-			productType = "com.apple.product-type.framework";
+			productType = "com.apple.product-type.library.static";
 		};
 		874ACFA1A62C243E9DC26DBE663740D9 /* Pods-arworldmap */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A888B68ADE61603989C768AABB3D0CEB /* Build configuration list for PBXNativeTarget "Pods-arworldmap" */;
+			buildConfigurationList = ED0C17FF61ED4FDF660C4F2F12A7242A /* Build configuration list for PBXNativeTarget "Pods-arworldmap" */;
 			buildPhases = (
-				BE345E212730BE8B52D8B5DED822AB3A /* Headers */,
-				38DC8AF7B51069AA54B5621E50C407D4 /* Sources */,
-				0419DA0A4C232DBFAB62CEA34B826C5C /* Frameworks */,
-				716D547D81D2C3ACECB6DE8A0850E6D4 /* Resources */,
+				AB40752A056FBAE4EF970692DEF5D37B /* Headers */,
+				0AEB3F55853D3FC036E90E6E62E41657 /* Sources */,
+				B7DD0C44B70914730A2B738C5FCC1A76 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				DC08910D19BCD79DA366B3883BD49CC8 /* PBXTargetDependency */,
-				20F359E310ED1FC5D7CBF4825D2469EA /* PBXTargetDependency */,
+				2DC2C7E982C74A09641083FF30EB6E8A /* PBXTargetDependency */,
+				799DE0FDBAE86BD66F7FA4C7289AAA7C /* PBXTargetDependency */,
 			);
 			name = "Pods-arworldmap";
-			productName = Pods_arworldmap;
+			productName = "Pods-arworldmap";
 			productReference = 5F32E32B22705A3F2F6F5F7084B30B00 /* Pods-arworldmap */;
-			productType = "com.apple.product-type.framework";
+			productType = "com.apple.product-type.library.static";
 		};
 		C4A0A7D8591B67FB75E2E8D215E3735B /* SideMenu */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C4E63BB43B7167D15C142EB405422643 /* Build configuration list for PBXNativeTarget "SideMenu" */;
+			buildConfigurationList = F7C16AB9B98398AB5F51FED9C5626C84 /* Build configuration list for PBXNativeTarget "SideMenu" */;
 			buildPhases = (
-				808B3C78170DE39A17382B38756CAA06 /* Headers */,
-				67D65F22C5D7053A68ADB3533240B850 /* Sources */,
-				5DC25AA7986F2BF0AC82E6132A31A66D /* Frameworks */,
-				C35CA0EF3E2BEED48FF33721BDC0D000 /* Resources */,
+				E4E3DA06D646B1A215F644602DAC4C50 /* Headers */,
+				72DE08019E20D9484012A2587C878A24 /* Sources */,
+				3621A3153FBAACEBF294D9DC6044BD15 /* Frameworks */,
+				171E905D4E6616A37043D7F539F59E65 /* Copy generated compatibility header */,
 			);
 			buildRules = (
 			);
@@ -504,16 +464,16 @@
 			name = SideMenu;
 			productName = SideMenu;
 			productReference = 319D06AA0D1D0BA345459C039040A1ED /* SideMenu */;
-			productType = "com.apple.product-type.framework";
+			productType = "com.apple.product-type.library.static";
 		};
 		E9F9401E9C74C0C393164FD8D86D0068 /* DropDown */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 53052E6CBA1E65D6EF818199E617AC68 /* Build configuration list for PBXNativeTarget "DropDown" */;
+			buildConfigurationList = 761E2539A135201CFF9B8D9B54871B13 /* Build configuration list for PBXNativeTarget "DropDown" */;
 			buildPhases = (
-				97CE91431E229797751455423C79CA4F /* Headers */,
-				48864C435B3DB37698CF568C638CF98F /* Sources */,
-				808BE4E171BD75B6477EC2B77490C2B1 /* Frameworks */,
-				EFDE5B37A62BFF2F9A9BD2023B960CD7 /* Resources */,
+				7F47FF1D1150779802145945AE71CECA /* Headers */,
+				149DBF24E9046A5CFBC7D70E0B544485 /* Sources */,
+				AF0BDFD29A77BFADE861BD054AF67E98 /* Frameworks */,
+				D6C59314679A7167D57C4AF3D40DA560 /* Copy generated compatibility header */,
 			);
 			buildRules = (
 			);
@@ -522,7 +482,7 @@
 			name = DropDown;
 			productName = DropDown;
 			productReference = 9B6725B782188F18CB76A740433F14E4 /* DropDown */;
-			productType = "com.apple.product-type.framework";
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -542,7 +502,7 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = A7B043AEAB712FE5414BE6B299519ADD /* Products */;
+			productRefGroup = 43E04ACEDEE398F02D5D79F5D5CD2F6C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -555,177 +515,176 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		14D35F4F946860D45AF1EE0369634EEC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
+/* Begin PBXShellScriptBuildPhase section */
+		171E905D4E6616A37043D7F539F59E65 /* Copy generated compatibility header */ = {
+			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h",
+				"${PODS_ROOT}/Headers/Public/SideMenu/SideMenu.modulemap",
+				"${PODS_ROOT}/Headers/Public/SideMenu/SideMenu-umbrella.h",
+			);
+			name = "Copy generated compatibility header";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap",
+				"${BUILT_PRODUCTS_DIR}/SideMenu-umbrella.h",
+				"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h",
+			);
 			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/SideMenu/SideMenu.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/SideMenu/SideMenu-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
 		};
-		716D547D81D2C3ACECB6DE8A0850E6D4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
+		D6C59314679A7167D57C4AF3D40DA560 /* Copy generated compatibility header */ = {
+			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C35CA0EF3E2BEED48FF33721BDC0D000 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h",
+				"${PODS_ROOT}/Headers/Public/DropDown/DropDown.modulemap",
+				"${PODS_ROOT}/Headers/Public/DropDown/DropDown-umbrella.h",
+			);
+			name = "Copy generated compatibility header";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap",
+				"${BUILT_PRODUCTS_DIR}/DropDown-umbrella.h",
+				"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/DropDown/DropDown.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/DropDown/DropDown-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
 		};
-		CF82178C139BDE8DB727FFCEE5C6534E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EFDE5B37A62BFF2F9A9BD2023B960CD7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				68E1653C561E14BBEAC9CF4873570D58 /* DropDownCell.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		38DC8AF7B51069AA54B5621E50C407D4 /* Sources */ = {
+		0AEB3F55853D3FC036E90E6E62E41657 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B2ABB2D47B3807A54B6692701E4A1E1 /* Pods-arworldmap-dummy.m in Sources */,
+				CD689CFCE1C6EC8F42CE670B32867418 /* Pods-arworldmap-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3B2095A13BE6843353F67214A90C21EF /* Sources */ = {
+		149DBF24E9046A5CFBC7D70E0B544485 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1F069612337AA446F5B47905DD96140 /* Pods-arworldmapTests-dummy.m in Sources */,
+				09E9A6A046FBA5DA853BEC3527F452B1 /* DPDConstants.swift in Sources */,
+				DA73ADCB93872C1CDB40C1524A2627E9 /* DPDKeyboardListener.swift in Sources */,
+				46DD6092F3689AAA19C8669735186D30 /* DPDUIView+Extension.swift in Sources */,
+				4CF932FF96CCDBFB9E7B9A71A1E58DCA /* DropDown.swift in Sources */,
+				A323E67CEC0C04BAB2FB5FF00ABFE8A2 /* DropDown+Appearance.swift in Sources */,
+				C40700FDA27E21DBCFE6E1CDAA28D976 /* DropDown-dummy.m in Sources */,
+				4B02153C4EB87A13506E56A07B779ED7 /* DropDownCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		48864C435B3DB37698CF568C638CF98F /* Sources */ = {
+		72DE08019E20D9484012A2587C878A24 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74012B832FAF67F8D62A2B27CDAFE8B5 /* DPDConstants.swift in Sources */,
-				89A72A55273CE358DC4E7600F785C37B /* DPDKeyboardListener.swift in Sources */,
-				B73E510E851686F8184E26986A470458 /* DPDUIView+Extension.swift in Sources */,
-				84459C4824533C9C4FD12AFC941F3CE1 /* DropDown.swift in Sources */,
-				515E22E4255B6073C1897BDDB091A2B8 /* DropDown+Appearance.swift in Sources */,
-				907338727C09F65DB75AA7AB9E10C3B4 /* DropDown-dummy.m in Sources */,
-				BDC10974A8641F01C5665C61EA37A153 /* DropDownCell.swift in Sources */,
+				7C46A2E4477547AE0313F7B84C191696 /* Deprecations.swift in Sources */,
+				95EC0135159130854E6E4E7633C0C052 /* Extensions.swift in Sources */,
+				70E440304D5C11FDF112517A58F64004 /* Initializable.swift in Sources */,
+				1B57E54E51D2FC9E9A849F1744236F57 /* Print.swift in Sources */,
+				7A31574C7D3A580455F36E8A899B127B /* Protected.swift in Sources */,
+				9AF97C67C1482E988E2F39E3558CB4DE /* SideMenu-dummy.m in Sources */,
+				1C0B35002A5515E2BF2B3F4917013D79 /* SideMenuAnimationController.swift in Sources */,
+				6182D7380CD4BD1F20B73FD1B9434B4A /* SideMenuInteractionController.swift in Sources */,
+				1B364441A48CA2CA09C62510CD55CAC5 /* SideMenuManager.swift in Sources */,
+				AD18798F9C2B4ED200C4E44220D38F3B /* SideMenuNavigationController.swift in Sources */,
+				FBC4FAC3E9DFD128E0AED1701E84E902 /* SideMenuPresentationController.swift in Sources */,
+				7E78F6E36AD751443ED429A0E327A45B /* SideMenuPresentationStyle.swift in Sources */,
+				DADC0B680A73F3FFA230F687661C2030 /* SideMenuPushCoordinator.swift in Sources */,
+				284E65FDA149FA10149873D520850181 /* SideMenuTransitionController.swift in Sources */,
+				7FCCBBCABD84E1A3A61CA83E842544BF /* UITableViewVibrantCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		64F0D81661046AB62258683380BF3615 /* Sources */ = {
+		87EFD42AE7DC20E36919DCE36F13F0F0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D3AAD97C820BF32E2F65D6F8B9D7C27 /* Pods-arworldmap-arworldmapUITests-dummy.m in Sources */,
+				E04E41508E67CBCDC0E27EEC31A7B7BE /* Pods-arworldmapTests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		67D65F22C5D7053A68ADB3533240B850 /* Sources */ = {
+		99A42316C43E2181F3081E40D71A3CEA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3BE0026C39E4B360BBDA0D5C57DD25D /* Deprecations.swift in Sources */,
-				F28D439429A375B6D4FCD037ED317CD6 /* Extensions.swift in Sources */,
-				74106BDED4B8B2281DFE4BE5E109D847 /* Initializable.swift in Sources */,
-				BE79F903F87E7D5918C6414E6203743E /* Print.swift in Sources */,
-				DAD5950A205347FCDBD3751604472431 /* Protected.swift in Sources */,
-				1F0DDBBAF86A028D6D60A7E10B4D3634 /* SideMenu-dummy.m in Sources */,
-				B804587E525773FCA9698855B2C752DC /* SideMenuAnimationController.swift in Sources */,
-				E97C7A323474D0205E872AE7BC773650 /* SideMenuInteractionController.swift in Sources */,
-				E709C98B763E8065628D8E88715E0BF8 /* SideMenuManager.swift in Sources */,
-				9E9F19E0120EA3C46967C28E637F52C8 /* SideMenuNavigationController.swift in Sources */,
-				057B453F4AE14D10EA77D38FA1A0B8FB /* SideMenuPresentationController.swift in Sources */,
-				5587C359D9C8789950E7F6585C2292E7 /* SideMenuPresentationStyle.swift in Sources */,
-				E72252B09CC270B50217CA6AEABD620A /* SideMenuPushCoordinator.swift in Sources */,
-				3817F4830A10E51D20B72530EF6A56D2 /* SideMenuTransitionController.swift in Sources */,
-				BC9C2E663681EDDBFE985034DCC7AAAF /* UITableViewVibrantCell.swift in Sources */,
+				072DCD1D82FDC0F9E8B45C95C192AC5D /* Pods-arworldmap-arworldmapUITests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		20F359E310ED1FC5D7CBF4825D2469EA /* PBXTargetDependency */ = {
+		2DC2C7E982C74A09641083FF30EB6E8A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DropDown;
+			target = E9F9401E9C74C0C393164FD8D86D0068 /* DropDown */;
+			targetProxy = 4685AC36BFB41C0637781546F2A3C6D5 /* PBXContainerItemProxy */;
+		};
+		3A512B9A2BACF88A909DCD9F31FA88F3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DropDown;
+			target = E9F9401E9C74C0C393164FD8D86D0068 /* DropDown */;
+			targetProxy = 3AF240473424CC606A8630259A77BCC1 /* PBXContainerItemProxy */;
+		};
+		799DE0FDBAE86BD66F7FA4C7289AAA7C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SideMenu;
 			target = C4A0A7D8591B67FB75E2E8D215E3735B /* SideMenu */;
-			targetProxy = 984DA204ADEF894AE33459B5E9E51E4E /* PBXContainerItemProxy */;
+			targetProxy = 38269FB01182065B71372C152A10AFE4 /* PBXContainerItemProxy */;
 		};
-		762593F4BE1A51F618F5189FDB592895 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = DropDown;
-			target = E9F9401E9C74C0C393164FD8D86D0068 /* DropDown */;
-			targetProxy = 7ABB7A6CCF77C0F97AB3470A843FAFC1 /* PBXContainerItemProxy */;
-		};
-		DC08910D19BCD79DA366B3883BD49CC8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = DropDown;
-			target = E9F9401E9C74C0C393164FD8D86D0068 /* DropDown */;
-			targetProxy = B077BD6FC366D0371B7B7A1B1F776B79 /* PBXContainerItemProxy */;
-		};
-		DE7E2ABC9EF7D336FF39479BB957B8E6 /* PBXTargetDependency */ = {
+		A4744819892AB1DBF0F50A3594A11133 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-arworldmap";
 			target = 874ACFA1A62C243E9DC26DBE663740D9 /* Pods-arworldmap */;
-			targetProxy = EF03D1CBEB1BCC1B7A90A631B4ED33B8 /* PBXContainerItemProxy */;
+			targetProxy = 9ED4D2D57B4D0924B7BD29C8AA100859 /* PBXContainerItemProxy */;
 		};
-		FA926590C1355E59897DD34498965F30 /* PBXTargetDependency */ = {
+		B328C2428898DBDCA3EB969D0F7EF4A1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SideMenu;
 			target = C4A0A7D8591B67FB75E2E8D215E3735B /* SideMenu */;
-			targetProxy = A51EA07B19DE4E9D0F1C1BBE6B09EB8E /* PBXContainerItemProxy */;
+			targetProxy = 8B7E6C853396E05D435A2ABCCA38F602 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		2B2AEC8EF1861176FF1CBDB8B0BA9192 /* Release */ = {
+		08D3BF8681EC9DF375CEA61D569A71EB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C63B3EF082F92F5F51A9B1AADB9B32B1 /* Pods-arworldmapTests.release.xcconfig */;
+			baseConfigurationReference = E0318A3FC5392A0AC15F5BD90BF3A8C3 /* DropDown.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-arworldmapTests/Pods-arworldmapTests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-arworldmapTests/Pods-arworldmapTests.modulemap";
+				GCC_PREFIX_HEADER = "Target Support Files/DropDown/DropDown-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MODULEMAP_FILE = Headers/Public/DropDown/DropDown.modulemap;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = DropDown;
+				PRODUCT_NAME = DropDown;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -795,115 +754,75 @@
 			};
 			name = Debug;
 		};
-		46BFE2312ECDC35BEC02D94DC5B60F4C /* Release */ = {
+		2F1F26BFF223B2E5C9F5285072605877 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D927C64F4BD6EBA4845ADC731D3141E3 /* SideMenu.release.xcconfig */;
+			baseConfigurationReference = 3667D416742EF4F8450E86CB714A32EF /* DropDown.debug.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SideMenu/SideMenu-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SideMenu/SideMenu-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/SideMenu/SideMenu.modulemap";
-				PRODUCT_MODULE_NAME = SideMenu;
-				PRODUCT_NAME = SideMenu;
+				GCC_PREFIX_HEADER = "Target Support Files/DropDown/DropDown-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MODULEMAP_FILE = Headers/Public/DropDown/DropDown.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = DropDown;
+				PRODUCT_NAME = DropDown;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
-		4A56D1EBCCB00ABA957851655E068F9F /* Release */ = {
+		356FD83FA81CE49B4833CE09843E8192 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F4F3AA6464BD2068C8107B2AC8E6394E /* Pods-arworldmap-arworldmapUITests.release.xcconfig */;
+			baseConfigurationReference = E82B5AE38EBD93A6F6838EC050665FA3 /* Pods-arworldmap.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-arworldmap-arworldmapUITests/Pods-arworldmap-arworldmapUITests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-arworldmap-arworldmapUITests/Pods-arworldmap-arworldmapUITests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		556140FA396C7C929654589FC44CD445 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 73950D0C3928936EA50777862773311C /* Pods-arworldmap.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-arworldmap/Pods-arworldmap-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-arworldmap/Pods-arworldmap.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3A534141AD988CE3870BDFD0CC2222BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B86A906B76F534084646FB2DD16E6DE8 /* SideMenu.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/SideMenu/SideMenu-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MODULEMAP_FILE = Headers/Public/SideMenu/SideMenu.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = SideMenu;
+				PRODUCT_NAME = SideMenu;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -969,229 +888,150 @@
 			};
 			name = Release;
 		};
-		9E0C37648D76E361234D07CA876D0358 /* Debug */ = {
+		6FB9E4D8965B6BF479BF2C5A316F3FF1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C299BDBAF7BD5CA9144B93D1135477F /* SideMenu.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SideMenu/SideMenu-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SideMenu/SideMenu-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/SideMenu/SideMenu.modulemap";
-				PRODUCT_MODULE_NAME = SideMenu;
-				PRODUCT_NAME = SideMenu;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		A60D7F28F98CE7296773C8D09DE2F241 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 580363FE9DEE4454C0D20B60C2E4A226 /* Pods-arworldmap-arworldmapUITests.debug.xcconfig */;
+			baseConfigurationReference = BBE61DD944094E06A33EAF71B29996A4 /* Pods-arworldmapTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-arworldmap-arworldmapUITests/Pods-arworldmap-arworldmapUITests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7875332824E56039CD5B74D49178D12C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 200C5894C3B55B1E9EE28C71E3FE8EA7 /* Pods-arworldmap-arworldmapUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-arworldmap-arworldmapUITests/Pods-arworldmap-arworldmapUITests.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		C24518E891FAA59668669823639498EB /* Release */ = {
+		A7AA967552205D8A0B476E214E204492 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 80B74465B6DC70014845B523E754A309 /* DropDown.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/DropDown/DropDown-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/DropDown/DropDown-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/DropDown/DropDown.modulemap";
-				PRODUCT_MODULE_NAME = DropDown;
-				PRODUCT_NAME = DropDown;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		CE67347FDFF3260D1FC9A9AC8E7CDF99 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 28BE34F2BA571853CD5BD45617656DE0 /* Pods-arworldmapTests.debug.xcconfig */;
+			baseConfigurationReference = 9CE110F9F220B391304E8593B76E4BF2 /* Pods-arworldmap.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-arworldmapTests/Pods-arworldmapTests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-arworldmapTests/Pods-arworldmapTests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		D5C819892ED23612D5360DC64457AED3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 29611474C73DDC14A47CCC9CDF94B6E2 /* Pods-arworldmap.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-arworldmap/Pods-arworldmap-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-arworldmap/Pods-arworldmap.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
+				VALIDATE_PRODUCT = YES;
 			};
-			name = Debug;
+			name = Release;
 		};
-		E2CDE7BD114C532701D2E79C5CB4CAA8 /* Debug */ = {
+		AFFA60AB9C9A07BA71AA58A9B467981F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3A68A88CF8BCE23C5DE18F16144AD863 /* DropDown.debug.xcconfig */;
+			baseConfigurationReference = 99141094F84E3B7059848E3C1F67034F /* Pods-arworldmap-arworldmapUITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/DropDown/DropDown-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/DropDown/DropDown-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/DropDown/DropDown.modulemap";
-				PRODUCT_MODULE_NAME = DropDown;
-				PRODUCT_NAME = DropDown;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-arworldmap-arworldmapUITests/Pods-arworldmap-arworldmapUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BBABEF54C8536D7F5BEEB8259AD437CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E70C22762226D442171251F5E7BEF3B2 /* Pods-arworldmapTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F9C1E5C927A9048FB51468D820F0109B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E57352D116F57E74E1DEAA9FDC428130 /* SideMenu.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/SideMenu/SideMenu-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MODULEMAP_FILE = Headers/Public/SideMenu/SideMenu.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = SideMenu;
+				PRODUCT_NAME = SideMenu;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2668D23C670B7CBD88C79A0827A77B4B /* Build configuration list for PBXNativeTarget "Pods-arworldmapTests" */ = {
+		099DB67F5A783A853DA4DF3B94B5829C /* Build configuration list for PBXNativeTarget "Pods-arworldmapTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CE67347FDFF3260D1FC9A9AC8E7CDF99 /* Debug */,
-				2B2AEC8EF1861176FF1CBDB8B0BA9192 /* Release */,
+				6FB9E4D8965B6BF479BF2C5A316F3FF1 /* Debug */,
+				BBABEF54C8536D7F5BEEB8259AD437CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1205,38 +1045,38 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		53052E6CBA1E65D6EF818199E617AC68 /* Build configuration list for PBXNativeTarget "DropDown" */ = {
+		57D518D45FFEA70753B48B27059BE07B /* Build configuration list for PBXNativeTarget "Pods-arworldmap-arworldmapUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E2CDE7BD114C532701D2E79C5CB4CAA8 /* Debug */,
-				C24518E891FAA59668669823639498EB /* Release */,
+				7875332824E56039CD5B74D49178D12C /* Debug */,
+				AFFA60AB9C9A07BA71AA58A9B467981F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		60ACB4B5C280D3933453112CC8C6BFF2 /* Build configuration list for PBXNativeTarget "Pods-arworldmap-arworldmapUITests" */ = {
+		761E2539A135201CFF9B8D9B54871B13 /* Build configuration list for PBXNativeTarget "DropDown" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A60D7F28F98CE7296773C8D09DE2F241 /* Debug */,
-				4A56D1EBCCB00ABA957851655E068F9F /* Release */,
+				2F1F26BFF223B2E5C9F5285072605877 /* Debug */,
+				08D3BF8681EC9DF375CEA61D569A71EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A888B68ADE61603989C768AABB3D0CEB /* Build configuration list for PBXNativeTarget "Pods-arworldmap" */ = {
+		ED0C17FF61ED4FDF660C4F2F12A7242A /* Build configuration list for PBXNativeTarget "Pods-arworldmap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D5C819892ED23612D5360DC64457AED3 /* Debug */,
-				556140FA396C7C929654589FC44CD445 /* Release */,
+				356FD83FA81CE49B4833CE09843E8192 /* Debug */,
+				A7AA967552205D8A0B476E214E204492 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C4E63BB43B7167D15C142EB405422643 /* Build configuration list for PBXNativeTarget "SideMenu" */ = {
+		F7C16AB9B98398AB5F51FED9C5626C84 /* Build configuration list for PBXNativeTarget "SideMenu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9E0C37648D76E361234D07CA876D0358 /* Debug */,
-				46BFE2312ECDC35BEC02D94DC5B60F4C /* Release */,
+				F9C1E5C927A9048FB51468D820F0109B /* Debug */,
+				3A534141AD988CE3870BDFD0CC2222BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

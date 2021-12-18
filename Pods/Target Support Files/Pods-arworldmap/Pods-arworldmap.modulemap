@@ -1,4 +1,4 @@
-framework module Pods_arworldmap {
+module Pods_arworldmap {
   umbrella header "Pods-arworldmap-umbrella.h"
 
   export *

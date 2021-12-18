@@ -1,4 +1,4 @@
-framework module Pods_arworldmap_arworldmapUITests {
+module Pods_arworldmap_arworldmapUITests {
   umbrella header "Pods-arworldmap-arworldmapUITests-umbrella.h"
 
   export *
