@@ -306,144 +306,212 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     }
     
     func createCountryInfoBoard(transparentBackground: Bool)
-    {
-        let country_info = [SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode()] // common name, official name, continents, latlng, capital, population
-        let country_flag_img = SKSpriteNode()
-        
-        let spriteKitScene = SKScene(size: CGSize(width: 600, height: 1600))
-        var fontColor = UIColor.white
-        if transparentBackground{
-            spriteKitScene.backgroundColor = UIColor.clear
-            fontColor = UIColor.black
-        }
-        
-        // add images
-        country_flag_img.position = CGPoint(x: 300, y: 300) // spriteKitScene.size.width / height
-        country_flag_img.size = CGSize(width: 600, height: 600)
-        country_flag_img.yScale = -1
-        spriteKitScene.addChild(country_flag_img)
-        
-        // add country info text
-        for i in 0...5 {
-            country_info[i].position = CGPoint(x: spriteKitScene.size.width / 2.0, y: 600 + 100 + 50 * CGFloat(i))
-            country_info[i].yScale = -1
-            if (i==0) {
-                country_info[i].fontSize = 32
+        {
+            let country_info = [SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode()] // common name, official name, continents, subregion, latlng, capital, population, area
+            let country_flag_img = SKSpriteNode()
+            let country_flag_img_label = SKLabelNode(text: "National Flag")
+            let country_coatOfArms_img = SKSpriteNode()
+            let country_coatOfArms_img_label = SKLabelNode(text: "Coat of Arms")
+            
+            let spriteKitScene = SKScene(size: CGSize(width: 600, height: 750))
+            var fontColor = UIColor.white
+            if transparentBackground{
+                spriteKitScene.backgroundColor = UIColor.clear
+                fontColor = UIColor.black
             }
-            else {
-                country_info[i].fontSize = 20
+            
+            // add images
+            country_flag_img.position = CGPoint(x: spriteKitScene.size.width / 2.0, y: 150) // spriteKitScene.size.width / height
+            country_flag_img.size = CGSize(width: spriteKitScene.size.width, height: 300)
+            country_flag_img.yScale = -1
+            spriteKitScene.addChild(country_flag_img)
+            
+            country_coatOfArms_img.position = CGPoint(x: spriteKitScene.size.width / 4.0 - 25, y: 300 + 100 + 50*4) // spriteKitScene.size.width / height
+            country_coatOfArms_img.size = CGSize(width: 150, height: 150)
+            country_coatOfArms_img.yScale = -1
+            spriteKitScene.addChild(country_coatOfArms_img)
+            
+            // add image labels
+            country_flag_img_label.position = CGPoint(x: spriteKitScene.size.width / 2.0, y: 340)
+            country_flag_img_label.yScale = -1
+            country_flag_img_label.fontSize = 15
+            country_flag_img_label.fontColor = fontColor
+            country_flag_img_label.fontName = "Avenir Next"
+            // spriteKitScene.addChild(country_flag_img_label)
+            
+            country_coatOfArms_img_label.position = CGPoint(x: spriteKitScene.size.width / 4.0 - 25, y: 300 + 100 + 50*4 + 100)
+            country_coatOfArms_img_label.yScale = -1
+            country_coatOfArms_img_label.fontSize = 15
+            country_coatOfArms_img_label.fontColor = fontColor
+            country_coatOfArms_img_label.fontName = "Avenir Next"
+            spriteKitScene.addChild(country_coatOfArms_img_label)
+            
+            // add country info text
+            for i in 0...7 {
+                if (i>=4) {
+                    country_info[i].position = CGPoint(x: spriteKitScene.size.width / 4.0 * 2.7, y: 300 + 50 + 50 * CGFloat(i))
+                }
+                else {
+                    country_info[i].position = CGPoint(x: spriteKitScene.size.width / 2.0, y: 300 + 50 + 50 * CGFloat(i))
+                }
+                
+                country_info[i].yScale = -1
+                if (i==0) {
+                    country_info[i].fontSize = 32
+                }
+                else {
+                    country_info[i].fontSize = 20
+                }
+                country_info[i].fontColor = fontColor
+                country_info[i].fontName = "Avenir Next"
+                spriteKitScene.addChild(country_info[i])
             }
-            country_info[i].fontColor = fontColor
-            country_info[i].fontName = "Avenir Next"
-            spriteKitScene.addChild(country_info[i])
+            
+            let background = SCNPlane(width: CGFloat(2), height: CGFloat(2.5))
+            background.firstMaterial?.diffuse.contents = spriteKitScene
+            countryInfoBoard = SCNNode(geometry: background)
+            countryInfoBoard.position = SCNVector3(-3,0,5.5)
+            countryInfoBoard.eulerAngles = SCNVector3(0, -1.2 * Double.pi, 0)
+            scene.rootNode.addChildNode(countryInfoBoard)
+            getCountryInfo(country: "australia", infotexts: country_info, img1: country_flag_img, img2: country_coatOfArms_img) // australia / Malta / bosnia%20and%20herzegovina
         }
         
-        let background = SCNPlane(width: CGFloat(2), height: CGFloat(3))
-        background.firstMaterial?.diffuse.contents = spriteKitScene
-        countryInfoBoard = SCNNode(geometry: background)
-        countryInfoBoard.position = SCNVector3(-3,0,5.5)
-        countryInfoBoard.eulerAngles = SCNVector3(0, -1.2 * Double.pi, 0)
-        anchorNode.addChildNode(countryInfoBoard)
-        getCountryInfo(country: "australia", infotexts: country_info, img: country_flag_img)
-    }
-    
-    func getCountryInfo(country: String, infotexts: [SKLabelNode], img: SKSpriteNode){
-        let infoEndpoint = "https://restcountries.com/v3.1/name/\(country)"
-        
-        guard let url = URL(string: infoEndpoint) else {
-            print("Error: cannot create URL")
-            return
-        }
-        
-        let urlRequest = URLRequest(url: url)
-        let session = URLSession.shared
-        let task = session.dataTask(with: urlRequest) {
-            (data, response, error) in
-            guard error == nil else {
-                print("error calling GET")
-                print(error!)
+        func getCountryInfo(country: String, infotexts: [SKLabelNode], img1: SKSpriteNode, img2: SKSpriteNode){
+            let infoEndpoint = "https://restcountries.com/v3.1/name/\(country)"
+            
+            guard let url = URL(string: infoEndpoint) else {
+                print("Error: cannot create URL")
                 return
             }
-            guard let responseData = data else {
-                print("Error: did not receive data")
-                return
-            }
-            do {
-                guard let data_retrieve = try JSONSerialization.jsonObject(with: responseData, options: [])
-                    as? [[String: Any]] else {
-                        print("error trying to convert data to JSON")
+            
+            let urlRequest = URLRequest(url: url)
+            let session = URLSession.shared
+            let task = session.dataTask(with: urlRequest) {
+                (data, response, error) in
+                guard error == nil else {
+                    print("error calling GET")
+                    print(error!)
+                    return
+                }
+                guard let responseData = data else {
+                    print("Error: did not receive data")
+                    return
+                }
+                do {
+                    guard let data_retrieve = try JSONSerialization.jsonObject(with: responseData, options: [])
+                        as? [[String: Any]] else {
+                            print("error trying to convert data to JSON")
+                            return
+                    }
+
+                    var data = data_retrieve[0]
+                    
+                    for index in 0..<data_retrieve.count {
+                        data = data_retrieve[index]
+                        guard let countryName = data["name"] as? [String: Any] else {
+                            print("Could not get country name from JSON")
+                            return
+                        }
+                        let text = countryName["common"] as? String
+                        if country.compare(text ?? "None", options: .caseInsensitive) == .orderedSame {
+                            break
+                        }
+                    }
+                    
+                    // common name, official name, continents, subregion, latlng, capital, population, area
+                    
+                    guard let countryName = data["name"] as? [String: Any] else {
+                        print("Could not get country name from JSON")
                         return
-                }
-                let data = data_retrieve[0]
-                
-                // common name, official name, continents, latlng, capital, population
-                
-                guard let countryName = data["name"] as? [String: Any] else {
-                    print("Could not get country name from JSON")
+                    }
+                    
+                    infotexts[0].text = countryName["common"] as? String
+                    infotexts[1].text = "Official Name:  \(countryName["official"] ?? "None")"
+                    
+                    guard let countryContinent = data["continents"] as? [String] else {
+                        print("Could not get country continents from JSON")
+                        return
+                    }
+                    infotexts[2].text = "Continent: \(countryContinent[0])"
+                    
+                    guard let countryLatLon = data["latlng"] as? [Double] else {
+                        print("Could not get country latlon from JSON")
+                        return
+                    }
+                    infotexts[4].text = "Latitude: " + String(format: "%.2f", countryLatLon[0]) + "  Longitude: " + String(format: "%.2f", countryLatLon[1])
+                    
+                    
+                    guard let countryCaptial = data["capital"] as? [String] else {
+                        print("Could not get country capital from JSON")
+                        return
+                    }
+                    infotexts[5].text = "Captial: \(countryCaptial[0])"
+                    
+                    guard let countryPopulation = data["population"] as? Int else {
+                        print("Could not get country population from JSON")
+                        return
+                    }
+                    infotexts[6].text = "Population: \(countryPopulation)"
+                    
+                    guard let countryArea = data["area"] as? Double else {
+                        print("Could not get country area from JSON")
+                        return
+                    }
+                    infotexts[7].text = "Area: " + String(format: "%.1f", countryArea)
+                    
+                    guard let countrySubregion = data["subregion"] as? String else {
+                        print("Could not get country subregion from JSON")
+                        return
+                    }
+                    infotexts[3].text = "Subregion: \(countrySubregion)"
+                    
+                    guard let countryFlagImg = data["flags"] as? [String: Any] else {
+                        print("Could not get country flag image from JSON")
+                        return
+                    }
+                    
+                    guard let img_url_1 = countryFlagImg["png"] as? String else {
+                        print("Could not get country image url from JSON")
+                        return
+                    }
+                    
+                    self.load_country_img(urlString: img_url_1, img: img1)
+                    
+                    guard let countryCoatOfArmsImg = data["coatOfArms"] as? [String: Any] else {
+                        print("Could not get country flag image from JSON")
+                        return
+                    }
+                    
+                    guard let img_url_2 = countryCoatOfArmsImg["png"] as? String else {
+                        print("Could not get country image url from JSON")
+                        return
+                    }
+                    
+                    self.load_country_img(urlString: img_url_2, img: img2)
+                    
+                } catch  {
+                    print("error trying to convert data to JSON")
                     return
                 }
-                
-                infotexts[0].text = countryName["common"] as? String
-                infotexts[1].text = "Official Name:  \(countryName["official"])"
-                
-                guard let countryContinent = data["continents"] as? [String] else {
-                    print("Could not get country continents from JSON")
-                    return
-                }
-                infotexts[2].text = "Continent: \(countryContinent[0])"
-                
-                guard let countryLatLon = data["latlng"] as? [Float] else {
-                    print("Could not get country latlon from JSON")
-                    return
-                }
-                infotexts[3].text = "Latitude: \(countryLatLon[0]) " + " Longitude: \(countryLatLon[1])"
-                
-                guard let countryCaptial = data["capital"] as? [String] else {
-                    print("Could not get country capital from JSON")
-                    return
-                }
-                infotexts[4].text = "Captial: \(countryCaptial[0])"
-                
-                guard let countryPopulation = data["population"] as? Int else {
-                    print("Could not get country population from JSON")
-                    return
-                }
-                infotexts[5].text = "Population: \(countryPopulation)"
-                
-                guard let countryFlagImg = data["flags"] as? [String: Any] else {
-                    print("Could not get country flag image from JSON")
-                    return
-                }
-                
-                guard let img_url = countryFlagImg["png"] as? String else {
-                    print("Could not get country image url from JSON")
-                    return
-                }
-                self.load_country_img(urlString: img_url, img: img)
-                
-            } catch  {
-                print("error trying to convert data to JSON")
+            }
+            task.resume()
+        }
+        
+        func load_country_img(urlString : String, img: SKSpriteNode) {
+            guard let url = URL(string: urlString)else {
                 return
             }
-        }
-        task.resume()
-    }
-        
-    func load_country_img(urlString : String, img: SKSpriteNode) {
-        guard let url = URL(string: urlString)else {
-            return
-        }
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        img.texture = SKTexture(image: image)
-                        print("Loaded country img!")
+            DispatchQueue.global().async { [weak self] in
+                if let data = try? Data(contentsOf: url) {
+                    if let image = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            img.texture = SKTexture(image: image)
+                            print("Loaded country img!")
+                        }
                     }
                 }
             }
         }
-    }
     
     func createPlaceMarkerNode(pos: SCNVector3, title: String)
     {
