@@ -26,6 +26,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     var markersAnchorNode = SCNNode()
     var didFindLocation = false
     
+    // dictionary containing center lat & lon of countries
+    var countryLatLonDict: [String: simd_double2] = [:]
+    
+    // dictionary containing center position of countries
+    var countryCenterDict: [String: simd_double3] = [:]
+    var lastCountry = ""
+    
     var curLatitude = 0.0
     var curLongitude = 0.0
     
@@ -604,6 +611,57 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         scene.rootNode.addChildNode(boxNode)
     }
     
+    func calculateCountryCenterPositions()
+    {
+        for (key, val) in countryLatLonDict {
+            let pos = coordinateTransform(selfLat: curLatitude, selfLon: curLongitude, countryLat: val.x, countryLon: val.y)
+            countryCenterDict[key] = simd_double3(Double(pos.x), Double(pos.y), Double(pos.z))
+        }
+    }
+    
+    func getNearestCountryName(intersect_pos: simd_double3) -> String
+    {
+        var minDist = 10.0
+        var name = ""
+        for (key, val) in countryCenterDict {
+            let dist = distance(intersect_pos, val)
+            if (dist < minDist)
+            {
+                minDist = dist
+                name = key
+            }
+        }
+        return name
+    }
+    
+    func updatePlaceMarkers(intersect_pos: simd_double3, dist_threshold: Double)
+    {
+        markersAnchorNode.enumerateChildNodes { (node, stop) in
+            node.removeFromParentNode()
+        }
+        
+        for (key, val) in countryCenterDict {
+            let dist = distance(intersect_pos, val)
+            if (dist < dist_threshold)
+            {
+                guard let latlon = countryLatLonDict[key] else {
+                    print("why it has center position but doesn't have lat and lon info, any way swift force me to do this")
+                    return
+                }
+                createPlaceMarkerNode(lat: latlon.x, lon: latlon.y, title: key)
+            }
+        }
+    }
+    
+    func changeSphereTexture(countryName: String)
+    {
+//        let sphereMaterial = SCNMaterial()
+//        sphereMaterial.diffuse.contents = UIImage(named:"art.scnassets/\(countryName).png")
+//        sphereMaterial.isDoubleSided = true
+//        sphereMaterial.transparency = 1.0
+//        self.sphereNode.geometry?.materials = [sphereMaterial]
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -626,10 +684,18 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         let c = cameraDirection.z
         let x = -2 * b / (a * a + b * b + c * c)
         let intersect_pos = simd_double3(a * x, b * x, c * x)
-//        if(dot(intersect_pos, cameraDirection) > 0)
-//        {
-//            print(intersect_pos)
-//        }
+        let curCountry = ""// get nearest country name
+        if(dot(intersect_pos, cameraDirection) > 0)
+        {
+            if(lastCountry != curCountry)
+            {
+                // trigger update of map and markers
+//                self.changeSphereTexture(countryName: curCountry)
+//                self.updatePlaceMarkers(intersect_pos: intersect_pos, dist_threshold: 0.1)
+                
+                lastCountry = curCountry
+            }
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
