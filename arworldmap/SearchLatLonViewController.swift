@@ -1,5 +1,5 @@
 //
-//  SettingsViewController.swift
+//  SearchLatLonViewController.swift
 //  arworldmap
 //
 //
@@ -10,7 +10,7 @@ import ARKit
 import AVFoundation
 import CoreLocation
 
-class SettingsViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDelegate, ARSessionDelegate, CLLocationManagerDelegate, UITextFieldDelegate{
+class SearchLatLonViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDelegate, ARSessionDelegate, CLLocationManagerDelegate, UITextFieldDelegate{
     
     var searchView: ARSCNView!
     

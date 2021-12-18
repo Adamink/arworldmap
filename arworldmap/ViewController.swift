@@ -28,8 +28,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     
     private var sideMenu: SideMenuNavigationController?
     
-    private let settingsController = SettingsViewController()
-    private let infoController = InfoViewController()
+    private let searchLatLonController = SearchLatLonViewController()
+    private let dropDownController = DropDownViewController()
     
     var searchButton = UIButton()
                                                             
@@ -79,19 +79,19 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
 //            }
             
             if named == "Discover" {
-                self?.settingsController.view.isHidden = true
-                self?.infoController.view.isHidden = true
+                self?.searchLatLonController.view.isHidden = true
+                self?.dropDownController.view.isHidden = true
                 self!.addDiscoverButton()
             }
             else if named == "Search Country" {
                 self?.searchButton.removeFromSuperview()
-                self?.settingsController.view.isHidden = true
-                self?.infoController.view.isHidden = false
+                self?.searchLatLonController.view.isHidden = true
+                self?.dropDownController.view.isHidden = false
             }
             else if named == "Search Position" {
                 self?.searchButton.removeFromSuperview()
-                self?.settingsController.view.isHidden = false
-                self?.infoController.view.isHidden = true
+                self?.searchLatLonController.view.isHidden = false
+                self?.dropDownController.view.isHidden = true
             }
         })
         
@@ -102,23 +102,23 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     }
     
     private func addChildControllers() {
-        addChild(self.settingsController)
-        addChild(self.infoController)
+        addChild(self.searchLatLonController)
+        addChild(self.dropDownController)
         
-        view.addSubview(settingsController.view)
-        view.addSubview(infoController.view)
+        view.addSubview(searchLatLonController.view)
+        view.addSubview(dropDownController.view)
         
-//        settingsController.view.frame = view.bounds
-//        infoController.view.frame = view.bounds
+//        searchLatLonController.view.frame = view.bounds
+//        dropDownController.view.frame = view.bounds
         
-        settingsController.didMove(toParent: self)
-        infoController.didMove(toParent: self)
+        searchLatLonController.didMove(toParent: self)
+        dropDownController.didMove(toParent: self)
         
-        settingsController.view.isHidden = true
-        infoController.view.isHidden = true
+        searchLatLonController.view.isHidden = true
+        dropDownController.view.isHidden = true
         
-        infoController.sceneInfo = self.scene
-        settingsController.sceneSetting = self.scene
+        dropDownController.sceneInfo = self.scene
+        searchLatLonController.sceneSetting = self.scene
     }
     
     func addDiscoverButton(){
@@ -372,7 +372,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
             countryInfoBoard = SCNNode(geometry: background)
             countryInfoBoard.position = SCNVector3(-3,0,5.5)
             countryInfoBoard.eulerAngles = SCNVector3(0, -1.2 * Double.pi, 0)
-            scene.rootNode.addChildNode(countryInfoBoard)
+            anchorNode.addChildNode(countryInfoBoard)
             getCountryInfo(country: "australia", infotexts: country_info, img1: country_flag_img, img2: country_coatOfArms_img) // australia / Malta / bosnia%20and%20herzegovina
         }
         

@@ -1,5 +1,5 @@
 //
-//  InfoViewController.swift
+//  DropDownViewController.swift
 //  arworldmap
 //
 //
@@ -11,7 +11,7 @@ import AVFoundation
 import CoreLocation
 import DropDown
 
-class InfoViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDelegate, ARSessionDelegate, CLLocationManagerDelegate{
+class DropDownViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDelegate, ARSessionDelegate, CLLocationManagerDelegate{
     
     var searchView: ARSCNView!
     
