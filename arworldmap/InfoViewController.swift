@@ -50,17 +50,19 @@ class InfoViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererD
                     cell.optionLabel.textAlignment = .center
         } // center text
         
-        dropDown.dataSource = ["China", "Switzerland", "America", "Australia"]
+//        dropDown.dataSource = ["China", "Switzerland", "America", "Australia"]
         
-        let countries = NSLocale.isoCountryCodes.map { (code:String) -> String in
-            let id = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
-            return NSLocale(localeIdentifier: "en_US").displayName(forKey: NSLocale.Key.identifier, value: id) ?? "Country not found for code: \(code)"
-        }
+//        let countries = NSLocale.isoCountryCodes.map { (code:String) -> String in
+//            let id = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
+//            return NSLocale(localeIdentifier: "en_US").displayName(forKey: NSLocale.Key.identifier, value: id) ?? "Country not found for code: \(code)"
+//        }
+        
+        let countries = countryNames
 
         print(countries)
         print(countries.count) // 256
         
-         dropDown.dataSource = countries
+        dropDown.dataSource = countries
         
         // hard code position
         // opposite side of the globe
