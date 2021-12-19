@@ -21,6 +21,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     var scene =  SCNScene()
     var newsBoard = SCNNode()
     var countryInfoBoard = SCNNode()
+    var videoSpriteKitNode = SKVideoNode()
     var videoBoard = SCNNode()
     var anchorNode = SCNNode()
     var sphereNode = SCNNode()
@@ -216,33 +217,32 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     func enterDiscover(countryName: String, pos: SCNVector3)
     {
         self.scene.rootNode.addChildNode(anchorNode)
-        createVideoBoard(position: pos)
         createNewsBoard(transparentBackground: false, country: countryName, position: pos)
         createCountryInfoBoard(transparentBackground: false, country: countryName, position: pos)
         markersAnchorNode.enumerateChildNodes { (node, stop) in
             node.removeFromParentNode()
         }
-//        createVideoBoard()
+        if(countryName == "Japan" || countryName == "Canada" || countryName == "Australia")
+        {
+            createVideoBoard(countryName: countryName, position: pos)
+        }
     }
     
     func exitDiscover()
     {
         anchorNode.enumerateChildNodes { (node, stop) in
-                    node.removeFromParentNode()
-                }
+            node.removeFromParentNode()
+        }
         anchorNode.removeFromParentNode()
+        videoSpriteKitNode.pause()
     }
     
-    func createVideoBoard(position: SCNVector3)
+    func createVideoBoard(countryName: String, position: SCNVector3)
     {
         let spriteKitScene = SKScene(size: CGSize(width: sceneView.frame.width, height: sceneView.frame.height))
         spriteKitScene.scaleMode = .aspectFit
-//        guard let url = URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4") else { return }
-//
-        // Create an AVPlayer, passing it the HTTP Live Streaming URL.
-//        let player = AVPlayer(url: url)
-        
-        let videoSpriteKitNode = SKVideoNode(fileNamed: "australia.mp4")
+
+        videoSpriteKitNode = SKVideoNode(fileNamed: "\(countryName).mp4")
 //        let videoSpriteKitNode = SKVideoNode(avPlayer: player)
         videoSpriteKitNode.position = CGPoint(x: spriteKitScene.size.width / 2.0, y: spriteKitScene.size.height / 2.0)
         videoSpriteKitNode.size = spriteKitScene.size
@@ -746,7 +746,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     func createSphereNode(pos: SCNVector3, selfLat: CLLocationDegrees, selfLon: CLLocationDegrees){
         let sphere = SCNSphere(radius: 1.0)
         let sphereMaterial = SCNMaterial()
-        sphereMaterial.diffuse.contents = UIImage(named:"art.scnassets/earth_1620_810.png")
+        sphereMaterial.diffuse.contents = UIImage(named:"art.scnassets/earth.jpeg")
         sphereMaterial.isDoubleSided = true
         sphereMaterial.transparency = 1.0
         sphere.materials = [sphereMaterial]
