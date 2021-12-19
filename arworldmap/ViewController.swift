@@ -694,7 +694,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     func createSphereNode(pos: SCNVector3, selfLat: CLLocationDegrees, selfLon: CLLocationDegrees){
         let sphere = SCNSphere(radius: 1.0)
         let sphereMaterial = SCNMaterial()
-        sphereMaterial.diffuse.contents = UIImage(named:"art.scnassets/earth_1620_810.png")
+        sphereMaterial.diffuse.contents = UIImage(named:"art.scnassets/earth.jpeg")
         sphereMaterial.isDoubleSided = true
         sphereMaterial.transparency = 1.0
         sphere.materials = [sphereMaterial]
