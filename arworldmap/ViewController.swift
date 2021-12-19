@@ -201,7 +201,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         if (searchButton.titleLabel?.text == "Discover") {
             print("Touch search button")
             // todo: set the board at the right position and direction
-            enterDiscover(countryName: lastCountry, pos: SCNVector3(0,0,0))
+            enterDiscover(countryName: lastCountry, pos: SCNVector3(countryCenterDict[lastCountry]![0], countryCenterDict[lastCountry]![1], countryCenterDict[lastCountry]![2]))
             discoverPaused = true
             searchButton.setTitle("Back", for: .normal)
         }
@@ -216,9 +216,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     func enterDiscover(countryName: String, pos: SCNVector3)
     {
         self.scene.rootNode.addChildNode(anchorNode)
-        // todo: api seems not to be very reliable; delays except for the first query
-        createNewsBoard(transparentBackground: false, country: countryName)
-        createCountryInfoBoard(transparentBackground: false, country: countryName)
+        createVideoBoard(position: pos)
+        createNewsBoard(transparentBackground: false, country: countryName, position: pos)
+        createCountryInfoBoard(transparentBackground: false, country: countryName, position: pos)
         markersAnchorNode.enumerateChildNodes { (node, stop) in
             node.removeFromParentNode()
         }
@@ -233,7 +233,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         anchorNode.removeFromParentNode()
     }
     
-    func createVideoBoard()
+    func createVideoBoard(position: SCNVector3)
     {
         let spriteKitScene = SKScene(size: CGSize(width: sceneView.frame.width, height: sceneView.frame.height))
         spriteKitScene.scaleMode = .aspectFit
@@ -252,13 +252,29 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         let background = SCNPlane(width: CGFloat(1.6), height: CGFloat(0.9))
         background.firstMaterial?.diffuse.contents = spriteKitScene
         videoBoard = SCNNode(geometry: background)
-        videoBoard.position = SCNVector3(2,0,0)
-        videoBoard.eulerAngles = SCNVector3(0, -0.4 * Double.pi, 0)
+        // calculate angle between (x, z) and (-0.9894, -0.1447)
+        var x = position.x
+        var z = position.z
+        let len = (x*x + z*z).squareRoot()
+        x = x / len
+        z = z / len
+        var theta = acos(x * -0.995 + z * -0.0999) // -0.9894 -0.1447
+        if (-0.995 * z + 0.0999 * x > 0) {
+            theta = 2.0 * Float.pi - theta
+        }
+        let boardPosition = SCNVector3(2 * sin(theta), 0.2, 2 * cos(theta))
+        print("videoBoard input position: \(position)")
+        videoBoard.position = boardPosition
+        // videoBoard.eulerAngles = SCNVector3(0, -0.4 * Double.pi, 0)
+        let angle = (Float.pi + theta)/2
+        let s = sin(angle)
+        let c = cos(angle)
+        videoBoard.rotate(by: SCNQuaternion(x: 0, y: Float(s), z: 0, w: Float(c)), aroundTarget: boardPosition)
         anchorNode.addChildNode(videoBoard)
     }
         
     //    func createNewsBoard(pos: SCNVector3, eulerAngles: SCNVector3, country: String)
-    func createNewsBoard(transparentBackground: Bool, country: String)
+    func createNewsBoard(transparentBackground: Bool, country: String, position: SCNVector3)
     {
         let headlines = [SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode()]
         let news_images = [SKSpriteNode(), SKSpriteNode(), SKSpriteNode(), SKSpriteNode()]
@@ -298,9 +314,27 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         
         let background = SCNPlane(width: CGFloat(8), height: CGFloat(3))
         background.firstMaterial?.diffuse.contents = spriteKitScene
+        // background.firstMaterial?.isDoubleSided = true
         newsBoard = SCNNode(geometry: background)
-        newsBoard.position = SCNVector3(2,0,5)
-        newsBoard.eulerAngles = SCNVector3(0, -0.9 * Double.pi, 0)
+        // calculate angle between (x, z) and (-0.487, 0.873)
+        var x = position.x
+        var z = position.z
+        let len = (x*x + z*z).squareRoot()
+        x = x / len
+        z = z / len
+        var theta = acos(x * -0.487 + z * 0.873)
+        if (-0.487 * z - 0.873 * x > 0) {
+            theta = 2.0 * Float.pi - theta
+        }
+        let boardPosition = SCNVector3(5.385 * sin(theta), 0.5, 5.385 * cos(theta))
+        
+        // print("countryNewsBoard input position: \(position)")
+        newsBoard.position = boardPosition
+        // newsBoard.eulerAngles = SCNVector3(0, -0.9 * Double.pi, 0)
+        let angle = (Float.pi + theta)/2
+        let s = sin(angle)
+        let c = cos(angle)
+        newsBoard.rotate(by: SCNQuaternion(x: 0, y: Float(s), z: 0, w: Float(c)), aroundTarget: boardPosition)
         anchorNode.addChildNode(newsBoard)
         getHeadlines(country: country, headlines: headlines, imgs: news_images)
     }
@@ -376,7 +410,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         }
     }
     
-    func createCountryInfoBoard(transparentBackground: Bool, country: String)
+    func createCountryInfoBoard(transparentBackground: Bool, country: String, position: SCNVector3)
         {
             let country_info = [SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode(), SKLabelNode()] // common name, official name, continents, subregion, latlng, capital, population, area
             let country_flag_img = SKSpriteNode()
@@ -440,9 +474,28 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
             
             let background = SCNPlane(width: CGFloat(2), height: CGFloat(2.5))
             background.firstMaterial?.diffuse.contents = spriteKitScene
+            // background.firstMaterial?.isDoubleSided = true
             countryInfoBoard = SCNNode(geometry: background)
-            countryInfoBoard.position = SCNVector3(-3,0,5.5)
-            countryInfoBoard.eulerAngles = SCNVector3(0, -1.2 * Double.pi, 0)
+            // calculate angle between (x, z) and (0.3352, 0.9421)
+            var x = position.x
+            var z = position.z
+            let len = (x*x + z*z).squareRoot()
+            x = x / len
+            z = z / len
+            var theta = acos(x * 0.3352 + z * 0.9421)
+            if (0.3352 * z - 0.9421 * x > 0) {
+                theta = 2.0 * Float.pi - theta
+            }
+            let boardPosition = SCNVector3(6.27 * sin(theta), 0.5, 6.27 * cos(theta))
+            
+            countryInfoBoard.position = boardPosition // SCNVector3(-3,0,5.5)
+            // print("countryInfoBoard input position: \(position)")
+            // countryInfoBoard.eulerAngles = SCNVector3(0, -1.2 * Double.pi, 0)
+            let angle = (Float.pi + theta)/2
+            let s = sin(angle)
+            let c = cos(angle)
+            countryInfoBoard.rotate(by: SCNQuaternion(x: 0, y: Float(s), z: 0, w: Float(c)), aroundTarget: boardPosition)
+            // print("countryInfoBoard rotation: \(countryInfoBoard.eulerAngles)")
             anchorNode.addChildNode(countryInfoBoard)
             getCountryInfo(country: country, infotexts: country_info, img1: country_flag_img, img2: country_coatOfArms_img) // australia / Malta / bosnia%20and%20herzegovina
         }
@@ -900,7 +953,7 @@ extension ViewController: CLLocationManagerDelegate{
             // Just some test text
 //            self.createTextNode(title: "lat:\(location.latitude)", size: 1.8, x: 0, y: 9, z: 50)
 //            self.createTextNode(title: "lon:\(location.longitude)", size: 1.8, x: 0, y: 6, z: 50)
-//            self.createTextNode(title: "north", size: 1.8, x: 0, y: 0, z: 50)
+//            self.createTextNode(title: "north", size: 1.8, x: 50, y: 0, z: 50)
 //
 //            // hard code position
 //            // opposite side of the globe
