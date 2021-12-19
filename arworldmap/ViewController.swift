@@ -695,13 +695,16 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         return name
     }
     
-    func updatePlaceMarkers(intersect_pos: simd_double3, dist_threshold: Double)
+    func updatePlaceMarkersThreshold(intersect_pos: simd_double3, dist_threshold: Double, current_country : String)
     {
         markersAnchorNode.enumerateChildNodes { (node, stop) in
             node.removeFromParentNode()
         }
         
         for (key, val) in countryCenterDict {
+            if (key == current_country) {
+                continue
+            }
             let dist = distance(intersect_pos, val)
 //            print(key, dist)
             if (dist < dist_threshold)
@@ -712,6 +715,49 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
                 }
                 createPlaceMarkerNode(lat: latlon.x, lon: latlon.y, title: key)
             }
+        }
+    }
+    
+    func updatePlaceMarkersNumber(intersect_pos: simd_double3, number: Int, current_country : String)
+    {
+        markersAnchorNode.enumerateChildNodes { (node, stop) in
+            node.removeFromParentNode()
+        }
+        
+        var countryDistanceDict: [Double : String] = [:]
+        
+        for (key, val) in countryCenterDict {
+            if (key == current_country) {
+                continue
+            }
+            let dist = distance(intersect_pos, val)
+            
+            if (countryDistanceDict.count < number)
+            {
+                countryDistanceDict[dist] = key
+            }
+            else {
+//                let index = countryDistanceDict.index(countryDistanceDict.startIndex, offsetBy: number-1) // max element
+//                let maxVal = countryDistanceDict.keys[index]
+                var maxVal = -1.0
+                for (distKey, _) in countryDistanceDict {
+                    if (maxVal < distKey) {
+                        maxVal = distKey
+                    }
+                }
+                if (maxVal > dist) {
+                    countryDistanceDict.removeValue(forKey: maxVal)
+                    countryDistanceDict[dist] = key
+                }
+            }
+        }
+        
+        for (_, val) in countryDistanceDict {
+            guard let latlon = countryLatLonDict[val] else {
+                print("why it has center position but doesn't have lat and lon info, any way swift force me to do this")
+                return
+            }
+            createPlaceMarkerNode(lat: latlon.x, lon: latlon.y, title: val)
         }
     }
     
@@ -745,7 +791,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
             let c = cameraDirection.z
             let x = -2 * b / (a * a + b * b + c * c)
             let intersect_pos = simd_double3(a * x, b * x, c * x)
-            let curCountry = getNearestCountryName(intersect_pos: intersect_pos)
+            let curCountry = self.getNearestCountryName(intersect_pos: intersect_pos)
             if(dot(intersect_pos, cameraDirection) > 0)
             {
                 if(lastCountry != curCountry)
@@ -753,10 +799,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
                     // trigger update of map and markers
                     self.changeSphereTexture(countryName: curCountry)
                     let latlon = countryLatLonDict[curCountry]
-                    createCurCountryPlaceMarkerNode(lat: latlon!.x, lon: latlon!.y, title: curCountry)
+                    self.createCurCountryPlaceMarkerNode(lat: latlon!.x, lon: latlon!.y, title: curCountry)
                     lastCountry = curCountry
                 }
-                self.updatePlaceMarkers(intersect_pos: intersect_pos, dist_threshold: 0.5)
+                // self.updatePlaceMarkersThreshold(intersect_pos: intersect_pos, dist_threshold: 0.05, current_country: curCountry)
+                self.updatePlaceMarkersNumber(intersect_pos: intersect_pos, number: 5, current_country: curCountry)
             }
         }
     }
