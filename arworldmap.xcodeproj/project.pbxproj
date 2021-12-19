@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25541243276F9684008F9DB2 /* Canada.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 25541242276F9684008F9DB2 /* Canada.mp4 */; };
+		25541245276F96AA008F9DB2 /* Japan.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 25541244276F96AA008F9DB2 /* Japan.mp4 */; };
+		25541247276F96C7008F9DB2 /* Australia.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 25541246276F96C7008F9DB2 /* Australia.mp4 */; };
 		25C6CF182736B35900963586 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6CF172736B35900963586 /* AppDelegate.swift */; };
 		25C6CF1A2736B35900963586 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 25C6CF192736B35900963586 /* art.scnassets */; };
 		25C6CF1C2736B35900963586 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6CF1B2736B35900963586 /* ViewController.swift */; };
@@ -46,6 +49,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		25541242276F9684008F9DB2 /* Canada.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Canada.mp4; sourceTree = "<group>"; };
+		25541244276F96AA008F9DB2 /* Japan.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Japan.mp4; sourceTree = "<group>"; };
+		25541246276F96C7008F9DB2 /* Australia.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Australia.mp4; sourceTree = "<group>"; };
 		25C6CF142736B35900963586 /* arworldmap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = arworldmap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25C6CF172736B35900963586 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25C6CF192736B35900963586 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -130,6 +136,9 @@
 		25C6CF162736B35900963586 /* arworldmap */ = {
 			isa = PBXGroup;
 			children = (
+				25541246276F96C7008F9DB2 /* Australia.mp4 */,
+				25541244276F96AA008F9DB2 /* Japan.mp4 */,
+				25541242276F9684008F9DB2 /* Canada.mp4 */,
 				D0D9452B276E6991001F9538 /* CountryShapeLoader.swift */,
 				D0D9452C276E6991001F9538 /* DropDownViewController.swift */,
 				D0D9452A276E6991001F9538 /* SearchLatLonViewController.swift */,
@@ -298,8 +307,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				25C6CF1A2736B35900963586 /* art.scnassets in Resources */,
+				25541247276F96C7008F9DB2 /* Australia.mp4 in Resources */,
 				25C6CF242736B35900963586 /* LaunchScreen.storyboard in Resources */,
+				25541243276F9684008F9DB2 /* Canada.mp4 in Resources */,
 				25C6CF212736B35900963586 /* Assets.xcassets in Resources */,
+				25541245276F96AA008F9DB2 /* Japan.mp4 in Resources */,
 				25C6CF1F2736B35900963586 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
