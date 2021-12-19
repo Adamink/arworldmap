@@ -107,12 +107,22 @@ class DropDownViewController: UIViewController, ARSCNViewDelegate, SCNSceneRende
         }
         else if (searchButton.titleLabel?.text == "Back"){
             searchButton.setTitle("Search Country", for: .normal)
+            markersAnchorNode.enumerateChildNodes { (node, stop) in
+                node.removeFromParentNode()
+            }
+            makeSphereTransparent()
         }
     }
     
     func changeSphereTexture(countryName: String)
     {
         let mask_file = "art.scnassets/country_shape_masks_alpha/" + countryName + ".png"
+        sphereNode.geometry?.firstMaterial?.transparent.contents = UIImage(named: mask_file)
+    }
+    
+    func makeSphereTransparent()
+    {
+        let mask_file = "art.scnassets/totallyTransparentSphere.png"
         sphereNode.geometry?.firstMaterial?.transparent.contents = UIImage(named: mask_file)
     }
     

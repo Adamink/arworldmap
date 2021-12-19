@@ -118,15 +118,19 @@ class SearchLatLonViewController: UIViewController, ARSCNViewDelegate, SCNSceneR
             getCountry(lat: latitudeCountry, lon: longitudeCountry)
             latitudeField.removeFromSuperview()
             longitudeField.removeFromSuperview()
-//            self.sceneSetting.rootNode.addChildNode(anchorNode)
+            self.view.addSubview(countryField)
             searchButton.setTitle("Back", for: .normal)
             
         }
         else if (searchButton.titleLabel?.text == "Back") {
             self.view.addSubview(latitudeField)
             self.view.addSubview(longitudeField)
-//            anchorNode.removeFromParentNode()
+            countryField.removeFromSuperview()
             searchButton.setTitle("Search Position", for: .normal)
+            markersAnchorNode.enumerateChildNodes { (node, stop) in
+                node.removeFromParentNode()
+            }
+            makeSphereTransparent()
         }
     }
     
@@ -184,6 +188,12 @@ class SearchLatLonViewController: UIViewController, ARSCNViewDelegate, SCNSceneR
     func changeSphereTexture(countryName: String)
     {
         let mask_file = "art.scnassets/country_shape_masks_alpha/" + countryName + ".png"
+        sphereNode.geometry?.firstMaterial?.transparent.contents = UIImage(named: mask_file)
+    }
+    
+    func makeSphereTransparent()
+    {
+        let mask_file = "art.scnassets/totallyTransparentSphere.png"
         sphereNode.geometry?.firstMaterial?.transparent.contents = UIImage(named: mask_file)
     }
     
