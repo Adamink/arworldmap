@@ -315,14 +315,18 @@ class SearchLatLonViewController: UIViewController, ARSCNViewDelegate, SCNSceneR
         backgroundNode.position.y = pos.y * 0.5
         backgroundNode.position.z = pos.z * 0.5
         
-        let pos_normalized = -normalize(simd_double3(Double(pos.x), Double(pos.y), Double(pos.z)))
-        let z = simd_double3(0, 0, 1)
-        let half_vec = normalize((z + pos_normalized) / 2)
-        let angle = acos(half_vec.z)
-        let s = sin(angle)
-        let axis = normalize(cross(z, half_vec))
-        
-        backgroundNode.rotate(by: SCNQuaternion(x: Float(s * axis.x), y: Float(s * axis.y), z: Float(s * axis.z), w: Float(half_vec.z)), aroundTarget: backgroundNode.position)
+        // calculate eulerAngle
+        let planeDir = -simd_normalize(simd_double3((Double)(pos.x), (Double)(pos.y), (Double)(pos.z)) - 0)
+        let alpha = atan(planeDir.y / sqrt(planeDir.x*planeDir.x + planeDir.z*planeDir.z)) * 180 / Double.pi
+        let beta = atan(planeDir.x / planeDir.z) * 180 / Double.pi
+        var betaReformat = beta
+        if (planeDir.z < 0)
+        {
+            betaReformat = beta + 180
+        }
+        let xAngle = -alpha * Double.pi / 180
+        let yAngle = betaReformat * Double.pi / 180
+        backgroundNode.eulerAngles = SCNVector3(xAngle, yAngle, 0)
         
         markersAnchorNode.addChildNode(backgroundNode)
     }
