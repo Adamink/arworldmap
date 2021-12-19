@@ -60,8 +60,8 @@ class DropDownViewController: UIViewController, ARSCNViewDelegate, SCNSceneRende
         
         let countries = countryNames
 
-        print(countries)
-        print(countries.count) // 256
+//        print(countries)
+//        print(countries.count)
         
         dropDown.dataSource = countries
         

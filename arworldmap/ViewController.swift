@@ -29,15 +29,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     var didFindLocation = false
     var discoverPaused = false
     
-    // dictionary containing center lat & lon of countries
-    // todo: build this dict
-    var countryLatLonDict: [String: simd_double2] = ["China": simd_double2(30, 100),
-                                                     "Australia": simd_double2(-33, 151),
-                                                     "Japan": simd_double2(35, 140),
-                                                     "South Korea": simd_double2(37,127)]
-    
     // dictionary containing center position of countries
     var countryCenterDict: [String: simd_double3] = [:]
+    
     var lastCountry = ""
     var image_fd = "art.scnassets/country_shape_masks_alpha/"
     var curLatitude = 0.0
@@ -414,7 +408,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         }
         
         func getCountryInfo(country: String, infotexts: [SKLabelNode], img1: SKSpriteNode, img2: SKSpriteNode){
-            let infoEndpoint = "https://restcountries.com/v3.1/name/\(country)"
+            let countryForQuery = country.replacingOccurrences(of: " ", with: "%20")
+            let infoEndpoint = "https://restcountries.com/v3.1/name/\(countryForQuery)"
             
             guard let url = URL(string: infoEndpoint) else {
                 print("Error: cannot create URL")
@@ -831,8 +826,11 @@ extension ViewController: CLLocationManagerDelegate{
 //            let mapPos = self.coordinateTransform(selfLat: location.latitude, selfLon: location.longitude, countryLat: (topLat+bottomLat)/2, countryLon: (leftLon+rightLon)/2)
 //            self.createMapNode(width: CGFloat(rightLon-leftLon)/90,
 //                               height: CGFloat(topLat-bottomLat)/90, pos: SCNVector3(mapPos.x, mapPos.y, mapPos.z))
-            // let latLon = getCountryLongLatFromName(country: "Australia")
-            // print("Latitude: " + String(format: "%.2f", latLon[0]) + "  Longitude: " + String(format: "%.2f", latLon[0]))
+//             let latLon = getCountryLongLatFromName(country: "Australia")
+//             print("Latitude: " + String(format: "%.1f", latLon[0]) + "  Longitude: " + String(format: "%.1f", latLon[1]))
+//            generateCountryNameLongLatDict()
+//            print("countryNames size " + String(format:"%d", countryNames.count))
+//            print("countryLatLonDict size " + String(format:"%d", countryLatLonDict.count))
         }
     }
 }
