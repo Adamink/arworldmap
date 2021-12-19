@@ -147,6 +147,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         searchLatLonController.sceneSetting = self.scene
         
         searchLatLonController.markersAnchorNode = self.markersAnchorNode
+        dropDownController.markersAnchorNode = self.markersAnchorNode
     }
     
     func addDiscoverButton(){
@@ -648,6 +649,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         sphereNode.rotate(by: SCNQuaternion(x: Float(s), y: 0, z: 0, w: Float(c)), aroundTarget: pos)
         scene.rootNode.addChildNode(sphereNode)
         searchLatLonController.sphereNode = self.sphereNode
+        dropDownController.sphereNode = self.sphereNode
     }
     
     func createTextNode(title: String, size: CGFloat, x: Float, y: Float, z: Float){
@@ -827,7 +829,8 @@ extension ViewController: CLLocationManagerDelegate{
             self.curLongitude = location.longitude
             searchLatLonController.curLatitude = location.latitude
             searchLatLonController.curLongitude = location.longitude
-            
+            dropDownController.curLatitude = location.latitude
+            dropDownController.curLongitude = location.longitude
             calculateCountryCenterPositions()
             // Just some test text
 //            self.createTextNode(title: "lat:\(location.latitude)", size: 1.8, x: 0, y: 9, z: 50)
