@@ -27,7 +27,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
     var markersAnchorNode = SCNNode()
     var curCountryMarkerNode = SCNNode()
     var didFindLocation = false
-    var discoverPaused = false
+    var discoverPaused = true
     
     // dictionary containing center position of countries
     var countryCenterDict: [String: simd_double3] = [:]
@@ -96,6 +96,15 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
             if named == "Discover" {
                 self?.searchLatLonController.view.isHidden = true
                 self?.dropDownController.view.isHidden = true
+                
+                if(self?.searchLatLonController.searchButton.titleLabel?.text == "Back") {
+                    self?.searchLatLonController.searchButton.setTitle("Search Position", for: .normal)
+                }
+                
+                if(self?.dropDownController.searchButton.titleLabel?.text == "Back") {
+                    self?.dropDownController.searchButton.setTitle("Search Country", for: .normal)
+                }
+                
                 self!.addDiscoverButton()
                 self?.discoverPaused = false
             }
@@ -103,8 +112,19 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
                 self?.searchButton.removeFromSuperview()
                 self?.searchLatLonController.view.isHidden = true
                 self?.dropDownController.view.isHidden = false
+                
+                if(self?.searchLatLonController.searchButton.titleLabel?.text == "Back") {
+                    self?.searchLatLonController.searchButton.setTitle("Search Position", for: .normal)
+                }
+                
                 self?.discoverPaused = true
+                self!.makeSphereTransparent()
                 self?.curCountryMarkerNode.removeFromParentNode()
+                if (self?.searchButton.titleLabel?.text == "Back"){
+                    self!.exitDiscover()
+                    self?.searchButton.setTitle("Discover", for: .normal)
+                }
+                
                 self?.markersAnchorNode.enumerateChildNodes { (node, stop) in
                     node.removeFromParentNode()
                 }
@@ -113,8 +133,19 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
                 self?.searchButton.removeFromSuperview()
                 self?.searchLatLonController.view.isHidden = false
                 self?.dropDownController.view.isHidden = true
+                
+                if(self?.dropDownController.searchButton.titleLabel?.text == "Back") {
+                    self?.dropDownController.searchButton.setTitle("Search Country", for: .normal)
+                }
+                
                 self?.discoverPaused = true
+                self!.makeSphereTransparent()
                 self?.curCountryMarkerNode.removeFromParentNode()
+                if (self?.searchButton.titleLabel?.text == "Back"){
+                    self!.exitDiscover()
+                    self?.searchButton.setTitle("Discover", for: .normal)
+                }
+                
                 self?.markersAnchorNode.enumerateChildNodes { (node, stop) in
                     node.removeFromParentNode()
                 }
@@ -171,11 +202,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
             print("Touch search button")
             // todo: set the board at the right position and direction
             enterDiscover(countryName: lastCountry, pos: SCNVector3(0,0,0))
+            discoverPaused = true
             searchButton.setTitle("Back", for: .normal)
         }
         else if (searchButton.titleLabel?.text == "Back"){
             print("get back")
             exitDiscover()
+            discoverPaused = false
             searchButton.setTitle("Discover", for: .normal)
         }
     }
@@ -186,11 +219,17 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         // todo: api seems not to be very reliable; delays except for the first query
         createNewsBoard(transparentBackground: false, country: countryName)
         createCountryInfoBoard(transparentBackground: false, country: countryName)
+        markersAnchorNode.enumerateChildNodes { (node, stop) in
+            node.removeFromParentNode()
+        }
 //        createVideoBoard()
     }
     
     func exitDiscover()
     {
+        anchorNode.enumerateChildNodes { (node, stop) in
+                    node.removeFromParentNode()
+                }
         anchorNode.removeFromParentNode()
     }
     
@@ -789,6 +828,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNSceneRendererDeleg
         sphereNode.geometry?.firstMaterial?.transparent.contents = UIImage(named: mask_file)
     }
     
+    func makeSphereTransparent()
+    {
+        let mask_file = "art.scnassets/totallyTransparentSphere.png"
+        sphereNode.geometry?.firstMaterial?.transparent.contents = UIImage(named: mask_file)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -884,6 +929,7 @@ extension ViewController: CLLocationManagerDelegate{
 //            self.createPlaceMarkerNode(lat: (bottomLat+topLat)/2, lon: (leftLon+rightLon)/2, title: "China")
             
              self.createSphereNode(pos: SCNVector3(0, -1, 0), selfLat: location.latitude, selfLon: location.longitude)
+            self.makeSphereTransparent() // essential for the sphere to appear transparent in the initial view
             
 //            let sphere = Sphere()
 //            sphere.addSphereNode(scene: scene)
